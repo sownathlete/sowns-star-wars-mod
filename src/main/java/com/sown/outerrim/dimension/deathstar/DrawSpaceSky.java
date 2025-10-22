@@ -21,18 +21,19 @@ public class DrawSpaceSky extends IRenderHandler {
     public void render(float partialTicks, WorldClient world, Minecraft mc) {
         double time = world.getTotalWorldTime() + partialTicks;
 
-        // pure black sky dome
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_CULL_FACE);
         GL11.glDisable(GL11.GL_BLEND);
-        GL11.glColor4f(0f, 0f, 0f, 1f);
-        sphere.draw(110f, 50, 50);
 
-        // render stars with color ratios from RenderSpaceSky
+        // prevent sky dome from writing to depth buffer (fixes see-through/fog)
+        GL11.glDepthMask(false);
+        GL11.glColor4f(0f, 0f, 0f, 1f);
+        sphere.draw(220f, 50, 50); // doubled radius
+        GL11.glDepthMask(true);
+
         renderStars(time);
 
-        // restore
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL11.GL_LIGHTING);
@@ -45,24 +46,26 @@ public class DrawSpaceSky extends IRenderHandler {
 
         for (int i = 0; i < STAR_COUNT; i++) {
             Random rand = new Random(i * 7919L + 1);
-            double x = rand.nextFloat()*2 - 1;
-            double y = rand.nextFloat()*2 - 1;
-            double z = rand.nextFloat()*2 - 1;
-            double m = x*x + y*y + z*z;
-            if (m < 1.0 && m > 0.01) {
-                m = 1.0/Math.sqrt(m);
-                x *= m*100; y *= m*100; z *= m*100;
-                double size = STAR_MIN + rand.nextFloat()*STAR_RANGE;
+            double x = rand.nextFloat() * 2 - 1;
+            double y = rand.nextFloat() * 2 - 1;
+            double z = rand.nextFloat() * 2 - 1;
+            double m = x * x + y * y + z * z;
 
-                // static brightness (twinkle removed)
-                float baseBrightness = (float)Math.pow(rand.nextFloat(), 4);
+            if (m < 1.0 && m > 0.01) {
+                m = 1.0 / Math.sqrt(m);
+                x *= m * 200; // also scaled to match bigger dome
+                y *= m * 200;
+                z *= m * 200;
+
+                double size = STAR_MIN + rand.nextFloat() * STAR_RANGE;
+
+                float baseBrightness = (float) Math.pow(rand.nextFloat(), 4);
                 float brightness = 0.85f + baseBrightness * (2f - 0.85f);
 
-                // get star color from RenderSpaceSky logic
                 int rgb = getStarColorRGB(rand);
                 float r = ((rgb >> 16) & 0xFF) / 255f * brightness;
-                float g = ((rgb >> 8)  & 0xFF) / 255f * brightness;
-                float b = ( rgb        & 0xFF) / 255f * brightness;
+                float g = ((rgb >> 8) & 0xFF) / 255f * brightness;
+                float b = (rgb & 0xFF) / 255f * brightness;
 
                 t.setColorRGBA_F(r, g, b, 1f);
                 drawQuad(x, y, z, size, rand, t);
@@ -73,25 +76,21 @@ public class DrawSpaceSky extends IRenderHandler {
     }
 
     private void drawQuad(double x, double y, double z, double s, Random rand, Tessellator t) {
-        double az   = Math.atan2(x, z), sa = Math.sin(az), ca = Math.cos(az);
-        double el   = Math.atan2(Math.sqrt(x*x + z*z), y), se = Math.sin(el), ce = Math.cos(el);
-        double rot  = rand.nextDouble()*Math.PI*2, sr = Math.sin(rot), cr = Math.cos(rot);
+        double az = Math.atan2(x, z), sa = Math.sin(az), ca = Math.cos(az);
+        double el = Math.atan2(Math.sqrt(x * x + z * z), y), se = Math.sin(el), ce = Math.cos(el);
+        double rot = rand.nextDouble() * Math.PI * 2, sr = Math.sin(rot), cr = Math.cos(rot);
 
         for (int v = 0; v < 4; v++) {
-            double cx  = ((v&2)-1)*s;
-            double cz0 = (((v+1)&2)-1)*s;
-            double rx  = cx*cr - cz0*sr;
-            double rz  = cz0*cr + cx*sr;
-            double dy  = rx*se, back = -rx*ce;
-            double dx  = back*sa - rz*ca, dz = rz*sa + back*ca;
+            double cx = ((v & 2) - 1) * s;
+            double cz0 = (((v + 1) & 2) - 1) * s;
+            double rx = cx * cr - cz0 * sr;
+            double rz = cz0 * cr + cx * sr;
+            double dy = rx * se, back = -rx * ce;
+            double dx = back * sa - rz * ca, dz = rz * sa + back * ca;
             t.addVertex(x + dx, y + dy, z + dz);
         }
     }
 
-    /**
-     * Copied from RenderSpaceSky.getStarColorRGB:
-     * generates a varied hue/saturation/brightness star color.
-     */
     private static int getStarColorRGB(Random rand) {
         float hue, saturation;
         float brightness = 1.0f - 0.8f * rand.nextFloat();

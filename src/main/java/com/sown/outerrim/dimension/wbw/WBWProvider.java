@@ -1,23 +1,22 @@
 package com.sown.outerrim.dimension.wbw;
 
-import com.sown.outerrim.OuterRimResources;
-import com.sown.outerrim.dimension.BiomeChunkProviderGeneric;
-import com.sown.outerrim.dimension.kessel.ChunkProviderKessel;
-import com.sown.outerrim.dimension.kessel.WorldChunkManagerKessel;
-import com.sown.outerrim.dimension.tatooine.WorldChunkManagerTatooine;
 import com.sown.util.world.creation.GlobalPreset;
-import com.sown.util.world.creation.Vector3;
-import com.sown.util.world.creation.WorldProviderHelper;
 import com.sown.util.world.creation.WorldProviderSpace;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.client.IRenderHandler;
+
+@SideOnly(Side.CLIENT)
+class EmptyCloudRenderer extends IRenderHandler {
+    @Override
+    public void render(float partialTicks, net.minecraft.client.multiplayer.WorldClient world, net.minecraft.client.Minecraft mc) {
+        // do nothing — disables clouds
+    }
+}
 
 public class WBWProvider extends WorldProviderSpace {
     public static final BiomeGenBase worldBetweenWorlds =
@@ -27,6 +26,8 @@ public class WBWProvider extends WorldProviderSpace {
 
     @SideOnly(Side.CLIENT)
     private IRenderHandler skyRenderer;
+    @SideOnly(Side.CLIENT)
+    private IRenderHandler cloudRenderer;
 
     @Override
     public boolean canRainOrSnow() {
@@ -47,36 +48,37 @@ public class WBWProvider extends WorldProviderSpace {
     public long getDayLength() {
         return 24000L;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public IRenderHandler getSkyRenderer() {
         if (this.skyRenderer == null) {
-            this.skyRenderer = new DrawWBWSky();
+            this.skyRenderer = new DrawWBWSky(); // your custom sky renderer
         }
         return this.skyRenderer;
     }
-    
+
+    // Disable clouds entirely
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IRenderHandler getCloudRenderer() {
+        if (this.cloudRenderer == null) {
+            this.cloudRenderer = new EmptyCloudRenderer();
+        }
+        return this.cloudRenderer;
+    }
+
     @Override
     public void updateWeather() {
-        // Only run on the server side
-        if (worldObj.isRemote) {
-            return;
-        }
-
-        // Grab the WorldInfo once
+        if (worldObj.isRemote) return;
         WorldInfo info = worldObj.getWorldInfo();
-
-        // 1) Lock time at tick 6000 (noon)
         info.setWorldTime(6000L);
-
-        // 2) If its raining or thundering, clear both
         if (info.isRaining() || info.isThundering()) {
             info.setRaining(false);
             info.setThundering(false);
         }
     }
-    
+
     @Override
     public Class<? extends IChunkProvider> getChunkProviderClass() {
         return BiomeChunkProviderWBW.class;

@@ -1,88 +1,46 @@
-/*
- * Decompiled with CFR 0.148.
- *
- * Could not load the following classes:
- *  micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldChunkManagerSpace
- *  net.minecraft.world.ChunkPosition
- *  net.minecraft.world.World
- *  net.minecraft.world.biome.BiomeCache
- *  net.minecraft.world.biome.BiomeGenBase
- *  net.minecraft.world.biome.WorldChunkManager
- *  net.minecraft.world.gen.layer.GenLayer
- *  net.minecraft.world.gen.layer.IntCache
- */
 package com.sown.outerrim.dimension.abednedo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-import com.sown.util.world.creation.DimensionHelperChunkMgr;
-
-import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
-import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraft.world.gen.layer.IntCache;
 
-public class WorldChunkManagerAbednedo
-extends DimensionHelperChunkMgr {
-    private BiomeCache biomeCache = new BiomeCache(this);
-    private List<BiomeGenBase> biomesToSpawn = new ArrayList<BiomeGenBase>();
+import com.sown.util.world.creation.DimensionHelperChunkMgr;
+
+public class WorldChunkManagerAbednedo extends DimensionHelperChunkMgr {
+    private final BiomeCache biomeCache = new BiomeCache(this);
+    private final List<BiomeGenBase> biomesToSpawn = new ArrayList<BiomeGenBase>();
 
     protected WorldChunkManagerAbednedo() {
         this.biomesToSpawn.add(AbednedoProvider.abednedo);
     }
 
-    public WorldChunkManagerAbednedo(long seed) {
-        this();
-    }
+    public WorldChunkManagerAbednedo(long seed) { this(); }
+    public WorldChunkManagerAbednedo(World world) { this(world.getSeed()); }
 
-    public WorldChunkManagerAbednedo(World world) {
-        this(world.getSeed());
+    @Override
+    public BiomeGenBase getBiome() { return AbednedoProvider.abednedo; }
+
+    @Override
+    public List getBiomesToSpawnIn() { return this.biomesToSpawn; }
+
+    @Override
+    public BiomeGenBase getBiomeGenAt(int x, int z) {
+        BiomeGenBase b = this.biomeCache.getBiomeGenAt(x, z);
+        return b == null ? AbednedoProvider.abednedo : b;
     }
 
     @Override
-    public BiomeGenBase getBiome() {
-        return AbednedoProvider.abednedo;
+    public float getTemperatureAtHeight(float t, int y) { return t; }
+
+    @Override
+    public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] a, int x, int z, int w, int h) {
+        return this.getBiomeGenAt(a, x, z, w, h, true);
     }
 
     @Override
-    public List getBiomesToSpawnIn() {
-        return this.biomesToSpawn;
-    }
-    
-    public boolean canSpawnLightningBolt() {
-        return true; // This makes it so that lightning can strike in the biome
-    }
-
-    public boolean getEnableSnow() {
-        return false; // This ensures it rains instead of snowing
-    }
-
-    @Override
-    public BiomeGenBase getBiomeGenAt(int par1, int par2) {
-        BiomeGenBase biome = this.biomeCache.getBiomeGenAt(par1, par2);
-        if (biome == null)
-            return AbednedoProvider.abednedo;
-        return biome;
-    }
-
-    @Override
-    public float getTemperatureAtHeight(float par1, int par2) {
-        return par1;
-    }
-
-    @Override
-    public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] par1ArrayOfBiomeGenBase, int par2, int par3, int par4, int par5) {
-        return this.getBiomeGenAt(par1ArrayOfBiomeGenBase, par2, par3, par4, par5, true);
-    }
-
-    @Override
-    public void cleanupCache() {
-        this.biomeCache.cleanupCache();
-    }
+    public void cleanupCache() { this.biomeCache.cleanupCache(); }
 }
-

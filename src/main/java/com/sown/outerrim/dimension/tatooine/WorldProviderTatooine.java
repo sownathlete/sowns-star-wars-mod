@@ -66,24 +66,24 @@ implements WorldProviderHelper{
     @SideOnly(Side.CLIENT)
     private IRenderHandler skyRenderer;
 
-//    @Override
-//    @SideOnly(Side.CLIENT)
-//    public IRenderHandler getSkyRenderer() {
-//        if (skyRenderer == null) {
-//            skyRenderer = new DrawTatooineSky();
-//        }
-//        return skyRenderer;
-//    }
-
-    @SideOnly(Side.CLIENT)
     @Override
+    @SideOnly(Side.CLIENT)
     public IRenderHandler getSkyRenderer() {
-        if (this.skyRenderer == null) {
-            // "outerrim" is your modid, "deathStar" is the sub-folder under textures/sky
-            this.skyRenderer = new DrawSkybox("outerrim", "tatooine");
+        if (skyRenderer == null) {
+            skyRenderer = new DrawTatooineSky();
         }
-        return this.skyRenderer;
+        return skyRenderer;
     }
+
+//    @SideOnly(Side.CLIENT)
+//    @Override
+//    public IRenderHandler getSkyRenderer() {
+//        if (this.skyRenderer == null) {
+//            // "outerrim" is your modid, "deathStar" is the sub-folder under textures/sky
+//            this.skyRenderer = new DrawSkybox("outerrim", "tatooine");
+//        }
+//        return this.skyRenderer;
+//    }
 
     @Override
     public long getDayLength() {

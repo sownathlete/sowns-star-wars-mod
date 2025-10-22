@@ -159,19 +159,19 @@ public class ItemRegister {
 
         
         // Drinks
-        registerDrink("ardees", 0, 0.0f, true, true, true, false, null);
-        registerDrink("blueMilk", 0, 0f, true, true, true, true, null);
-        registerDrink("blueTonic", 0, 0f, true, true, true, false, null);
-        registerDrink("greenMilk", 0, 0f, true, true, true, true, null);
-        registerDrink("milk", 0, 0f, true, true, false, true, null);
-        registerDrink("reactorCore", 0, 0f, true, true, true, false, null);
-        registerDrink("redWine", 0, 0f, true, true, true, false, null);
-        registerDrink("spiceLiqueur", 0, 0f, true, true, true, false, null);
-        registerDrink("vodka", 0, 0f, true, true, true, false, null);
-        registerDrink("water", 0, 0f, false, true, false, false, null);
-        registerDrink("whiteWine", 0, 0f, true, true, true, false, null);
-        registerDrink("spotchka", 0, 0f, true, true, true, false, null);
-        registerDrink("caf", 0, 0f, true, true, true, false, null);
+        registerDrink("ardees", 0, 0.0f, true, true, true, false);
+        registerDrink("blueMilk", 0, 0f, true, true, true, true);
+        registerDrink("blueTonic", 0, 0f, true, true, true, false);
+        registerDrink("greenMilk", 0, 0f, true, true, true, true);
+        registerDrink("milk", 0, 0f, true, true, false, true);
+        registerDrink("reactorCore", 0, 0f, true, true, true, false);
+        registerDrink("redWine", 0, 0f, true, true, true, false);
+        registerDrink("spiceLiqueur", 0, 0f, true, true, true, false);
+        registerDrink("vodka", 0, 0f, true, true, true, false);
+        registerDrink("water", 0, 0f, false, true, false, false);
+        registerDrink("whiteWine", 0, 0f, true, true, true, false);
+        registerDrink("spotchka", 0, 0f, true, true, true, false);
+        registerDrink("caf", 0, 0f, true, true, true, false);
 
         // Hyperdrives
         registerHyperdrive("Abednedo");

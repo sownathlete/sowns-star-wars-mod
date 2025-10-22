@@ -323,9 +323,9 @@ public class Vector3 implements Cloneable {
         return this;
     }
 
-    public List<Entity> getEntitiesWithin(World worldObj, Class<? extends Entity> par1Class) {
+    /*public List<Entity> getEntitiesWithin(World worldObj, Class<? extends Entity> par1Class) {
         return worldObj.getEntitiesWithinAABB(par1Class, AxisAlignedBB.getBoundingBox(this.intX(), this.intY(), this.intZ(), (this.intX() + 1), (this.intY() + 1), (this.intZ() + 1)));
-    }
+    }*/
 
     public Vector3 modifyPositionFromSide(ForgeDirection side, double amount) {
         return this.translate((new Vector3(side)).scale(amount));

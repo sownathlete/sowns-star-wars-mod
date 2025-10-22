@@ -46,7 +46,7 @@ public abstract class EntityReconTrooperBase extends EntityTameable implements I
         this.targetTasks.addTask(8, new EntityAINearestAttackableTarget(this, EntityTuskenRaider.class, 4, true));
 
         // Target vanilla hostile mobs (IMob covers zombies, skeletons, creepers, etc.)
-        this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, IMob.class, 5, true));
+        // this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, IMob.class, 5, true));
     }
 
     @Override

@@ -222,7 +222,7 @@ public class TileEntityCoaxiumRefinery extends TileEntity implements ISidedInven
 
     @Override
     public AxisAlignedBB getRenderBoundingBox() {
-        return INFINITE_EXTENT_AABB; // never culled by frustum
+        return INFINITE_EXTENT_AABB;
     }
 
     @Override

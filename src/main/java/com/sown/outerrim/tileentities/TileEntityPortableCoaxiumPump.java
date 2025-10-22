@@ -1,6 +1,9 @@
 package com.sown.outerrim.tileentities;
 
 import com.sown.outerrim.registry.ItemRegister;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -9,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 
 public class TileEntityPortableCoaxiumPump extends TileEntity implements IInventory {
     private static final String SOURCE_NAME   = "outerrim:coaxiumDepositVolatile";
@@ -151,6 +155,12 @@ public class TileEntityPortableCoaxiumPump extends TileEntity implements IInvent
     @Override
     public double getMaxRenderDistanceSquared() {
         return Double.MAX_VALUE;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getRenderBoundingBox() {
+        return TileEntity.INFINITE_EXTENT_AABB;
     }
     
     @Override public void openInventory()                          {}

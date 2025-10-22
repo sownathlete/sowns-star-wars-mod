@@ -2,6 +2,9 @@ package com.sown.outerrim.tileentities;
 
 import com.sown.outerrim.items.ItemCoaxiumVialRaw;
 import com.sown.outerrim.registry.ItemRegister;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -13,6 +16,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 
 public class TileEntityCoaxiumContainer extends TileEntity implements IInventory {
     private static final Item EMPTY   = ItemRegister.getRegisteredItem("vialEmpty");
@@ -131,6 +135,12 @@ public class TileEntityCoaxiumContainer extends TileEntity implements IInventory
     @Override
     public double getMaxRenderDistanceSquared() {
         return Double.MAX_VALUE;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getRenderBoundingBox() {
+        return TileEntity.INFINITE_EXTENT_AABB;
     }
 
 }

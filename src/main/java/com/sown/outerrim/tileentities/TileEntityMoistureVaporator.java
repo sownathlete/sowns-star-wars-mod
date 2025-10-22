@@ -1,5 +1,7 @@
 package com.sown.outerrim.tileentities;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -9,6 +11,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 
 public class TileEntityMoistureVaporator extends TileEntity implements IInventory {
     public int frame = 0;
@@ -152,5 +155,11 @@ public class TileEntityMoistureVaporator extends TileEntity implements IInventor
     @Override
     public double getMaxRenderDistanceSquared() {
         return Double.MAX_VALUE;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getRenderBoundingBox() {
+        return TileEntity.INFINITE_EXTENT_AABB;
     }
 }

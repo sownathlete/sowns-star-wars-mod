@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "outerrim",
+    "name": "Additions to the Outer Rim",
+    "description": "A Minecraft mod packed with Star Wars excitement. This isn't just an add-on; it's a complete Star Wars universe reimagined in the Minecraft world. We're talking new planets, new mobs, epic music, cool items, and blocks straight from the Star Wars galaxy. The mod takes your Minecraft gaming to a whole new galaxy, whether you're playing on our dedicated 'The Empire Strikes Block' server or adventuring solo. Embark on a thrilling Star Wars adventure within the blocky landscapes of Minecraft with 'Additions to the Outer Rim.' Experience the iconic characters, environments, and excitement of Star Wars like never before. May the Force be with you!",
+    "version": "1.0.0",
+    "mcversion": "1.7.10",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["Sown", "Trickfoot"],
+    "credits": "",
+    "logoFile": "assets/outerrim/logo.png",
+    "screenshots": [],
+    "dependencies": []
+  }
+]

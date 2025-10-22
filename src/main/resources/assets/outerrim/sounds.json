@@ -1,0 +1,1849 @@
+{
+    "mob.commoner.die_male": {
+        "category": "neutral",
+        "sounds": [
+            "mob/commoner/male/die1"
+        ]
+    },
+    "mob.commoner.die_female": {
+        "category": "neutral",
+        "sounds": [
+            "mob/commoner/female/die1"
+        ]
+    },
+    "mob.commoner.hit_male": {
+        "category": "neutral",
+        "sounds": [
+            "mob/commoner/male/hit1",
+            "mob/commoner/male/hit2"
+        ]
+    },
+    "mob.commoner.hit_female": {
+        "category": "neutral",
+        "sounds": [
+            "mob/commoner/female/hit1",
+            "mob/commoner/female/hit2"
+        ]
+    },
+    "mob.commoner.say_male": {
+        "category": "neutral",
+        "sounds": [
+            "mob/commoner/male/say1",
+            "mob/commoner/male/say2",
+            "mob/commoner/male/say3"
+        ]
+    },
+    "mob.commoner.say_female": {
+        "category": "neutral",
+        "sounds": [
+            "mob/commoner/female/say1",
+            "mob/commoner/female/say2"
+        ]
+    },
+    "mob.zabrak.hit_male": {
+        "category": "neutral",
+        "sounds": [
+            "mob/zabrak/male/hit1",
+            "mob/zabrak/male/hit2",
+            "mob/zabrak/male/hit3",
+            "mob/zabrak/male/hit4"
+        ]
+    },
+    "mob.zabrak.say_male": {
+        "category": "neutral",
+        "sounds": [
+            "mob/zabrak/male/say1",
+            "mob/zabrak/male/say2",
+            "mob/zabrak/male/say3",
+            "mob/zabrak/male/say4",
+            "mob/zabrak/male/say5"
+        ]
+    },
+    "mob.zabrak.die_male": {
+        "category": "neutral",
+        "sounds": [
+            "mob/zabrak/male/die1",
+            "mob/zabrak/male/die2"
+        ]
+    },
+    "entity.jabba.death": {
+        "sounds": [
+            {
+                "name": "entity/hutt/jabba/death/jabba_death_1",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/death/jabba_death_2",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/death/jabba_death_3",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/death/jabba_death_4",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/death/jabba_death_5",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/death/jabba_death_6",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/death/jabba_death_7",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/death/jabba_death_8",
+                "stream": false
+            }
+        ],
+        "category": "neutral"
+    },
+    "entity.jabba.hurt": {
+        "sounds": [
+            {
+                "name": "entity/hutt/jabba/hurt/jabba_hurt_1",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/hurt/jabba_hurt_2",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/hurt/jabba_hurt_3",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/hurt/jabba_hurt_4",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/hurt/jabba_hurt_5",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/hurt/jabba_hurt_6",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/hurt/jabba_hurt_7",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/hurt/jabba_hurt_8",
+                "stream": false
+            }
+        ],
+        "category": "neutral"
+    },
+    "entity.jabba.ambient": {
+        "sounds": [
+            {
+                "name": "entity/hutt/jabba/ambient/jabba_ambient_1",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/ambient/jabba_ambient_2",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/ambient/jabba_ambient_3",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/ambient/jabba_ambient_4",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/ambient/jabba_ambient_5",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/ambient/jabba_ambient_6",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/ambient/jabba_ambient_7",
+                "stream": false
+            },
+            {
+                "name": "entity/hutt/jabba/ambient/jabba_ambient_8",
+                "stream": false
+            }
+        ],
+        "category": "neutral"
+    },
+    "entity.ewok.ambient": {
+        "sounds": [
+            {
+                "name": "entity/ewok/ambient/ewok_ambient_1",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/ambient/ewok_ambient_2",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/ambient/ewok_ambient_3",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/ambient/ewok_ambient_4",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/ambient/ewok_ambient_5",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/ambient/ewok_ambient_6",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/ambient/ewok_ambient_7",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/ambient/ewok_ambient_8",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/ambient/ewok_ambient_9",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/ambient/ewok_ambient_10",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/ambient/ewok_ambient_11",
+                "stream": false
+            }
+        ],
+        "category": "neutral"
+    },
+    "entity.ewok.hurt": {
+        "sounds": [
+            {
+                "name": "entity/ewok/hurt/ewok_hurt_1",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/hurt/ewok_hurt_2",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/hurt/ewok_hurt_3",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/hurt/ewok_hurt_4",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/hurt/ewok_hurt_5",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/hurt/ewok_hurt_6",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/hurt/ewok_hurt_7",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/hurt/ewok_hurt_8",
+                "stream": false
+            }
+        ],
+        "category": "neutral"
+    },
+    "entity.ewok.death": {
+        "sounds": [
+            {
+                "name": "entity/ewok/death/ewok_death_1",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/death/ewok_death_2",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/death/ewok_death_3",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/death/ewok_death_4",
+                "stream": false
+            },
+            {
+                "name": "entity/ewok/death/ewok_death_5",
+                "stream": false
+            }
+        ],
+        "category": "neutral"
+    },
+    "entity.kaadu.ambient": {
+        "sounds": [
+            {
+                "name": "entity/kaadu/ambient/kaadu_ambient_1",
+                "stream": false
+            },
+            {
+                "name": "entity/kaadu/ambient/kaadu_ambient_2",
+                "stream": false
+            },
+            {
+                "name": "entity/kaadu/ambient/kaadu_ambient_3",
+                "stream": false
+            },
+            {
+                "name": "entity/kaadu/ambient/kaadu_ambient_4",
+                "stream": false
+            },
+            {
+                "name": "entity/kaadu/ambient/kaadu_ambient_5",
+                "stream": false
+            },
+            {
+                "name": "entity/kaadu/ambient/kaadu_ambient_6",
+                "stream": false
+            }
+        ],
+        "category": "neutral"
+    },
+    "entity.kaadu.hurt": {
+        "sounds": [
+            {
+                "name": "entity/kaadu/hurt/kaadu_hurt_1",
+                "stream": false
+            },
+            {
+                "name": "entity/kaadu/hurt/kaadu_hurt_2",
+                "stream": false
+            },
+            {
+                "name": "entity/kaadu/hurt/kaadu_hurt_3",
+                "stream": false
+            },
+            {
+                "name": "entity/kaadu/hurt/kaadu_hurt_4",
+                "stream": false
+            }
+        ],
+        "category": "neutral"
+    },
+    "entity.kaadu.death": {
+        "sounds": [
+            {
+                "name": "entity/kaadu/death/kaadu_death_1",
+                "stream": false
+            },
+            {
+                "name": "entity/kaadu/death/kaadu_death_2",
+                "stream": false
+            }
+        ],
+        "category": "neutral"
+    },
+    "entity.wookiee.ambient": {
+        "sounds": [
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_1",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_2",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_3",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_4",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_5",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_6",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_7",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_8",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_9",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_10",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_11",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_12",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/ambient/wookiee_ambient_13",
+                "stream": false
+            }
+        ],
+        "category": "neutral"
+    },
+    "entity.wookiee.hurt": {
+        "sounds": [
+            {
+                "name": "entity/wookiee/hurt/wookiee_hurt_1",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/hurt/wookiee_hurt_2",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/hurt/wookiee_hurt_3",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/hurt/wookiee_hurt_4",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/hurt/wookiee_hurt_5",
+                "stream": false
+            }
+        ],
+        "category": "neutral"
+    },
+    "entity.wookiee.death": {
+        "sounds": [
+            {
+                "name": "entity/wookiee/death/wookiee_death_1",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/death/wookiee_death_2",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/death/wookiee_death_3",
+                "stream": false
+            },
+            {
+                "name": "entity/wookiee/death/wookiee_death_4",
+                "stream": false
+            }
+        ],
+        "category": "neutral"
+    },
+    "item.blaster.hit": {
+        "category": "player",
+        "sounds": [
+            {
+                "name": "item/blaster/hit",
+                "stream": false
+            }
+        ]
+    },
+    "item.blaster.dc15s": {
+        "category": "player",
+        "sounds": [
+            {
+                "name": "item/blaster/dc15s",
+                "stream": false
+            }
+        ]
+    },
+    "entity.droid.ambient": {
+        "sounds": [
+            "entity/droid/droid_ambient1",
+            "entity/droid/droid_ambient2",
+            "entity/droid/droid_ambient3",
+            "entity/droid/droid_ambient4",
+            "entity/droid/droid_ambient5",
+            "entity/droid/droid_ambient6",
+            "entity/droid/droid_ambient7",
+            "entity/droid/droid_ambient8",
+            "entity/droid/droid_ambient9",
+            "entity/droid/droid_ambient10"
+        ],
+        "category": "neutral"
+    },
+    "entity.droid.flee": {
+        "sounds": [
+            "entity/droid/droid_flee1",
+            "entity/droid/droid_flee2",
+            "entity/droid/droid_flee3",
+            "entity/droid/droid_flee4"
+        ],
+        "category": "neutral"
+    },
+    "entity.droid.hurt": {
+        "sounds": [
+            "entity/droid/droid_hurt1",
+            "entity/droid/droid_hurt2",
+            "entity/droid/droid_hurt3",
+            "entity/droid/droid_hurt4",
+            "entity/droid/droid_hurt5"
+        ],
+        "category": "neutral"
+    },
+    "entity.droid.move": {
+        "sounds": [
+            "entity/droid/droid_move"
+        ],
+        "category": "neutral"
+    },
+    "entity.droid.wiggle": {
+        "sounds": [
+            "entity/droid/droid_wiggle"
+        ],
+        "category": "neutral"
+    },
+    "entity.droid.zap": {
+        "sounds": [
+            "entity/droid/droid_zap1",
+            "entity/droid/droid_zap2",
+            "entity/droid/droid_zap3"
+        ],
+        "category": "neutral"
+    },
+    "entity.droid.flee_prison_cell": {
+        "sounds": [
+            "entity/droid/droid_flee_prison_cell"
+        ],
+        "category": "neutral"
+    },
+    "entity.b1.ambient": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b1/b1_ambient1",
+            "entity/b1/b1_ambient2",
+            "entity/b1/b1_ambient3",
+            "entity/b1/b1_ambient4",
+            "entity/b1/b1_ambient5",
+            "entity/b1/b1_ambient6",
+            "entity/b1/b1_ambient7",
+            "entity/b1/b1_ambient8",
+            "entity/b1/b1_ambient9",
+            "entity/b1/b1_ambient10",
+            "entity/b1/b1_ambient11",
+            "entity/b1/b1_ambient12",
+            "entity/b1/b1_ambient13"
+        ]
+    },
+    "entity.b1.death": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b1/b1_death1",
+            "entity/b1/b1_death2",
+            "entity/b1/b1_death3",
+            "entity/b1/b1_death4",
+            "entity/b1/b1_death5",
+            "entity/b1/b1_death6",
+            "entity/b1/b1_death7",
+            "entity/b1/b1_death8",
+            "entity/b1/b1_death9",
+            "entity/b1/b1_death10"
+        ]
+    },
+    "entity.b1.hurt": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b1/b1_hurt1",
+            "entity/b1/b1_hurt2",
+            "entity/b1/b1_hurt3",
+            "entity/b1/b1_hurt4",
+            "entity/b1/b1_hurt5",
+            "entity/b1/b1_hurt6",
+            "entity/b1/b1_hurt7",
+            "entity/b1/b1_hurt8",
+            "entity/b1/b1_hurt9",
+            "entity/b1/b1_hurt10"
+        ]
+    },
+    "entity.b1.melee": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b1/b1_melee1",
+            "entity/b1/b1_melee2",
+            "entity/b1/b1_melee3",
+            "entity/b1/b1_melee4",
+            "entity/b1/b1_melee5",
+            "entity/b1/b1_melee6",
+            "entity/b1/b1_melee7",
+            "entity/b1/b1_melee8",
+            "entity/b1/b1_melee9",
+            "entity/b1/b1_melee10"
+        ]
+    },
+    "entity.b1.panic": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b1/b1_panic1",
+            "entity/b1/b1_panic2",
+            "entity/b1/b1_panic3",
+            "entity/b1/b1_panic4",
+            "entity/b1/b1_panic5",
+            "entity/b1/b1_panic6",
+            "entity/b1/b1_panic7",
+            "entity/b1/b1_panic8",
+            "entity/b1/b1_panic9",
+            "entity/b1/b1_panic10"
+        ]
+    },
+    "entity.b1.spawn": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b1/b1_spawn1",
+            "entity/b1/b1_spawn2",
+            "entity/b1/b1_spawn3",
+            "entity/b1/b1_spawn4",
+            "entity/b1/b1_spawn5"
+        ]
+    },
+    "entity.b1.droid_limb_losing": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b1/droid_limb_losing1",
+            "entity/b1/droid_limb_losing2",
+            "entity/b1/droid_limb_losing3",
+            "entity/b1/droid_limb_losing4",
+            "entity/b1/droid_limb_losing5"
+        ]
+    },
+    "entity.b1.droid_shoot": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b1/droid_shoot1",
+            "entity/b1/droid_shoot2",
+            "entity/b1/droid_shoot3",
+            "entity/b1/droid_shoot4",
+            "entity/b1/droid_shoot5",
+            "entity/b1/droid_shoot6",
+            "entity/b1/droid_shoot7",
+            "entity/b1/droid_shoot8",
+            "entity/b1/droid_shoot9",
+            "entity/b1/droid_shoot10"
+        ]
+    },
+    "entity.clone.ambient": {
+        "category": "neutral",
+        "sounds": [
+            "entity/clone/clone_ambient1",
+            "entity/clone/clone_ambient2",
+            "entity/clone/clone_ambient3",
+            "entity/clone/clone_ambient4",
+            "entity/clone/clone_ambient5",
+            "entity/clone/clone_ambient6",
+            "entity/clone/clone_ambient7",
+            "entity/clone/clone_ambient8",
+            "entity/clone/clone_ambient9",
+            "entity/clone/clone_ambient10"
+        ]
+    },
+    "entity.clone.death": {
+        "category": "neutral",
+        "sounds": [
+            "entity/clone/clone_death1",
+            "entity/clone/clone_death2",
+            "entity/clone/clone_death3",
+            "entity/clone/clone_death4",
+            "entity/clone/clone_death5"
+        ]
+    },
+    "entity.clone.hurt": {
+        "category": "neutral",
+        "sounds": [
+            "entity/clone/clone_hurt1",
+            "entity/clone/clone_hurt2",
+            "entity/clone/clone_hurt3",
+            "entity/clone/clone_hurt4",
+            "entity/clone/clone_hurt5",
+            "entity/clone/clone_hurt6",
+            "entity/clone/clone_hurt7",
+            "entity/clone/clone_hurt8",
+            "entity/clone/clone_hurt9",
+            "entity/clone/clone_hurt10"
+        ]
+    },
+    "entity.clone.shoot": {
+        "category": "neutral",
+        "sounds": [
+            "entity/clone/clone_shoot1",
+            "entity/clone/clone_shoot2",
+            "entity/clone/clone_shoot3",
+            "entity/clone/clone_shoot4",
+            "entity/clone/clone_shoot5",
+            "entity/clone/clone_shoot6",
+            "entity/clone/clone_shoot7",
+            "entity/clone/clone_shoot8",
+            "entity/clone/clone_shoot9",
+            "entity/clone/clone_shoot10"
+        ]
+    },
+    "entity.b2.ambient": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b2_battle_droid/b2_ambient1",
+            "entity/b2_battle_droid/b2_ambient2",
+            "entity/b2_battle_droid/b2_ambient3",
+            "entity/b2_battle_droid/b2_ambient4",
+            "entity/b2_battle_droid/b2_ambient5",
+            "entity/b2_battle_droid/b2_ambient6",
+            "entity/b2_battle_droid/b2_ambient7",
+            "entity/b2_battle_droid/b2_ambient8",
+            "entity/b2_battle_droid/b2_ambient9",
+            "entity/b2_battle_droid/b2_ambient10"
+        ]
+    },
+    "entity.b2.death": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b2_battle_droid/b2_death1",
+            "entity/b2_battle_droid/b2_death2",
+            "entity/b2_battle_droid/b2_death3",
+            "entity/b2_battle_droid/b2_death4",
+            "entity/b2_battle_droid/b2_death5",
+            "entity/b2_battle_droid/b2_death6",
+            "entity/b2_battle_droid/b2_death7",
+            "entity/b2_battle_droid/b2_death8",
+            "entity/b2_battle_droid/b2_death9",
+            "entity/b2_battle_droid/b2_death10"
+        ]
+    },
+    "entity.b2.hurt": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b2_battle_droid/b2_hurt1",
+            "entity/b2_battle_droid/b2_hurt2",
+            "entity/b2_battle_droid/b2_hurt3",
+            "entity/b2_battle_droid/b2_hurt4",
+            "entity/b2_battle_droid/b2_hurt5",
+            "entity/b2_battle_droid/b2_hurt6",
+            "entity/b2_battle_droid/b2_hurt7",
+            "entity/b2_battle_droid/b2_hurt8",
+            "entity/b2_battle_droid/b2_hurt9",
+            "entity/b2_battle_droid/b2_hurt10"
+        ]
+    },
+    "entity.b2.jetpack_loop": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b2_battle_droid/b2_jetpack_loop1",
+            "entity/b2_battle_droid/b2_jetpack_loop2",
+            "entity/b2_battle_droid/b2_jetpack_loop3",
+            "entity/b2_battle_droid/b2_jetpack_loop4",
+            "entity/b2_battle_droid/b2_jetpack_loop5"
+        ]
+    },
+    "entity.b2.melee": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b2_battle_droid/b2_melee1",
+            "entity/b2_battle_droid/b2_melee2",
+            "entity/b2_battle_droid/b2_melee3",
+            "entity/b2_battle_droid/b2_melee4",
+            "entity/b2_battle_droid/b2_melee5",
+            "entity/b2_battle_droid/b2_melee6",
+            "entity/b2_battle_droid/b2_melee7",
+            "entity/b2_battle_droid/b2_melee8",
+            "entity/b2_battle_droid/b2_melee9",
+            "entity/b2_battle_droid/b2_melee10"
+        ]
+    },
+    "entity.b2.panic": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b2_battle_droid/b2_panic1",
+            "entity/b2_battle_droid/b2_panic2",
+            "entity/b2_battle_droid/b2_panic3",
+            "entity/b2_battle_droid/b2_panic4",
+            "entity/b2_battle_droid/b2_panic5",
+            "entity/b2_battle_droid/b2_panic6",
+            "entity/b2_battle_droid/b2_panic7",
+            "entity/b2_battle_droid/b2_panic8",
+            "entity/b2_battle_droid/b2_panic9",
+            "entity/b2_battle_droid/b2_panic10"
+        ]
+    },
+    "entity.b2.spawn": {
+        "category": "neutral",
+        "sounds": [
+            "entity/b2_battle_droid/b2_spawn1",
+            "entity/b2_battle_droid/b2_spawn2",
+            "entity/b2_battle_droid/b2_spawn3",
+            "entity/b2_battle_droid/b2_spawn4",
+            "entity/b2_battle_droid/b2_spawn5"
+        ]
+    },
+    "entity.droideka.shield_activate": {
+        "category": "neutral",
+        "sounds": [
+            "entity/droideka/droideka_shield_activate1",
+            "entity/droideka/droideka_shield_activate2"
+        ]
+    },
+    "entity.droideka.shield_destroyed": {
+        "category": "neutral",
+        "sounds": [
+            "entity/droideka/droideka_shield_destroyed"
+        ]
+    },
+    "entity.droideka.shoot": {
+        "category": "neutral",
+        "sounds": [
+            "entity/droideka/droideka_shoot1",
+            "entity/droideka/droideka_shoot2",
+            "entity/droideka/droideka_shoot3",
+            "entity/droideka/droideka_shoot4",
+            "entity/droideka/droideka_shoot5"
+        ]
+    },
+    "entity.droideka.step": {
+        "category": "neutral",
+        "sounds": [
+            "entity/droideka/droideka_step1",
+            "entity/droideka/droideka_step2",
+            "entity/droideka/droideka_step3",
+            "entity/droideka/droideka_step4",
+            "entity/droideka/droideka_step5",
+            "entity/droideka/droideka_step6",
+            "entity/droideka/droideka_step7",
+            "entity/droideka/droideka_step8",
+            "entity/droideka/droideka_step9",
+            "entity/droideka/droideka_step10"
+        ]
+    },
+    "entity.tusken.ambient": {
+        "category": "neutral",
+        "sounds": [
+            "entity/tusken/tusken_ambient1",
+            "entity/tusken/tusken_ambient2",
+            "entity/tusken/tusken_ambient3",
+            "entity/tusken/tusken_ambient4",
+            "entity/tusken/tusken_ambient5",
+            "entity/tusken/tusken_ambient6",
+            "entity/tusken/tusken_ambient7",
+            "entity/tusken/tusken_ambient8",
+            "entity/tusken/tusken_ambient9",
+            "entity/tusken/tusken_ambient10"
+        ]
+    },
+    "entity.tusken.death": {
+        "category": "neutral",
+        "sounds": [
+            "entity/tusken/tusken_death1",
+            "entity/tusken/tusken_death2",
+            "entity/tusken/tusken_death3",
+            "entity/tusken/tusken_death4",
+            "entity/tusken/tusken_death5",
+            "entity/tusken/tusken_death6",
+            "entity/tusken/tusken_death7",
+            "entity/tusken/tusken_death8",
+            "entity/tusken/tusken_death9",
+            "entity/tusken/tusken_death10"
+        ]
+    },
+    "entity.tusken.hurt": {
+        "category": "neutral",
+        "sounds": [
+            "entity/tusken/tusken_hurt1",
+            "entity/tusken/tusken_hurt2",
+            "entity/tusken/tusken_hurt3",
+            "entity/tusken/tusken_hurt4",
+            "entity/tusken/tusken_hurt5",
+            "entity/tusken/tusken_hurt6",
+            "entity/tusken/tusken_hurt7",
+            "entity/tusken/tusken_hurt8",
+            "entity/tusken/tusken_hurt9",
+            "entity/tusken/tusken_hurt10"
+        ]
+    },
+    "entity.tusken.melee": {
+        "category": "neutral",
+        "sounds": [
+            "entity/tusken/tusken_melee1",
+            "entity/tusken/tusken_melee2",
+            "entity/tusken/tusken_melee3",
+            "entity/tusken/tusken_melee4",
+            "entity/tusken/tusken_melee5",
+            "entity/tusken/tusken_melee6",
+            "entity/tusken/tusken_melee7",
+            "entity/tusken/tusken_melee8",
+            "entity/tusken/tusken_melee9",
+            "entity/tusken/tusken_melee10"
+        ]
+    },
+    "entity.yoda.ambient": {
+        "category": "neutral",
+        "sounds": [
+            "entity/yoda/yoda_ambient1",
+            "entity/yoda/yoda_ambient2"
+        ]
+    },
+    "entity.yoda.death": {
+        "category": "neutral",
+        "sounds": [
+            "entity/yoda/yoda_death"
+        ]
+    },
+    "entity.yoda.hurt": {
+        "category": "neutral",
+        "sounds": [
+            "entity/yoda/yoda_hurt"
+        ]
+    },
+    "records.anakin_vs_obi_wan": {
+        "sounds": [
+            {
+                "name": "records/anakin_vs_obi_wan",
+                "stream": true
+            }
+        ],
+        "category": "record"
+    },
+    "records.battle_of_the_heroes": {
+        "sounds": [
+            {
+                "name": "records/battle_of_the_heroes",
+                "stream": true
+            }
+        ],
+        "category": "record"
+    },
+    "records.battle_over_coruscant": {
+        "sounds": [
+            {
+                "name": "records/battle_over_coruscant",
+                "stream": true
+            }
+        ],
+        "category": "record"
+    },
+    "records.cantina_band": {
+        "sounds": [
+            {
+                "name": "records/cantina_band",
+                "stream": true
+            }
+        ],
+        "category": "record"
+    },
+    "records.clone_army_march": {
+        "sounds": [
+            {
+                "name": "records/clone_army_march",
+                "stream": true
+            }
+        ],
+        "category": "record"
+    },
+    "records.droid_army_march": {
+        "sounds": [
+            {
+                "name": "records/droid_army_march",
+                "stream": true
+            }
+        ],
+        "category": "record"
+    },
+    "records.duel_of_the_fates": {
+        "sounds": [
+            {
+                "name": "records/duel_of_the_fates",
+                "stream": true
+            }
+        ],
+        "category": "record"
+    },
+    "records.jedi_rocks": {
+        "sounds": [
+            {
+                "name": "records/jedi_rocks",
+                "stream": true
+            }
+        ],
+        "category": "record"
+    },
+    "records.niamos": {
+        "sounds": [
+            {
+                "name": "records/niamos",
+                "stream": true
+            }
+        ],
+        "category": "record"
+    },
+    "records.sugaan_essena": {
+        "sounds": [
+            {
+                "name": "records/sugaan_essena",
+                "stream": true
+            }
+        ],
+        "category": "record"
+    },
+    "records.the_imperial_march": {
+        "sounds": [
+            {
+                "name": "records/the_imperial_march",
+                "stream": true
+            }
+        ],
+        "category": "record"
+    },
+    "records.yub_nub": {
+        "sounds": [
+            {
+                "name": "records/yub_nub",
+                "stream": true
+            }
+        ],
+        "category": "record"
+    },
+    "planet.ajan_kloss.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/ajan_kloss/ajan_kloss_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.ahch_to.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/ahch_to/ahch_to_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.alderaan.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/alderaan/alderaan_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.bespin.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/bespin/bespin_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.byss.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/byss/byss_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.vjun.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/vjun/vjun_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.crait.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/crait/crait_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.dagobah.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/dagobah/dagobah_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.dantooine.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/dantooine/dantooine_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.dathomir.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/dathomir/dathomir_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.death_star.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/death_star/death_star_ambient_1",
+                "stream": true
+            },
+            {
+                "name": "ambient/planet/death_star/death_star_ambient_2",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.endor.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/endor/endor_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.felucia.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/felucia/felucia_ambient_1",
+                "stream": true
+            },
+            {
+                "name": "ambient/planet/felucia/felucia_ambient_2",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.fondor.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/fondor/fondor_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.hoth.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/hoth/hoth_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.ilum.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/ilum/ilum_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.kamino.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/kamino/kamino_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.kashyyyk.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/kashyyyk/kashyyyk_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.naboo.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/naboo/naboo_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.savareen.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/savareen/savareen_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.scarif.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/scarif/scarif_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.starkiller_base.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/starkiller_base/starkiller_base_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.takodana.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/takodana/takodana_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.tatooine.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/tatooine/tatooine_ambient_1",
+                "stream": true
+            },
+            {
+                "name": "ambient/planet/tatooine/tatooine_ambient_2",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.tython.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/tython/tython_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.utapau.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/utapau/utapau_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.kessel.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/kessel/kessel_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.korriban.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/korriban/korriban_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.manaan.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/manaan/manaan_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.mustafar.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/mustafar/mustafar_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.niamos.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/niamos/niamos_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.dqar.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/dqar/dqar_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.bogano.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/bogano/bogano_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.bracca.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/bracca/bracca_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.corellia.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/corellia/corellia_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.coruscant.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/coruscant/coruscant_ambient_1",
+                "stream": true
+            },            {
+                "name": "ambient/planet/coruscant/coruscant_ambient_2",
+                "stream": true
+            },            {
+                "name": "ambient/planet/coruscant/coruscant_ambient_3",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.mimban.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/mimban/mimban_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.geonosis.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/geonosis/geonosis_ambient_1",
+                "stream": true
+            },
+            {
+                "name": "ambient/planet/geonosis/geonosis_ambient_2",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.jakku.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/jakku/jakku_ambient_1",
+                "stream": true
+            },
+            {
+                "name": "ambient/planet/jakku/jakku_ambient_2",
+                "stream": true
+            },
+            {
+                "name": "ambient/planet/jakku/jakku_ambient_3",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.sullust.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/sullust/sullust_ambient_1",
+                "stream": true
+            },
+            {
+                "name": "ambient/planet/sullust/sullust_ambient_2",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.world_between_worlds.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/world_between_worlds/world_between_worlds_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "planet.yavin_4.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/yavin_4/yavin_4_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "voice.anakin.liar": {
+        "sounds": [
+            {
+                "name": "voice/anakin/liar",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.turned_her_against_me": {
+        "sounds": [
+            {
+                "name": "voice/anakin/turned_her_against_me",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.not_take_her": {
+        "sounds": [
+            {
+                "name": "voice/anakin/not_take_her",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.dont_lecture_me": {
+        "sounds": [
+            {
+                "name": "voice/anakin/dont_lecture_me",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.lies_of_the_jedi": {
+        "sounds": [
+            {
+                "name": "voice/anakin/lies_of_the_jedi",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.no_fear_dark_side": {
+        "sounds": [
+            {
+                "name": "voice/anakin/no_fear_dark_side",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.brought_peace": {
+        "sounds": [
+            {
+                "name": "voice/anakin/brought_peace",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.dont_make_me_kill_you": {
+        "sounds": [
+            {
+                "name": "voice/anakin/dont_make_me_kill_you",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.if_not_with_me": {
+        "sounds": [
+            {
+                "name": "voice/anakin/if_not_with_me",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.you_will_try": {
+        "sounds": [
+            {
+                "name": "voice/anakin/you_will_try",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.should_have_known": {
+        "sounds": [
+            {
+                "name": "voice/anakin/should_have_known",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.jedi_are_evil": {
+        "sounds": [
+            {
+                "name": "voice/anakin/jedi_are_evil",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.end_for_you": {
+        "sounds": [
+            {
+                "name": "voice/anakin/end_for_you",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.underestimate_power": {
+        "sounds": [
+            {
+                "name": "voice/anakin/underestimate_power",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.leap_yell": {
+        "sounds": [
+            {
+                "name": "voice/anakin/leap_yell",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.i_hate_you": {
+        "sounds": [
+            {
+                "name": "voice/anakin/i_hate_you",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.not_fair": {
+        "sounds": [
+            {
+                "name": "voice/anakin/not_fair",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.want_more": {
+        "sounds": [
+            {
+                "name": "voice/anakin/want_more",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.buzz_droids": {
+        "sounds": [
+            {
+                "name": "voice/anakin/buzz_droids",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.unfair": {
+        "sounds": [
+            {
+                "name": "voice/anakin/unfair",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.intoxicating": {
+        "sounds": [
+            {
+                "name": "voice/anakin/intoxicating",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.dont_ask": {
+        "sounds": [
+            {
+                "name": "voice/anakin/dont_ask",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.youre_shorter": {
+        "sounds": [
+            {
+                "name": "voice/anakin/youre_shorter",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.not_jedi_way": {
+        "sounds": [
+            {
+                "name": "voice/anakin/not_jedi_way",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.what_i_done": {
+        "sounds": [
+            {
+                "name": "voice/anakin/what_i_done",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.powerful_jedi": {
+        "sounds": [
+            {
+                "name": "voice/anakin/powerful_jedi",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.suffering": {
+        "sounds": [
+            {
+                "name": "voice/anakin/suffering",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.jedi_turned": {
+        "sounds": [
+            {
+                "name": "voice/anakin/jedi_turned",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "voice.anakin.what_did_you_say": {
+        "sounds": [
+            {
+                "name": "voice/anakin/what_did_you_say",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "death.hero.anakin": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/characters/death/hero/death_hero_anakin",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
+    "music.hero.anakin.intro": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/music/hero/anakin/anakin_intro",
+                "stream": true
+            },
+            {
+                "name": "battlefront-ii/music/hero/anakin/anakin_intro_short",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "music.hero.anakin.outro": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/music/hero/anakin/anakin_outro",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "ux.rank_up.prestige": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/ux/rank_up/rank_up_prestige",
+                "stream": true
+            }
+        ],
+        "category": "player"
+    },
+    "vo.mp.hero.anakin.core.landing_strike": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/vo/mp/hero/anakin/core/anakin_landing_strike",
+                "stream": true
+            },
+            {
+                "name": "battlefront-ii/vo/mp/hero/anakin/core/anakin_landing_strike_2",
+                "stream": true
+            },
+            {
+                "name": "battlefront-ii/vo/mp/hero/anakin/core/anakin_landing_strike_3",
+                "stream": true
+            },
+            {
+                "name": "battlefront-ii/vo/mp/hero/anakin/core/anakin_landing_strike_4",
+                "stream": true
+            },
+            {
+                "name": "battlefront-ii/vo/mp/hero/anakin/core/anakin_landing_strike_5",
+                "stream": true
+            }
+        ],
+        "category": "ambient"
+    },
+    "music.hero.obi_wan.intro": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/music/hero/obi_wan/obi_wan_intro",
+                "stream": true
+            },
+            {
+                "name": "battlefront-ii/music/hero/obi_wan/obi_wan_intro_short",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "music.hero.obi_wan.outro": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/music/hero/obi_wan/obi_wan_outro",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "music.hero.dooku.intro": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/music/hero/dooku/dooku_intro",
+                "stream": true
+            },
+            {
+                "name": "battlefront-ii/music/hero/dooku/dooku_intro_short",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "music.hero.dooku.outro": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/music/hero/dooku/dooku_outro",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "music.hero.han_solo.intro": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/music/hero/han_solo/han_solo_intro",
+                "stream": true
+            },
+            {
+                "name": "battlefront-ii/music/hero/han_solo/han_solo_intro_short",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "music.hero.han_solo.outro": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/music/hero/han_solo/han_solo_outro",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "music.hero.boba_fett.intro": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/music/hero/boba_fett/boba_fett_intro",
+                "stream": true
+            },
+            {
+                "name": "battlefront-ii/music/hero/boba_fett/boba_fett_intro_short",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
+    "music.hero.boba_fett.outro": {
+        "sounds": [
+            {
+                "name": "battlefront-ii/music/hero/boba_fett/boba_fett_outro",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    }
+}

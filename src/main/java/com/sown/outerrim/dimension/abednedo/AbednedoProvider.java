@@ -11,13 +11,12 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.storage.WorldInfo;
-import net.minecraft.world.World;
 import java.util.Random;
 
 public class AbednedoProvider extends WorldProviderSpace {
     public static final BiomeGenBase abednedo =
         new BiomeGenAbednedo(OuterRimResources.ConfigOptions.biomeAbednedoId)
-            .setColor(0x70A068)
+            .setColor(0x6E9966)
             .setBiomeName("Abednedo");
 
     private final Random weatherRng = new Random();
@@ -85,32 +84,44 @@ public class AbednedoProvider extends WorldProviderSpace {
     @Override public boolean isSurfaceWorld() { return true; }
     @Override public String getDimensionName() { return "Abednedo"; }
 
+    private static int lerpRGB(int a, int b, float t) {
+        int ar = (a >> 16) & 255, ag = (a >> 8) & 255, ab = a & 255;
+        int br = (b >> 16) & 255, bg = (b >> 8) & 255, bb = b & 255;
+        int r = ar + Math.round((br - ar) * t);
+        int g = ag + Math.round((bg - ag) * t);
+        int bl = ab + Math.round((bb - ab) * t);
+        return (r << 16) | (g << 8) | bl;
+    }
+
+    private static float clamp01(float v) {
+        return v < 0.0f ? 0.0f : (v > 1.0f ? 1.0f : v);
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public Vec3 getSkyColor(Entity cameraEntity, float partialTicks) {
-        int day = 0xB6F2A0;
-        int night = 0x0B1A0B;
-        float angle = worldObj.getCelestialAngle(partialTicks);
-        float blend = (float)(Math.cos(angle * Math.PI * 2.0) * 0.5 + 0.5);
-        float dr = ((day >> 16) & 255) / 255.0F;
-        float dg = ((day >> 8) & 255) / 255.0F;
-        float db = (day & 255) / 255.0F;
-        float nr = ((night >> 16) & 255) / 255.0F;
-        float ng = ((night >> 8) & 255) / 255.0F;
-        float nb = (night & 255) / 255.0F;
-        float r = nr + (dr - nr) * blend;
-        float g = ng + (dg - ng) * blend;
-        float b = nb + (db - nb) * blend;
+        int day = 0xC9E5C5;   // muted light green
+        int night = 0x121A12; // deep natural green
+        float a = worldObj.getCelestialAngle(partialTicks);
+        float t = (float)(Math.cos(a * Math.PI * 2.0) * 0.5 + 0.5);
+        int c = lerpRGB(night, day, clamp01(t));
+        float dim = 0.88f; // de-neon
+        double r = ((c >> 16) & 255) / 255.0 * dim;
+        double g = ((c >> 8) & 255) / 255.0 * dim;
+        double b = (c & 255) / 255.0 * dim;
         return Vec3.createVectorHelper(r, g, b);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public Vec3 getFogColor(float par1, float par2) {
-        int fog = 0x4EA84A;
-        float r = ((fog >> 16) & 255) / 255.0F;
-        float g = ((fog >> 8) & 255) / 255.0F;
-        float b = (fog & 255) / 255.0F;
+        int fog = 0x7C9E7A; // muted green fog
+        float rain = worldObj.getRainStrength(par2);
+        float th = worldObj.getWeightedThunderStrength(par2);
+        float dim = 0.95f - 0.15f * rain - 0.05f * th;
+        double r = ((fog >> 16) & 255) / 255.0 * dim;
+        double g = ((fog >> 8) & 255) / 255.0 * dim;
+        double b = (fog & 255) / 255.0 * dim;
         return Vec3.createVectorHelper(r, g, b);
     }
 }

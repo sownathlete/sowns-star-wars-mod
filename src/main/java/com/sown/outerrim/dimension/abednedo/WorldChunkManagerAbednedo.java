@@ -2,12 +2,9 @@ package com.sown.outerrim.dimension.abednedo;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.WorldChunkManager;
-
 import com.sown.util.world.creation.DimensionHelperChunkMgr;
 
 public class WorldChunkManagerAbednedo extends DimensionHelperChunkMgr {

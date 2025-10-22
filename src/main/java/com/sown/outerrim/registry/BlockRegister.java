@@ -352,12 +352,13 @@ public class BlockRegister {
 				BlockConstants.LIGHT_NONE, BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED,
 				BlockConstants.DROPS_ITSELF, BlockConstants.SINGLE_SIDED, BlockConstants.HAS_ADDITIONAL_BLOCKS, false,
 				false, BlockConstants.NO_FENCE, BlockConstants.NO_WALL);
-		registerBlockWithTileEntity(BlockFeluciaFlowerTurquoise.class, TileEntityFeluciaFlowerTurquoise.class, "felucia_flower_tall_turquoise",
+		// This block is causing an error when run on servers due to the particles its making?
+		/* registerBlockWithTileEntity(BlockFeluciaFlowerTurquoise.class, TileEntityFeluciaFlowerTurquoise.class, "felucia_flower_tall_turquoise",
 		        BlockConstants.MATERIAL_PLANTS, BlockConstants.HARDNESS_PLANT, BlockConstants.TOOL_SHEARS,
 		        BlockConstants.HARVEST_NONE, BlockConstants.SOUND_GRASS, BlockConstants.LIGHT_NONE,
 		        BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
 		        BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
-		        decorationBlocks);
+		        decorationBlocks);*/
 		registerBlock(BlockCustomSolid.class, "fortInquisFloorPanel", BlockConstants.MATERIAL_IRON,
 				BlockConstants.HARDNESS_METAL, BlockConstants.TOOL_PICKAXE, BlockConstants.HARVEST_NONE,
 				BlockConstants.SOUND_METAL, BlockConstants.LIGHT_NONE, BlockConstants.NO_BLOCK_DROPPED,

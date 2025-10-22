@@ -2,6 +2,7 @@ package com.sown.outerrim;
 
 import com.sown.outerrim.client.render.RenderPortableCoaxiumPump;
 import com.sown.outerrim.entities.*;
+import com.sown.outerrim.handlers.FrozenPlayerHandler;
 import com.sown.outerrim.registry.BlockRegister;
 import com.sown.outerrim.rendering.ItemRendererPortableCoaxiumPump;
 import com.sown.outerrim.rendering.RenderBlockCarbonite;
@@ -58,6 +59,7 @@ import com.sown.outerrim.items.InquisitorHelmetLayerHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 import net.minecraft.block.Block;
@@ -85,27 +87,27 @@ public class OuterRimClientProxy extends OuterRimCommonProxy {
         INSTANCE = new OuterRimClientProxy();
     }
 
-    public void preInit(FMLPreInitializationEvent e) {
+    public void preInit(FMLPreInitializationEvent event) {
+        super.preInit(event);
+        System.setProperty("fml.skipFirstTextureLoad", "false");
+        OuterRimClientProxy.setupArmorModels();
+    }
+
+    public void init(FMLInitializationEvent event) {
+        super.init(event);
+        MinecraftForge.EVENT_BUS.register(new FrozenPlayerHandler());
+        FMLCommonHandler.instance().bus().register(new DimensionEntrySoundHandler());
+        new InquisitorHelmetLayerHandler();
+        mc = Minecraft.getMinecraft();
+        // also set the shared client reference used elsewhere (e.g., MessageSpawnClientParticle)
+        OuterRim.mc = mc;
+        registerRendering();
     }
 
     public OuterRimClientProxy() {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    @Override
-    public void doSidedThings() {
-        mc = Minecraft.getMinecraft();
-        // also set the shared client reference used elsewhere (e.g., MessageSpawnClientParticle)
-        OuterRim.mc = mc;
-    }
-
-    @Override
-    public void onPreload() {
-        System.setProperty("fml.skipFirstTextureLoad", "false");
-        OuterRimClientProxy.setupArmorModels();
-    }
-
-    @Override
     public void registerRendering() {
         //RenderingRegistry.registerEntityRenderingHandler(EntityBlasterVariableBolt.class, (Render)new RenderBlasterBolt(GLPalette.BRIGHT_RED));
         //MinecraftForgeClient.registerItemRenderer((Item)ItemRegister.blasterPistol, (IItemRenderer)new RenderBlasterPistol());
@@ -257,11 +259,5 @@ public class OuterRimClientProxy extends OuterRimCommonProxy {
     public static void registerCloneTrooperRenderer(Class<? extends EntityCloneTrooperBase> trooperClass, String battalionName) {
         RenderingRegistry.registerEntityRenderingHandler(trooperClass,
             new RenderCloneTrooper(new ModelCloneTrooperPhase2(), 0.5F, battalionName));
-    }
-
-    @Override
-    public void registerClientOnlyHooks() {
-        FMLCommonHandler.instance().bus().register(new DimensionEntrySoundHandler());
-        new InquisitorHelmetLayerHandler();
     }
 }

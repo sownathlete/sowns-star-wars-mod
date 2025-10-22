@@ -9,8 +9,10 @@
 /mods/
 /logs/
 /Flan/
-/logs/
 /legends/
 /config/
 /crash-reports/
 .classpath
+.idea
+layout.json
+/debug

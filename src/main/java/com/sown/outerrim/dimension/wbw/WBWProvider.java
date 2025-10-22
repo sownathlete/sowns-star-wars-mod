@@ -14,7 +14,7 @@ import net.minecraftforge.client.IRenderHandler;
 class EmptyCloudRenderer extends IRenderHandler {
     @Override
     public void render(float partialTicks, net.minecraft.client.multiplayer.WorldClient world, net.minecraft.client.Minecraft mc) {
-        // do nothing — disables clouds
+        // do nothing - disables clouds
     }
 }
 

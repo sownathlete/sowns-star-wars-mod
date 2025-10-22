@@ -227,7 +227,6 @@ public class TileEntityCoaxiumRefinery extends TileEntity implements ISidedInven
 
     @Override
     public double getMaxRenderDistanceSquared() {
-        // 256 blocks away (adjust to taste)
-        return 65536.0D;
+        return Double.MAX_VALUE;
     }
 }

@@ -52,4 +52,9 @@ public class TileEntityCoaxiumRack extends TileEntity {
     public void setClicks(int clicks) {
         this.clicks = clicks;
     }
+    
+    @Override
+    public double getMaxRenderDistanceSquared() {
+        return Double.MAX_VALUE;
+    }
 }

@@ -121,4 +121,9 @@ public class TileEntityCarbonite extends TileEntity {
         super.onDataPacket(net, packet);
         this.readFromNBT(packet.func_148857_g());
     }
+    
+    @Override
+    public double getMaxRenderDistanceSquared() {
+        return Double.MAX_VALUE;
+    }
 }

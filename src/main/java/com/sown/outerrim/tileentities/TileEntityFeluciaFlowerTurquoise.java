@@ -55,6 +55,11 @@ public class TileEntityFeluciaFlowerTurquoise extends TileEntity {
                              S35PacketUpdateTileEntity pkt) {
         readFromNBT(pkt.func_148857_g());
     }
+    
+    @Override
+    public double getMaxRenderDistanceSquared() {
+        return Double.MAX_VALUE;
+    }
 
     @Override public boolean canUpdate() { return false; }
 }

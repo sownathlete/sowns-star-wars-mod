@@ -135,8 +135,14 @@ public class TileEntityCoaxiumPump extends TileEntity implements IInventory {
             clientProgress[i] = progress[i];
         }
     }
-
+    
     public int getProgressScaled(int slotIndex, int scale) {
         return clientProgress[slotIndex] * scale / PROCESS_TIME;
     }
+    
+    @Override
+    public double getMaxRenderDistanceSquared() {
+        return Double.MAX_VALUE;
+    }
+
 }

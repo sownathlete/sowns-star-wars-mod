@@ -148,4 +148,9 @@ public class TileEntityMoistureVaporator extends TileEntity implements IInventor
         }
         super.writeToNBT(tag);
     }
+    
+    @Override
+    public double getMaxRenderDistanceSquared() {
+        return Double.MAX_VALUE;
+    }
 }

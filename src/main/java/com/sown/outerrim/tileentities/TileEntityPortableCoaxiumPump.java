@@ -147,6 +147,12 @@ public class TileEntityPortableCoaxiumPump extends TileEntity implements IInvent
         return worldObj.getTileEntity(xCoord,yCoord,zCoord) == this
             && p.getDistanceSq(xCoord+.5,yCoord+.5,zCoord+.5) <= 64;
     }
+    
+    @Override
+    public double getMaxRenderDistanceSquared() {
+        return Double.MAX_VALUE;
+    }
+    
     @Override public void openInventory()                          {}
     @Override public void closeInventory()                         {}
 }

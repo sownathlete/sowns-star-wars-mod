@@ -127,4 +127,10 @@ public class TileEntityCoaxiumContainer extends TileEntity implements IInventory
             inv[slot] = ItemStack.loadItemStackFromNBT(t);
         }
     }
+    
+    @Override
+    public double getMaxRenderDistanceSquared() {
+        return Double.MAX_VALUE;
+    }
+
 }

@@ -89,18 +89,18 @@ public class ItemRegister {
     public static void registerAll() {
 
         // Items
-        registerItem("vial", materials);
-        registerItem("coaxiumVial", materials);
-        registerItem("coaxiumVolatile2", materials);
-        registerItem("coaxiumVolatile1", materials);
-        registerItem("coaxiumRaw", materials);
+        // registerItem("vial", materials);
+        // registerItem("coaxiumVial", materials);
+        // registerItem("coaxiumVolatile2", materials);
+        // registerItem("coaxiumVolatile1", materials);
+        // registerItem("coaxiumRaw", materials);
         
         registerItem("alazhi", materials);
         
         /* NEW coaxium set */
         reg("vialEmpty", ItemRegister.misc, new Item().setMaxStackSize(16));
-        reg("vialCoaxiumRaw",ItemRegister.misc,     new ItemCoaxiumVialRaw());       // volatile
-        reg("vialCoaxiumRefined", ItemRegister.misc,new Item().setMaxStackSize(1));                     // safe, sellable
+        reg("vialCoaxiumRaw",ItemRegister.misc, new ItemCoaxiumVialRaw());       // volatile
+        reg("vialCoaxiumRefined", ItemRegister.misc, new Item().setMaxStackSize(1)); // safe, sellable
 
         //registerItem("beskarIngot", materials);
         //registerItem("durasteelIngot", materials);

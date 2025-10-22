@@ -259,12 +259,12 @@ public class BlockRegister {
 				BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
 				BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
 				decorationBlocks);
-		registerBlockWithTileEntity(BlockCoaxiumContainer.class, TileEntityCoaxiumContainer.class, "coaxium_rack",
+		/*registerBlockWithTileEntity(BlockCoaxiumContainer.class, TileEntityCoaxiumContainer.class, "coaxium_rack",
 				BlockConstants.MATERIAL_ROCK, BlockConstants.HARDNESS_WOOD, BlockConstants.TOOL_PICKAXE,
 				BlockConstants.HARVEST_STONE, BlockConstants.SOUND_STONE, BlockConstants.LIGHT_NONE,
 				BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
 				BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
-				decorationBlocks);
+				decorationBlocks);*/
 		registerBlockWithTileEntity(BlockPortableCoaxiumPump.class, TileEntityPortableCoaxiumPump.class, "portable_coaxium_pump",
 			    BlockConstants.MATERIAL_IRON, 4.0F, BlockConstants.TOOL_PICKAXE, 1, BlockConstants.SOUND_METAL, BlockConstants.LIGHT_NONE,
 			    BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,

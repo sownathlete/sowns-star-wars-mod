@@ -1,65 +1,63 @@
-/*
- * Decompiled with CFR 0.148.
- * 
- * Could not load the following classes:
- *  net.minecraft.world.biome.WorldChunkManager
- *  net.minecraft.world.chunk.IChunkProvider
- */
 package com.sown.outerrim.dimension.coruscant;
-
-import org.lwjgl.opengl.GL11;
 
 import com.sown.outerrim.OuterRimResources;
 import com.sown.outerrim.dimension.deathstar.DrawSkybox;
-import com.sown.outerrim.dimension.kessel.ChunkProviderKessel;
-import com.sown.outerrim.dimension.kessel.WorldChunkManagerKessel;
-import com.sown.outerrim.dimension.tatooine.WorldChunkManagerTatooine;
 import com.sown.util.world.creation.GlobalPreset;
-import com.sown.util.world.creation.Vector3;
 import com.sown.util.world.creation.WorldProviderHelper;
 import com.sown.util.world.creation.WorldProviderSpace;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
 
 public class CoruscantProvider
 extends WorldProviderSpace
 implements WorldProviderHelper {
-    public static final BiomeGenBase coruscant = new BiomeGenCoruscant(OuterRimResources.ConfigOptions.biomeCoruscantId).setColor(112).setBiomeName("Coruscant");
+
+    public static final BiomeGenBase coruscant =
+        new BiomeGenCoruscant(OuterRimResources.ConfigOptions.biomeCoruscantId)
+            .setColor(112)
+            .setBiomeName("Coruscant");
 
     @SideOnly(Side.CLIENT)
     private IRenderHandler skyRenderer;
-    
-    public boolean canRainOrSnow() {
-        return true;
-    }
+
+    @SideOnly(Side.CLIENT)
+    private IRenderHandler cloudRenderer;
 
     @Override
     public void registerWorldChunkManager() {
         this.worldChunkMgr = new WorldChunkManagerCoruscant();
         this.dimensionId = OuterRimResources.ConfigOptions.dimCoruscantId;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public IRenderHandler getSkyRenderer() {
         if (this.skyRenderer == null) {
-            // "outerrim" is your modid, "deathStar" is the sub-folder under textures/sky
             this.skyRenderer = new DrawSkybox("outerrim", "coruscant");
         }
         return this.skyRenderer;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IRenderHandler getCloudRenderer() {
+        if (this.cloudRenderer == null) {
+            this.cloudRenderer = new EmptyCloudRenderer();
+        }
+        return this.cloudRenderer;
+    }
+
+    @Override
+    public boolean canRainOrSnow() {
+        return true;
     }
 
     @Override
@@ -76,7 +74,12 @@ implements WorldProviderHelper {
     public long getDayLength() {
         return 24000L;
     }
-    
+
+    @Override
+    public long getWorldTime() {
+        return 12450L;
+    }
+
     public boolean shouldForceRespawn() {
         return true;
     }
@@ -91,14 +94,17 @@ implements WorldProviderHelper {
         return WorldChunkManagerCoruscant.class;
     }
 
+    @Override
     public double getHorizon() {
         return 44.0;
     }
 
+    @Override
     public int getAverageGroundLevel() {
         return 44;
     }
 
+    @Override
     public boolean canCoordinateBeSpawn(int var1, int var2) {
         return true;
     }
@@ -108,6 +114,7 @@ implements WorldProviderHelper {
         return 0.03f;
     }
 
+    @Override
     public int getHeight() {
         return 800;
     }
@@ -157,8 +164,15 @@ implements WorldProviderHelper {
         return null;
     }
 
+    @Override
     public String getDimensionName() {
-        return null;
+        return "Coruscant";
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static class EmptyCloudRenderer extends IRenderHandler {
+        @Override
+        public void render(float partialTicks, WorldClient world, net.minecraft.client.Minecraft mc) {
+        }
     }
 }
-

@@ -2,42 +2,51 @@ package com.sown.outerrim.dimension.kamino;
 
 import com.sown.outerrim.OuterRimResources;
 import com.sown.outerrim.dimension.deathstar.DrawSkybox;
-import com.sown.outerrim.dimension.kamino.BiomeChunkProviderKamino;
-import com.sown.outerrim.dimension.kamino.BiomeGenKamino;
-import com.sown.outerrim.dimension.kamino.WorldChunkManagerKamino;
 import com.sown.util.world.creation.GlobalPreset;
 import com.sown.util.world.creation.WorldProviderSpace;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Vec3;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.client.IRenderHandler;
 
-public class KaminoProvider
-extends WorldProviderSpace {
-    public static final BiomeGenBase kamino = new BiomeGenKamino(OuterRimResources.ConfigOptions.biomeKaminoId).setColor(112).setBiomeName("Kamino");
+public class KaminoProvider extends WorldProviderSpace {
+    public static final BiomeGenBase kamino =
+        new BiomeGenKamino(OuterRimResources.ConfigOptions.biomeKaminoId)
+            .setColor(112)
+            .setBiomeName("Kamino");
 
     @SideOnly(Side.CLIENT)
     private IRenderHandler skyRenderer;
 
-    @Override
-    public boolean canRainOrSnow() {
-        return true;
-    }
+    @SideOnly(Side.CLIENT)
+    private IRenderHandler cloudRenderer;
 
     @SideOnly(Side.CLIENT)
     @Override
     public IRenderHandler getSkyRenderer() {
         if (this.skyRenderer == null) {
-            // "outerrim" is your modid, "deathStar" is the sub-folder under textures/sky
             this.skyRenderer = new DrawSkybox("outerrim", "kamino");
         }
         return this.skyRenderer;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IRenderHandler getCloudRenderer() {
+        if (this.cloudRenderer == null) {
+            this.cloudRenderer = new EmptyCloudRenderer();
+        }
+        return this.cloudRenderer;
+    }
+
+    @Override
+    public boolean canRainOrSnow() {
+        return true;
     }
 
     @Override
@@ -69,22 +78,24 @@ extends WorldProviderSpace {
         return true;
     }
 
-    @SideOnly(value=Side.CLIENT)
+    @SideOnly(Side.CLIENT)
+    @Override
     public Vec3 getFogColor(float par1, float par2) {
-        int color = 2501692;
+        int color = 0x262C2D;
         float r = (float)(color >> 16 & 0xFF) / 255.0f;
         float g = (float)(color >> 8 & 0xFF) / 255.0f;
         float b = (float)(color & 0xFF) / 255.0f;
-        return Vec3.createVectorHelper((double)r, (double)g, (double)b);
+        return Vec3.createVectorHelper(r, g, b);
     }
 
-    @SideOnly(value=Side.CLIENT)
+    @SideOnly(Side.CLIENT)
+    @Override
     public Vec3 getSkyColor(Entity cameraEntity, float partialTicks) {
-        int color = 1645867;
+        int color = 0x546A70;
         float r = (float)(color >> 16 & 0xFF) / 255.0f;
         float g = (float)(color >> 8 & 0xFF) / 255.0f;
         float b = (float)(color & 0xFF) / 255.0f;
-        return Vec3.createVectorHelper((double)r, (double)g, (double)b);
+        return Vec3.createVectorHelper(r, g, b);
     }
 
     public boolean shouldForceRespawn() {
@@ -101,14 +112,17 @@ extends WorldProviderSpace {
         return WorldChunkManagerKamino.class;
     }
 
+    @Override
     public double getHorizon() {
         return 44.0;
     }
 
+    @Override
     public int getAverageGroundLevel() {
         return 44;
     }
 
+    @Override
     public boolean canCoordinateBeSpawn(int var1, int var2) {
         return true;
     }
@@ -118,6 +132,7 @@ extends WorldProviderSpace {
         return 0.03f;
     }
 
+    @Override
     public int getHeight() {
         return 800;
     }
@@ -172,8 +187,15 @@ extends WorldProviderSpace {
         return null;
     }
 
+    @Override
     public String getDimensionName() {
-        return null;
+        return "Kamino";
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static class EmptyCloudRenderer extends IRenderHandler {
+        @Override
+        public void render(float partialTicks, net.minecraft.client.multiplayer.WorldClient world, net.minecraft.client.Minecraft mc) {
+        }
     }
 }
-

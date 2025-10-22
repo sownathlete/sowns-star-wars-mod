@@ -3,4 +3,14 @@
 /gradle/
 .gradle
 /bin/
+/saves/
+/screenshots/
+/resourcepacks/
+/mods/
+/logs/
+/Flan/
+/logs/
+/legends/
+/config/
+/crash-reports/
 .classpath

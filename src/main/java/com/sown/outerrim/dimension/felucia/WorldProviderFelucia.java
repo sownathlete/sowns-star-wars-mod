@@ -45,24 +45,41 @@ public class WorldProviderFelucia extends WorldProviderSpace implements WorldPro
         return true;
     }
 
-//    @SideOnly(value = Side.CLIENT)
-//    public Vec3 getSkyColor(Entity cameraEntity, float partialTicks) {
-//        int color = 15249765;
-//        float r = (float) ((color >> 16) & 255) / 255.0f; // Extract Red
-//        float g = (float) ((color >> 8) & 255) / 255.0f;  // Extract Green
-//        float b = (float) (color & 255) / 255.0f;         // Extract Blue
-//        return Vec3.createVectorHelper(r, g, b);
-//    }
-    
     @SideOnly(Side.CLIENT)
     @Override
-    public IRenderHandler getSkyRenderer() {
-        if (this.skyRenderer == null) {
-            // "outerrim" is your modid, "deathStar" is the sub-folder under textures/sky
-            this.skyRenderer = new DrawSkybox("outerrim", "felucia");
-        }
-        return this.skyRenderer;
+    public Vec3 getSkyColor(Entity cameraEntity, float partialTicks) {
+        float angle = this.worldObj.getCelestialAngle(partialTicks);
+
+        float brightness = MathHelper.cos(angle * (float)Math.PI * 2.0F) * 2.0F + 0.5F;
+        brightness = MathHelper.clamp_float(brightness, 0.0F, 1.0F);
+
+        int dayColor = 0xDAA263;
+        float dayR = ((dayColor >> 16) & 255) / 255.0F;
+        float dayG = ((dayColor >> 8) & 255) / 255.0F;
+        float dayB = (dayColor & 255) / 255.0F;
+
+
+        int nightColor = 0x19150F;
+        float nightR = ((nightColor >> 16) & 255) / 255.0F;
+        float nightG = ((nightColor >> 8) & 255) / 255.0F;
+        float nightB = (nightColor & 255) / 255.0F;
+
+        float r = nightR + (dayR - nightR) * brightness;
+        float g = nightG + (dayG - nightG) * brightness;
+        float b = nightB + (dayB - nightB) * brightness;
+
+        return Vec3.createVectorHelper(r, g, b);
     }
+
+//    @SideOnly(Side.CLIENT)
+//    @Override
+//    public IRenderHandler getSkyRenderer() {
+//        if (this.skyRenderer == null) {
+//            // "outerrim" is your modid, "deathStar" is the sub-folder under textures/sky
+//            this.skyRenderer = new DrawSkybox("outerrim", "felucia");
+//        }
+//        return this.skyRenderer;
+//    }
 
     @Override
     public Class<? extends IChunkProvider> getChunkProviderClass() {

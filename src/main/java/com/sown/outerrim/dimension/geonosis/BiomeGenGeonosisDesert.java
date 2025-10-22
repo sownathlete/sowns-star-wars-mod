@@ -66,8 +66,8 @@ public class BiomeGenGeonosisDesert extends GeonosisBiomes {
                 int centerX = x + 7;
                 int centerZ = z + 7;
 
-                int numBattleDroids = 6 + rand.nextInt(7);   // 6–12
-                int numB2Droids = 3 + rand.nextInt(4);       // 3–6
+                int numBattleDroids = 6 + rand.nextInt(7);   // 612
+                int numB2Droids = 3 + rand.nextInt(4);       // 36
 
                 for (int i = 0; i < numBattleDroids; i++) {
                     int dx = centerX + rand.nextInt(15) - 7;

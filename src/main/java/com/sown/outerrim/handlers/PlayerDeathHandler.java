@@ -141,7 +141,7 @@ public class PlayerDeathHandler {
                     e.printStackTrace();
                 }
             } else {
-                System.out.println("[INFO] Legends mod not loaded — skipping legacy check.");
+                System.out.println("[INFO] Legends mod not loaded  skipping legacy check.");
             }
         }
     }

@@ -19,7 +19,7 @@ public class WorldGenLightPath implements IWorldGenerator {
     // your WBW dimension ID
     private static final int DIM_ID = OuterRimResources.ConfigOptions.dimWorldBetweenWorldsId;
 
-    /** Register this generator once (we do it from BiomeGenWBW’s static block). */
+    /** Register this generator once (we do it from BiomeGenWBWs static block). */
     public static void register() {
         GameRegistry.registerWorldGenerator(new WorldGenLightPath(), 0);
     }
@@ -38,7 +38,7 @@ public class WorldGenLightPath implements IWorldGenerator {
         final int y     = 120;
         final int baseZ = chunkZ << 4;
 
-        // carve global X = -1 to 3 for each of this chunk’s 16 Z-coordinates
+        // carve global X = -1 to 3 for each of this chunks 16 Z-coordinates
         for (int x = -1; x <= 3; x++) {
             for (int dz = 0; dz < 16; dz++) {
                 int z = baseZ + dz;

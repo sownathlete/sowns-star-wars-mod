@@ -48,7 +48,7 @@ public class TileEntityPortableCoaxiumPump extends TileEntity implements IInvent
             if (progress >= PROCESS_TIME) {
                 ItemStack result = new ItemStack(ItemRegister.getRegisteredItem("vialCoaxiumRaw"));
                 NBTTagCompound tag = new NBTTagCompound();
-                int volatility = 30 + worldObj.rand.nextInt(26);  // 30–55%
+                int volatility = 30 + worldObj.rand.nextInt(26);  // 3055%
                 tag.setInteger(TAG_VOL, volatility);
                 tag.setInteger(TAG_TICK, 0);
                 tag.setBoolean(TAG_PAUSE, false);
@@ -58,7 +58,7 @@ public class TileEntityPortableCoaxiumPump extends TileEntity implements IInvent
 
                 slot = result;
                 progress = 0;
-                dbg("** COMPLETED – output vialCoaxiumRaw volatility=" + volatility + "% **");
+                dbg("** COMPLETED  output vialCoaxiumRaw volatility=" + volatility + "% **");
 
                 // replace the volatile deposit below with an empty deposit
                 Block empty = (Block)Block.blockRegistry.getObject("outerrim:coaxiumDepositEmpty");

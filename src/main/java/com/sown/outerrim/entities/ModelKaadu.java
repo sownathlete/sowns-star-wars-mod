@@ -76,9 +76,9 @@ public class ModelKaadu extends ModelBase {
 
     /** Schedule the next timed blink */
     private void scheduleNextBlink(int currentTick) {
-        // choose next in 100–200 ticks (5–10 s)
+        // choose next in 100200 ticks (510 s)
         blinkStartTick = currentTick + 100 + rand.nextInt(101);
-        // blink lasts 8–10 ticks (0.4–0.5 s)
+        // blink lasts 810 ticks (0.40.5 s)
         blinkDuration  = 8 + rand.nextInt(3);
     }
 

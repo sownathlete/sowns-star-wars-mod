@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 public class WorldGenBoganoCrater {
 
     public void generateCrater(World world, Random rand, int centerX, int centerZ) {
-        int radius = 24 + rand.nextInt(16); // 24–40 blocks wide
+        int radius = 24 + rand.nextInt(16); // 2440 blocks wide
         int worldBottom = 6 + rand.nextInt(4); // floor level (Y=6 to Y=9)
         int waterLevel = 15; // fill water up to this Y-level
 

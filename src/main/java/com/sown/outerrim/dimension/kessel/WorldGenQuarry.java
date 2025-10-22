@@ -14,7 +14,7 @@ public class WorldGenQuarry {
     private static final List<int[]> recentQuarryCenters = new ArrayList<int[]>();
 
     public void generateQuarry(World world, Random rand, int centerX, int centerZ) {
-        int size = 45 + rand.nextInt(31); // 45–75
+        int size = 45 + rand.nextInt(31); // 4575
         int halfSize = size / 2;
 
         // Prevent overlapping with recent quarries
@@ -28,7 +28,7 @@ public class WorldGenQuarry {
         int minY = heightRange[0];
         int maxY = heightRange[1];
 
-        if (maxY - minY > 12) return; // too uneven — probably hills or cliffs
+        if (maxY - minY > 12) return; // too uneven  probably hills or cliffs
 
         int topY = minY;
 
@@ -48,7 +48,7 @@ public class WorldGenQuarry {
         recentQuarryCenters.add(new int[] {centerX, centerZ});
         if (recentQuarryCenters.size() > 16) recentQuarryCenters.remove(0);
 
-        int worldBottom = 6 + rand.nextInt(4); // Y-level 6–9
+        int worldBottom = 6 + rand.nextInt(4); // Y-level 69
         int depth = topY - worldBottom;
         int stepHeight = 4;
         int steps = depth / stepHeight;

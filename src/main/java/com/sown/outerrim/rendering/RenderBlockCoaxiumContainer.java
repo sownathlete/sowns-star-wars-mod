@@ -22,7 +22,7 @@ public class RenderBlockCoaxiumContainer implements IItemRenderer {
         World w = Minecraft.getMinecraft().theWorld;
         if (w != null) {
             dummyTE.setWorldObj(w);
-            // dummyTE.validate(); // optional—your TE has no load hooks, so not strictly needed
+            // dummyTE.validate(); // optionalyour TE has no load hooks, so not strictly needed
         }
     }
 

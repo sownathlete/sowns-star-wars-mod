@@ -21,10 +21,10 @@ import net.minecraft.world.gen.feature.WorldGenWaterlily;
 /**
  * Mimban mud-field biome (trenches & shell-craters re-worked).
  *
- * • Trenches sit flush with the surface, carve 4 blocks deep, and never overlap
+ *  Trenches sit flush with the surface, carve 4 blocks deep, and never overlap
  *   within the same chunk. Interior walls are lined with oak planks.
- * • ~25 % of chunks receive 1–2 trenches; length, width, and direction vary.
- * • Small craters (radius 1-3, depth  2) add extra battlefield scarring.
+ *  ~25 % of chunks receive 12 trenches; length, width, and direction vary.
+ *  Small craters (radius 1-3, depth  2) add extra battlefield scarring.
  */
 public class BiomeGenMimbanMudField extends BiomeGenBase {
 

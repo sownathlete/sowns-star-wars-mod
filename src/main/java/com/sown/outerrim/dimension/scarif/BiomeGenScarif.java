@@ -47,20 +47,20 @@ public class BiomeGenScarif extends ORSubBiome {
                     // 25% chance to spawn a palm variant
                     // Weights (total 17):
                     //   0      -> WorldGenPalmTree1       (1 slot)
-                    //   1–2    -> WorldGenPalmTree2       (2 slots)
-                    //   3–5    -> WorldGenPalmTree3       (3 slots)
-                    //   6–9    -> WorldGenPalmTree4       (4 slots)
-                    //   10–16  -> WorldGenPalmTree5       (7 slots, +15% boost)
+                    //   12    -> WorldGenPalmTree2       (2 slots)
+                    //   35    -> WorldGenPalmTree3       (3 slots)
+                    //   69    -> WorldGenPalmTree4       (4 slots)
+                    //   1016  -> WorldGenPalmTree5       (7 slots, +15% boost)
                     int weightRoll = random.nextInt(17);
                     if (weightRoll == 0) {
                         new WorldGenPalmTree1().generate(world, random, x, y + 1, z);
-                    } else if (weightRoll < 3) {    // 1–2
+                    } else if (weightRoll < 3) {    // 12
                         new WorldGenPalmTree2().generate(world, random, x, y + 1, z);
-                    } else if (weightRoll < 6) {    // 3–5
+                    } else if (weightRoll < 6) {    // 35
                         new WorldGenPalmTree3().generate(world, random, x, y + 1, z);
-                    } else if (weightRoll < 10) {   // 6–9
+                    } else if (weightRoll < 10) {   // 69
                         new WorldGenPalmTree4().generate(world, random, x, y + 1, z);
-                    } else {                        // 10–16
+                    } else {                        // 1016
                         new WorldGenPalmTree5().generate(world, random, x, y + 1, z);
                     }
                 } else {

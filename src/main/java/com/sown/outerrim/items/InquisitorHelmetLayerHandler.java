@@ -37,13 +37,13 @@ public class InquisitorHelmetLayerHandler {
 
         ItemStack heldItem = player.getHeldItem();
 
-        // —————————————————————————
+        // 
         // 2) Helmet slot (index 3)
-        // —————————————————————————
+        // 
         ItemStack helmetStack = player.inventory.armorItemInSlot(3);
         boolean isLegendsHelmet = false;
         if (helmetStack != null && helmetStack.getItem() instanceof ItemArmor) {
-            // Detect if this helmet belongs to the Legends mod (modId contains “legends”)
+            // Detect if this helmet belongs to the Legends mod (modId contains legends)
             String modId = GameRegistry.findUniqueIdentifierFor(helmetStack.getItem()).modId;
             if (modId != null && modId.toLowerCase().contains("legends")) {
                 isLegendsHelmet = true;
@@ -76,9 +76,9 @@ public class InquisitorHelmetLayerHandler {
             }
         }
 
-        // —————————————————————————
+        // 
         // 3) Chest slot (index 2)
-        // —————————————————————————
+        // 
         ItemStack chestStack = player.inventory.armorItemInSlot(2);
         if (chestStack != null && chestStack.getItem() instanceof ItemArmor) {
             boolean isInquisitorChest   = chestStack.getItem() instanceof ItemInquisitorArmor;
@@ -102,9 +102,9 @@ public class InquisitorHelmetLayerHandler {
             }
         }
 
-        // —————————————————————————
+        // 
         // 4) Leggings (index 1) + Boots (index 0)
-        // —————————————————————————
+        // 
         ItemStack legStack  = player.inventory.armorItemInSlot(1);
         ItemStack bootStack = player.inventory.armorItemInSlot(0);
 

@@ -9340,7 +9340,7 @@ public class WorldGenEndorLandingPad extends WorldGenerator {
 
 	private boolean canPlaceOnSolidGround(World w, int x, int y, int z, int width, int length) {
 
-		// don’t generate if the whole rectangle isn’t already in memory
+		// dont generate if the whole rectangle isnt already in memory
 		if (!w.checkChunksExist(x, y - 1, z, x + width - 1, y - 1, z + length - 1))
 			return false;
 

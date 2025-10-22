@@ -29,7 +29,7 @@ public class BiomeGenAjanKloss extends ORSubBiome {
     public BiomeGenAjanKloss(int biomeID) {
         super(biomeID);
 
-        // — General properties
+        //  General properties
         this.setHeight(biomeHeight);
         // warm & humid
         this.setTemperatureRainfall(0.95f, 0.9f);
@@ -40,7 +40,7 @@ public class BiomeGenAjanKloss extends ORSubBiome {
         this.topBlock = Blocks.grass;
         this.fillerBlock = Blocks.dirt;
 
-        // — Clear defaults & add only nighttime hostiles
+        //  Clear defaults & add only nighttime hostiles
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
         this.spawnableMonsterList.add(new SpawnListEntry(EntityZombie.class,   100, 2, 4));
@@ -50,7 +50,7 @@ public class BiomeGenAjanKloss extends ORSubBiome {
         this.spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class,  30,  1, 2));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityWitch.class,     10,  1, 1));
 
-        // — Decorator tweaks
+        //  Decorator tweaks
         this.customBiomeDecorator = this.theBiomeDecorator;
         customBiomeDecorator.treesPerChunk   = 8;
         customBiomeDecorator.grassPerChunk   = 20;
@@ -102,14 +102,14 @@ public class BiomeGenAjanKloss extends ORSubBiome {
         }
     }
 
-    // — Sky & water tints
+    //  Sky & water tints
     @Override
     @SideOnly(Side.CLIENT)
     public int getSkyColorByTemp(float temp) {
         return 8959692;  // pale blue sky
     }
     
-    // — exactly your grass & foliage
+    //  exactly your grass & foliage
     @Override
     @SideOnly(Side.CLIENT)
     public int getBiomeGrassColor(int x, int y, int z) {

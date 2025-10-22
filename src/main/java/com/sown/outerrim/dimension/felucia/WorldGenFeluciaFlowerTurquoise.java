@@ -21,7 +21,7 @@ public class WorldGenFeluciaFlowerTurquoise extends WorldGenerator {
 
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z) {
-        // vanilla “small mushroom” style: 64 tries around the origin
+        // vanilla small mushroom style: 64 tries around the origin
         for (int i = 0; i < 64; i++) {
             int dx = x + rand.nextInt(8) - rand.nextInt(8);
             int dy = y + rand.nextInt(4) - rand.nextInt(4);
@@ -33,7 +33,7 @@ public class WorldGenFeluciaFlowerTurquoise extends WorldGenerator {
             // place your flower and create its TE
             world.setBlock(dx, dy, dz, flowerBlock, flowerMeta, 2);
 
-            // now give it a random facing 0–3
+            // now give it a random facing 03
             TileEntity te = world.getTileEntity(dx, dy, dz);
             if (te instanceof TileEntityFeluciaFlowerTurquoise) {
                 ((TileEntityFeluciaFlowerTurquoise) te).setFacing(rand.nextInt(4));

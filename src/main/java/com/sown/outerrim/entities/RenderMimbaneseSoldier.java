@@ -26,7 +26,7 @@ public class RenderMimbaneseSoldier extends RenderLiving {
         return TEXTURE;
     }
 
-    /** Slight down-scale so he isn’t as tall/broad as a default player model */
+    /** Slight down-scale so he isnt as tall/broad as a default player model */
     @Override
     protected void preRenderCallback(EntityLivingBase entity, float partialTickTime) {
         GL11.glScalef(0.9375F, 0.9375F, 0.9375F);   // same factor Mojang uses for armor stands

@@ -13,10 +13,10 @@ public class WorldGenUtapauSinkhole {
      * Generates a deep sinkhole-style crater at the given (x, z) world coordinates.
      */
     public void generateCrater(World world, Random rand, int centerX, int centerZ) {
-    	int radius = 45 + rand.nextInt(31); // 45–75
-        int worldBottom = 6 + rand.nextInt(4); // Y-level 6–9
+    	int radius = 45 + rand.nextInt(31); // 4575
+        int worldBottom = 6 + rand.nextInt(4); // Y-level 69
 
-        double baseFlatness = 0.75; // flat base is ~¾ of radius
+        double baseFlatness = 0.75; // flat base is ~ of radius
 
         int[][] baseCoords = new int[(radius * 2 + 1) * (radius * 2 + 1)][2];
         int baseIndex = 0;

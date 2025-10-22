@@ -12,9 +12,9 @@ public class WorldGenVjunSpire extends WorldGenerator {
 
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z) {
-        // Scale up original sizes by 3×
-        int baseRadius = (2 + rand.nextInt(2)) * 3;   // Now 6–9
-        int height     = (15 + rand.nextInt(10)) * 3;  // Now 45–75
+        // Scale up original sizes by 3
+        int baseRadius = (2 + rand.nextInt(2)) * 3;   // Now 69
+        int height     = (15 + rand.nextInt(10)) * 3;  // Now 4575
 
         // Partial taper factor: 0.0 = perfect cylinder, 1.0 = full taper to a point
         final float taperFactor = 0.5f;

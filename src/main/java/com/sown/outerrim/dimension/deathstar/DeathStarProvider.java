@@ -89,7 +89,7 @@ implements WorldProviderHelper {
         // 1) Lock time at tick 6000 (noon)
         info.setWorldTime(6000L);
 
-        // 2) If it’s raining or thundering, clear both
+        // 2) If its raining or thundering, clear both
         if (info.isRaining() || info.isThundering()) {
             info.setRaining(false);
             info.setThundering(false);

@@ -19,7 +19,7 @@ public class WorldGenDarkTreeBrute extends WorldGenerator {
         Block base = world.getBlock(x, y - 1, z);
         if (!isValidSoil(base)) return false;
 
-        int height = 6 + rand.nextInt(5); // 6–10 blocks tall
+        int height = 6 + rand.nextInt(5); // 610 blocks tall
         boolean wideTrunk = rand.nextBoolean();
 
         // Generate trunk (straight or fat)

@@ -25,7 +25,7 @@ public class RenderCoaxiumContainerTESR extends TileEntitySpecialRenderer {
         GL11.glTranslated(x + 0.5, y + 1.5, z + 0.5);
         // upside-down because model was authored that way
         GL11.glRotatef(180f, 0f, 0f, 1f);
-        // rotate around Y by facing × 90°
+        // rotate around Y by facing  90
         GL11.glRotatef(90f * container.getFacing(), 0f, 1f, 0f);
         // scale if needed
         P3D.glScalef(1.25);

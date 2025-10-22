@@ -10,10 +10,10 @@ import java.util.*;
 
 /**
  * Scans a cuboid and writes a ready-to-compile WorldGenerator subclass that
- *  • contains width/length checks
- *  • splits long outputs into helper methods (MAX_LINES)
- *  • compresses straight X-runs into simple for-loops
- *  • defines any non-vanilla blocks up-front via getBlockByString(...)
+ *   contains width/length checks
+ *   splits long outputs into helper methods (MAX_LINES)
+ *   compresses straight X-runs into simple for-loops
+ *   defines any non-vanilla blocks up-front via getBlockByString(...)
  */
 public class StructureLoader {
 
@@ -98,7 +98,7 @@ public class StructureLoader {
             }
 
             /* ---------------------------------------------------- */
-            /*  BODY CALLS – one helper every MAX_LINES             */
+            /*  BODY CALLS  one helper every MAX_LINES             */
             /* ---------------------------------------------------- */
             List<BlockRun> runs = collectRuns(world, minX, minY, minZ, maxX, maxY, maxZ);
             int runsPerPart = Math.max(1, runs.size() / ((runs.size()/MAX_LINES) + 1));

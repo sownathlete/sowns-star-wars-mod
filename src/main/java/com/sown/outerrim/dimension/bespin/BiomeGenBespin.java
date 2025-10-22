@@ -12,7 +12,7 @@ public class BiomeGenBespin extends BiomeGenBase {
         this.setBiomeName("Bespin");
         this.rootHeight = -10.0F;
         this.heightVariation = 0.0F;
-        this.temperature = 0.5F;   // a “normal” sky color
+        this.temperature = 0.5F;   // a normal sky color
         this.enableRain = false;
 
         this.spawnableCreatureList.clear();

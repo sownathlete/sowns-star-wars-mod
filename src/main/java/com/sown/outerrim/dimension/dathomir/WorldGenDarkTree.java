@@ -25,7 +25,7 @@ public class WorldGenDarkTree extends WorldGenerator {
             return false;
         }
 
-        int height = 4 + rand.nextInt(3); // height 4–6
+        int height = 4 + rand.nextInt(3); // height 46
 
         // Check space above
         for (int i = 0; i <= height + 1; i++) {

@@ -117,7 +117,7 @@ public class ModelDarthVader extends ModelBiped {
 		float forward = (float) (dx * sinY + dz * cosY) * 10F;
 		float side = (float) (dx * cosY - dz * sinY) * 10F;
 
-		// clamp so it doesn’t flap through the floor or over the head
+		// clamp so it doesnt flap through the floor or over the head
 		forward = MathHelper.clamp_float(forward, 0F, 40F);
 		side = MathHelper.clamp_float(side, -5F, 5F);
 
@@ -160,12 +160,12 @@ public class ModelDarthVader extends ModelBiped {
 
 			float targetX;
 			if (speed > 0.005F) {
-				// up to 240° forward swing, ±30° bob
+				// up to 240 forward swing, 30 bob
 				float sway = MathHelper.clamp_float((speed - 0.005F) / 0.295F * 240F, 0F, 240F);
 				float bob = MathHelper.sin((e.ticksExisted + ageInTicks) * 0.1F) * 30F;
 				targetX = (15F + sway + bob) * ((float) Math.PI / 180F);
 			} else {
-				// default hang at 15°
+				// default hang at 15
 				targetX = 15F * ((float) Math.PI / 180F);
 			}
 

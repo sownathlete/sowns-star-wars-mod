@@ -62,7 +62,7 @@ public class BiomeGenEndorTaiga extends BiomeGenBase {
 //            int bz = chunkZ + rand.nextInt(16) + 8;
 //            int by = world.getTopSolidOrLiquidBlock(bx, bz);
 //
-//            // don’t overlap pads
+//            // dont overlap pads
 //            if (!WorldGenEndorLandingPad.intersectsPad(bx, bz)) {
 //                new WorldGenEndorBunker().generate(world, rand, bx, by, bz);
 //            }
@@ -72,15 +72,15 @@ public class BiomeGenEndorTaiga extends BiomeGenBase {
            1)  Mossy-cobblestone blobs  (rarer than before)
                Only variants 1 & 2 ever get them.
                Old: rand.nextInt(3)  blobs every chunk
-               New: 50 % of chunks -> 0–1 blobs
+               New: 50 % of chunks -> 01 blobs
         ---------------------------------------------------------------- */
         if ((field_150644_aH == 1 || field_150644_aH == 2) && rand.nextInt(2) == 0) {
-            int blobs = rand.nextInt(2);       // 0 – 1 blobs
+            int blobs = rand.nextInt(2);       // 0  1 blobs
             for (int b = 0; b < blobs; ++b) {
                 int x = chunkX + rand.nextInt(16) + 8;
                 int z = chunkZ + rand.nextInt(16) + 8;
 
-                // skip if this column lies inside any pad’s bounding-box
+                // skip if this column lies inside any pads bounding-box
                 if (WorldGenEndorLandingPad.intersectsPad(x, z)) continue;
 
                 int y = world.getHeightValue(x, z);

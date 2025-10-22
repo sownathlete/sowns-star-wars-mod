@@ -91,7 +91,7 @@ public class SownChatHandler {
             }
         }
 
-        // 3) Fallback “aaa…” leap yell
+        // 3) Fallback aaa leap yell
         if (normalized.matches("a{3,}")) {
             playVoiceLine(player, "outerrim:voice.anakin.leap_yell");
         }

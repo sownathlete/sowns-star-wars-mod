@@ -45,7 +45,7 @@ extends WorldProviderSpace{
     @Override
     @SideOnly(Side.CLIENT)
     public Vec3 getFogColor(float celestialAngle, float partialTicks) {
-        // calculate brightness (clamped 0–1)
+        // calculate brightness (clamped 01)
         float brightness = MathHelper.cos(celestialAngle * (float)Math.PI * 2F) * 2F + 0.5F;
         brightness = Math.max(0F, Math.min(1F, brightness));
 

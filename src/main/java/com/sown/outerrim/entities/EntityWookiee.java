@@ -31,7 +31,7 @@ public class EntityWookiee extends EntityCreature {
         boolean isMale = this.rand.nextBoolean();
         this.getDataWatcher().updateObject(DW_GENDER_FLAG, isMale ? 1 : 0);
 
-        // Choose a texture index (0–2 for female, 3–5 for male)
+        // Choose a texture index (02 for female, 35 for male)
         int textureIndex = isMale
             ? 3 + this.rand.nextInt(3)
             : this.rand.nextInt(3);

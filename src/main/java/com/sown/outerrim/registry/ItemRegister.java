@@ -363,7 +363,7 @@ public class ItemRegister {
         } else {
             Item item = new ItemCustom(name);
 
-            // Assign a default creative tab if it doesn’t have one
+            // Assign a default creative tab if it doesnt have one
             if (category == materials) {
                 item.setCreativeTab(OuterRim.tabMaterials);
             } else if (category == tools) {

@@ -48,7 +48,7 @@ public class BiomeGenDathomirCliffs extends ORSubBiome {
     public void decorate(World world, Random rand, int chunkX, int chunkZ) {
         super.decorate(world, rand, chunkX, chunkZ);
 
-        // Existing ruins generator — keep it
+        // Existing ruins generator  keep it
         if (rand.nextInt(20) == 0) {
             int x = chunkX + rand.nextInt(16);
             int z = chunkZ + rand.nextInt(16);

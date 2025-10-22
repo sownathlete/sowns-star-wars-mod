@@ -19,7 +19,7 @@ public class TileEntityFeluciaFlowerTurquoise extends TileEntity {
 
     public long getNextParticleTime()  { return nextParticles; }
 
-    /** schedule first/next burst (300–1200 ticks = 15–60s) */
+    /** schedule first/next burst (3001200 ticks = 1560s) */
     public void scheduleNextParticles(long now) {
         nextParticles = now + 300 + new java.util.Random().nextInt(901);
         markDirty();

@@ -214,11 +214,11 @@ public class CommandNavigate extends CommandBase {
 
     private String getDirectionalArrow(String movementDirection) {
         switch (movementDirection) {
-            case "Forward": return "↑";
-            case "Backward": return "↓";
-            case "Left": return "←";
-            case "Right": return "→";
-            default: return "→";
+            case "Forward": return "?";
+            case "Backward": return "?";
+            case "Left": return "?";
+            case "Right": return "?";
+            default: return "?";
         }
     }
     

@@ -152,7 +152,7 @@ public class ModelFalumpaset extends ModelBase {
         // blinking, de-synced per entity
         int id       = entity.getEntityId();
         int period   = 150;                    // full cycle
-        int duration = 8 + (id % 3);           // 8–10 ticks
+        int duration = 8 + (id % 3);           // 810 ticks
         int phase    = (int)((id * 37L) % period);
 
         boolean timedBlink = ((tick + phase) % period) < duration;

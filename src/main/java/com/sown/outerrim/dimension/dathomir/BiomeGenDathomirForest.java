@@ -43,7 +43,7 @@ public class BiomeGenDathomirForest extends ORSubBiome {
     public void decorate(World world, Random rand, int chunkX, int chunkZ) {
         super.decorate(world, rand, chunkX, chunkZ);
 
-        int clusterSize = 2 + rand.nextInt(5); // 2–6 trees per cluster
+        int clusterSize = 2 + rand.nextInt(5); // 26 trees per cluster
         int baseX = chunkX + 8 + rand.nextInt(8);
         int baseZ = chunkZ + 8 + rand.nextInt(8);
 

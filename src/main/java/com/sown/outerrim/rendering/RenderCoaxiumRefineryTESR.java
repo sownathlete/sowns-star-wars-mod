@@ -31,7 +31,7 @@ public class RenderCoaxiumRefineryTESR extends TileEntitySpecialRenderer {
         // Most Techne/Blockbench (old) exports are upside-down in TESR space; fix that first.
         GL11.glRotatef(180f, 0f, 0f, 1f);
 
-        // Your model is "backwards": add +180° yaw, then apply block facing (0–3)
+        // Your model is "backwards": add +180 yaw, then apply block facing (03)
         GL11.glRotatef(90f * refinery.getFacing() + 180f, 0f, 1f, 0f);
 
         // Scale if desired (1.0 = authoring scale)

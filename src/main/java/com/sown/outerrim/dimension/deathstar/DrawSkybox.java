@@ -78,10 +78,10 @@ public class DrawSkybox extends IRenderHandler {
                 // rotate atlas cell 0 by 180 degrees
                 drawRotated180(tess, size, atlas);
             } else if (face == 4) {
-                // west side rotated 90° CW
+                // west side rotated 90 CW
                 drawRotatedCW(tess, size, atlas);
             } else if (face == 5) {
-                // east side rotated 90° CCW
+                // east side rotated 90 CCW
                 drawRotatedCCW(tess, size, atlas);
             } else {
                 // normal

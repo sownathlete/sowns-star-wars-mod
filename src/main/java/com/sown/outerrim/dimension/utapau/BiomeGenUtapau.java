@@ -90,7 +90,7 @@ public class BiomeGenUtapau extends ORSubBiome {
             }
         }
         
-        for (int i = 0; i < 3 + rand.nextInt(2); i++) { // ~3–4 per chunk
+        for (int i = 0; i < 3 + rand.nextInt(2); i++) { // ~34 per chunk
             int x = chunkX + rand.nextInt(16);
             int z = chunkZ + rand.nextInt(16);
             int y = getTopSolidBlockY(world, x, z);

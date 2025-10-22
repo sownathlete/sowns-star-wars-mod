@@ -52,7 +52,7 @@ public class WorldGenFeluciaPlantA4 extends WorldGenerator {
 			return false;
 		}
 
-// 2) now it’s safe to query getBlock()
+// 2) now its safe to query getBlock()
 		for (int dx = 0; dx < width; dx++) {
 			for (int dz = 0; dz < length; dz++) {
 				Block below = world.getBlock(x + dx, y - 1, z + dz);

@@ -45,7 +45,7 @@ public class BiomeGenTythonForest extends BiomeGenBase {
         // standard decoration
         this.theBiomeDecorator.decorateChunk(world, rand, this, chunkX, chunkZ);
 
-        // also convert dirt under air, replaceable, or flowers into grass (y=61…57)
+        // also convert dirt under air, replaceable, or flowers into grass (y=6157)
         for (int dx = 0; dx < 16; dx++) {
             for (int dz = 0; dz < 16; dz++) {
                 int wx = chunkX + dx;

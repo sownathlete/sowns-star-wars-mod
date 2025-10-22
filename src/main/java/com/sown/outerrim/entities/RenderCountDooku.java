@@ -13,7 +13,7 @@ public class RenderCountDooku extends RenderLiving {
         new ResourceLocation("outerrim", "textures/models/species/human/count_dooku/count_dooku.png");
 
     public RenderCountDooku() {
-        // new ModelCountDooku(), shadow size (match your other humanoids—0.5f is typical)
+        // new ModelCountDooku(), shadow size (match your other humanoids0.5f is typical)
         super(new ModelCountDooku(), 0.5f);
     }
 

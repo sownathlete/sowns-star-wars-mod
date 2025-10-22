@@ -96,7 +96,7 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
                 if (c != null) {
                     try {
                         BREAKING_CORE = true;
-                        w.func_147480_a(c[0], c[1], c[2], true);
+                        w.func_147480_a(c[0], c[1], c[2], false);
                     } finally {
                         BREAKING_CORE = false;
                     }
@@ -113,6 +113,7 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
     }
 
     @Override public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) { setBlockBounds(0,0,0,1,1,1); }
+
     @Override @SuppressWarnings("rawtypes")
     public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB mask, List list, Entity e) {
         setBlockBoundsBasedOnState(w,x,y,z);
@@ -132,13 +133,33 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
         blockIcon = reg.registerIcon("outerrim:icon_coaxium_refinery");
     }
 
+    /* This is a map of the bounding box. The player places the block from the left side of the chart
+             z = -1   z = 0    z = +1
+        x=-2   X        X        X
+        x=-1   .        X        X
+        x= 0   .        M        .
+        x=+1   .        X        X
+        x=+2   X        X        X
+     */
+
     private static final Part[] FOOTPRINT_SOUTH = new Part[] {
-        new Part(-2, 0, -1, META_L1), new Part(-2, 0, 0, META_L2), new Part(-2, 0, 1, META_L3),
-        new Part(-1, 0, -1, META_LSTUB1), new Part(-1, 0, 1, META_LSTUB2),
-        new Part( 2, 0, -1, META_R1), new Part( 2, 0, 0, META_R2), new Part( 2, 0, 1, META_R3),
-        new Part( 1, 0, -1, META_RSTUB1), new Part( 1, 0, 1, META_RSTUB2),
-        new Part( 0, 0,  2, META_FSTUB),
-        new Part( 0, 0, -2, META_BSTUB)
+            new Part(-2, 0, -1, META_L1),
+            new Part(-2, 0, 0, META_L2),
+            new Part(-2, 0, 1, META_L3),
+            // This part seems unnecessary
+            // new Part(-1, 0, -1, META_LSTUB1),
+            new Part(-1, 0, 1, META_LSTUB2),
+            new Part( 2, 0, -1, META_R1),
+            new Part( 2, 0, 0, META_R2),
+            new Part( 2, 0, 1, META_R3),
+            // This part seems unnecessary
+            // new Part( 1, 0, -1, META_RSTUB1),
+            new Part( 1, 0, 1, META_RSTUB2),
+            // Fill in the gaps
+            new Part(-1, 0, 0, META_FSTUB),
+            new Part(1, 0, 0, META_FSTUB)
+            // new Part( 0, 0,  2, META_FSTUB),
+            // new Part( 0, 0, -2, META_BSTUB)
     };
 
     private static class Part {

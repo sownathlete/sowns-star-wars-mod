@@ -63,8 +63,10 @@ public class TileEntityCoaxiumPump extends TileEntity implements IInventory {
     public int getFacing() { return facing; }
 
     // IInventory
-    @Override public int getSizeInventory()               { return SLOTS; }
-    @Override public ItemStack getStackInSlot(int i)     { return slots[i]; }
+    @Override public int getSizeInventory() { return SLOTS; }
+
+    @Override public ItemStack getStackInSlot(int i) { return slots[i]; }
+
     @Override
     public ItemStack decrStackSize(int i,int amt) {
         ItemStack st = slots[i]; if (st == null) return null;
@@ -73,25 +75,30 @@ public class TileEntityCoaxiumPump extends TileEntity implements IInventory {
         progress[i] = 0; markDirty(); dbg("decr slot"+i);
         return out;
     }
+
     @Override public ItemStack getStackInSlotOnClosing(int i) { ItemStack r = slots[i]; slots[i] = null; progress[i]=0; return r; }
     @Override
     public void setInventorySlotContents(int i, ItemStack s) {
         slots[i] = s; progress[i] = 0; markDirty(); dbg("set slot"+i);
     }
-    @Override public String getInventoryName()            { return "Coaxium Pump"; }
-    @Override public boolean hasCustomInventoryName()     { return false; }
-    @Override public int getInventoryStackLimit()         { return 1; }
+
+    @Override public String getInventoryName() { return "Coaxium Pump"; }
+    @Override public boolean hasCustomInventoryName() { return false; }
+    @Override public int getInventoryStackLimit() { return 1; }
+
     @Override
     public boolean isItemValidForSlot(int i,ItemStack s) {
         return s != null && s.getItem() == ItemRegister.getRegisteredItem("vialEmpty");
     }
+
     @Override
     public boolean isUseableByPlayer(EntityPlayer p) {
         return worldObj.getTileEntity(xCoord,yCoord,zCoord)==this
             && p.getDistanceSq(xCoord+.5, yCoord+.5, zCoord+.5)<=64;
     }
-    @Override public void openInventory()                {}
-    @Override public void closeInventory()               {}
+    @Override public void openInventory() {}
+
+    @Override public void closeInventory() {}
 
     // Network sync
     @Override
@@ -99,10 +106,12 @@ public class TileEntityCoaxiumPump extends TileEntity implements IInventory {
         NBTTagCompound n=new NBTTagCompound(); writeToNBT(n);
         return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, n);
     }
+
     @Override
     public void onDataPacket(net.minecraft.network.NetworkManager net, S35PacketUpdateTileEntity pkt) {
         readFromNBT(pkt.func_148857_g());
     }
+
     @Override
     public void writeToNBT(NBTTagCompound n) {
         super.writeToNBT(n);
@@ -114,6 +123,7 @@ public class TileEntityCoaxiumPump extends TileEntity implements IInventory {
             n.setInteger("Prog"+i, progress[i]);
         }
     }
+
     @Override
     public void readFromNBT(NBTTagCompound n) {
         super.readFromNBT(n);

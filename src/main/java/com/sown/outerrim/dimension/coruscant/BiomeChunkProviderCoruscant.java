@@ -2,6 +2,8 @@ package com.sown.outerrim.dimension.coruscant;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.EventBus;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.block.Block;
@@ -187,8 +189,13 @@ extends ChunkProviderGenerate {
 
     @Override
     public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, int x, int y, int z) {
-        
-        return super.getPossibleCreatures(creatureType, x, y, z); // Ensure other mobs still spawn
+        BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(x, z);
+
+        if (creatureType == EnumCreatureType.monster) {
+            return Collections.emptyList(); // No hostile mobs
+        }
+
+        return super.getPossibleCreatures(creatureType, x, y, z);
     }
 
     public Chunk loadChunk(int chunkX, int chunkZ) {

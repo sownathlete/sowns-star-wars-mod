@@ -15,15 +15,22 @@ import com.sown.outerrim.dimension.ahchto.AhchToProvider;
 import com.sown.outerrim.dimension.ajankloss.AjanKlossProvider;
 import com.sown.outerrim.dimension.alderaan.AlderaanProvider;
 import com.sown.outerrim.dimension.anoat.AnoatProvider;
+import com.sown.outerrim.dimension.athulla.WorldProviderAthulla;
+import com.sown.outerrim.dimension.aurea.WorldProviderAurea;
 import com.sown.outerrim.dimension.bahryn.BahrynProvider;
 import com.sown.outerrim.dimension.bakura.BakuraProvider;
 import com.sown.outerrim.dimension.bespin.BespinProvider;
 import com.sown.outerrim.dimension.bestine.BestineProvider;
 import com.sown.outerrim.dimension.bogano.BoganoProvider;
+import com.sown.outerrim.dimension.bothawui.BothawuiProvider;
 import com.sown.outerrim.dimension.byss.ByssProvider;
 import com.sown.outerrim.dimension.carida.CaridaProvider;
 import com.sown.outerrim.dimension.catoneimoidia.CatoNeimoidiaProvider;
+import com.sown.outerrim.dimension.chandrila.ChandrilaProvider;
+import com.sown.outerrim.dimension.concorddawn.ConcordDawnProvider;
+import com.sown.outerrim.dimension.concordia.ConcordiaProvider;
 import com.sown.outerrim.dimension.corellia.CorelliaProvider;
+import com.sown.outerrim.dimension.corfai.CorfaiProvider;
 import com.sown.outerrim.dimension.coruscant.CoruscantProvider;
 import com.sown.outerrim.dimension.crait.CraitProvider;
 import com.sown.outerrim.dimension.csilla.CsillaProvider;
@@ -57,6 +64,7 @@ import com.sown.outerrim.dimension.mustafar.WorldProviderMustafar;
 import com.sown.outerrim.dimension.naboo.NabooProvider;
 import com.sown.outerrim.dimension.niamos.NiamosProvider;
 import com.sown.outerrim.dimension.nur.NurProvider;
+import com.sown.outerrim.dimension.ordmantell.WorldProviderOrdMantell;
 import com.sown.outerrim.dimension.rakataprime.RakataPrimeProvider;
 import com.sown.outerrim.dimension.ryloth.RylothBiomes;
 import com.sown.outerrim.dimension.ryloth.WorldProviderRyloth;
@@ -96,15 +104,22 @@ public class WorldRegister {
         registerPlanet("Ajan Kloss", AjanKlossProvider.class, AjanKlossProvider.ajanKloss);
         registerPlanet("Alderaan", AlderaanProvider.class, AlderaanProvider.biomes);
         registerPlanet("Anoat", AnoatProvider.class, AnoatProvider.anoat);
+        registerPlanet("Athulla", WorldProviderAthulla.class, WorldProviderAthulla.biomes);
+        registerPlanet("Aurea", WorldProviderAurea.class, WorldProviderAurea.biomes);
         registerPlanet("Bahryn", BahrynProvider.class, BahrynProvider.bahryn);
         registerPlanet("Bakura", BakuraProvider.class, BakuraProvider.bakura);
         registerPlanet("Bespin", BespinProvider.class, BespinProvider.bespin);
         registerPlanet("Bestine", BestineProvider.class, BestineProvider.bestine);
         registerPlanet("Bogano", BoganoProvider.class, BoganoProvider.biomes);
+        registerPlanet("Bothawui", BothawuiProvider.class, BothawuiProvider.biomes);
         registerPlanet("Byss", ByssProvider.class, ByssProvider.byss);
         registerPlanet("Carida", CaridaProvider.class, CaridaProvider.carida);
         registerPlanet("Cato Neimoidia", CatoNeimoidiaProvider.class, CatoNeimoidiaProvider.catoneimoidia);
+        registerPlanet("Chandrila", ChandrilaProvider.class, ChandrilaProvider.biomes);
+        registerPlanet("Concord Dawn", ConcordDawnProvider.class, ConcordDawnProvider.biomes);
+        registerPlanet("Concordia", ConcordiaProvider.class, ConcordiaProvider.biomes);
         registerPlanet("Corellia", CorelliaProvider.class, CorelliaProvider.corellia);
+        registerPlanet("Corfai", CorfaiProvider.class, CorfaiProvider.biomes);
         registerPlanet("Coruscant", CoruscantProvider.class, CoruscantProvider.coruscant);
         registerPlanet("Crait", CraitProvider.class, CraitProvider.biomes);
         registerPlanet("Csilla", CsillaProvider.class, CsillaProvider.csilla);
@@ -130,6 +145,7 @@ public class WorldRegister {
         registerPlanet("Naboo", NabooProvider.class, NabooProvider.biomes);
         registerPlanet("Niamos", NiamosProvider.class, NiamosProvider.biomes);
         registerPlanet("Nur", NurProvider.class, NurProvider.nur);
+        registerPlanet("Ord Mantell", WorldProviderOrdMantell.class, WorldProviderOrdMantell.biomes);
         registerPlanet("Rakata Prime", RakataPrimeProvider.class, RakataPrimeProvider.rakataPrime);
         registerPlanet("Ryloth", WorldProviderRyloth.class, RylothBiomes.biomes);
         registerPlanet("Savareen", SavareenProvider.class, SavareenProvider.biomes);
@@ -153,11 +169,10 @@ public class WorldRegister {
 
     public static void registerPlanet(String planetName, Class<? extends WorldProvider> worldProviderClass, List<BiomeGenBase> biomes) {
         int dimId;
-        String sanitizedPlanetName = planetName.replace(" ", ""); // Remove spaces from planet name
+        String sanitizedPlanetName = planetName.replace(" ", "");
         try {
             dimId = (int) OuterRimResources.ConfigOptions.class.getField("dim" + sanitizedPlanetName + "Id").get(null);
         } catch (NoSuchFieldException | IllegalAccessException e) {
-            // Handle exception
             throw new RuntimeException("Failed to retrieve dimension ID for planet " + planetName, e);
         }
 

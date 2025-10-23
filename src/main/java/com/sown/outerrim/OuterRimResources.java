@@ -134,7 +134,7 @@ public class OuterRimResources {
 		public static int biomePolisMassaId;
 		public static int biomeRakataPrimeId;
 		public static int biomeRaxusprimeId;
-		public static int biomeRhenvarId;
+		public static int biomeRhenVarId;
 		public static int biomeRodiaId;
 		public static int biomeRylothId;
 		public static int biomeRylothPlateauId;
@@ -257,7 +257,7 @@ public class OuterRimResources {
 		public static int dimPolisMassaId;
 		public static int dimRakataPrimeId;
 		public static int dimRaxusprimeId;
-		public static int dimRhenvarId;
+		public static int dimRhenVarId;
 		public static int dimRiflorId;
 		public static int dimRodiaId;
 		public static int dimRylothId;
@@ -393,7 +393,7 @@ public class OuterRimResources {
 	        dimPolisMassaId = config.get(CAT_DIM, "polisMassa", 207).setRequiresMcRestart(true).getInt();
 	        dimRakataPrimeId = config.get(CAT_DIM, "rakataPrime", 208).setRequiresMcRestart(true).getInt();
 	        dimRaxusprimeId = config.get(CAT_DIM, "raxusprime", 209).setRequiresMcRestart(true).getInt();
-	        dimRhenvarId = config.get(CAT_DIM, "rhenVar", 210).setRequiresMcRestart(true).getInt();
+	        dimRhenVarId = config.get(CAT_DIM, "rhenVar", 210).setRequiresMcRestart(true).getInt();
 	        dimRiflorId = config.get(CAT_DIM, "Riflor", 241).setRequiresMcRestart(true).getInt();
 	        dimRodiaId = config.get(CAT_DIM, "rodia", 211).setRequiresMcRestart(true).getInt();
 	        dimRylothId = config.get(CAT_DIM, "ryloth", 212).setRequiresMcRestart(true).getInt();
@@ -697,7 +697,7 @@ public class OuterRimResources {
 			case "raxusprime":
 				return dimRaxusprimeId;
 			case "rhenvar":
-				return dimRhenvarId;
+				return dimRhenVarId;
 			case "riflor":
 				return dimRiflorId;
 			case "rodia":

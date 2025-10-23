@@ -59,17 +59,6 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
     }
 
     @Override
-    public void onBlockAdded(World w, int x, int y, int z) {
-        super.onBlockAdded(w, x, y, z);
-        if (w.getBlockMetadata(x, y, z) == META_CORE) {
-            int rot = 0;
-            TileEntity te = w.getTileEntity(x, y, z);
-            if (te instanceof TileEntityCoaxiumRefinery) rot = ((TileEntityCoaxiumRefinery) te).getFacing() & 3;
-            ensureParts(w, x, y, z, rot);
-        }
-    }
-
-    @Override
     public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int side, float hx, float hy, float hz) {
         int meta = w.getBlockMetadata(x,y,z);
         if (meta == META_CORE) {
@@ -127,6 +116,7 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
         super.addCollisionBoxesToList(w, x, y, z, mask, list, e);
         setBlockBounds(0,0,0,1,1,1);
     }
+
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World w, int x, int y, int z) {
         setBlockBoundsBasedOnState(w,x,y,z);
@@ -141,12 +131,13 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
     }
 
     /* This is a map of the bounding box. The player places the block from the left side of the chart
-    X = Block, M = center, . = space
+    for y = 0
+    X = Block, H = Half Block, M = center, . = space
              z = -1   z = 0    z = +1
         x=-2   X        X        X
-        x=-1   .        X        X
+        x=-1   H        H        H
         x= 0   .        M        .
-        x=+1   .        X        X
+        x=+1   H        H        H
         x=+2   X        X        X
      */
 

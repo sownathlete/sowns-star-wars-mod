@@ -23,9 +23,8 @@ import java.util.List;
 public class BlockCoaxiumRefinery extends ORBlockContainer {
 
     private static final int META_CORE = 0;
-    private static final int META_L1 = 2, META_L2 = 3, META_L3 = 4, META_LSTUB1 = 5, META_LSTUB2 = 6;
-    private static final int META_R1 = 7, META_R2 = 8, META_R3 = 9, META_RSTUB1 = 10, META_RSTUB2 = 11;
-    private static final int META_FSTUB = 12, META_BSTUB = 13;
+    private static final int META_FULL = 1;
+    private static final int META_HALF = 2;
 
     private static boolean BREAKING_CORE = false;
 
@@ -112,7 +111,15 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
         super.breakBlock(w, x, y, z, b, meta);
     }
 
-    @Override public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) { setBlockBounds(0,0,0,1,1,1); }
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta == META_CORE || meta == META_FULL) {
+            setBlockBounds(0, 0, 0, 1, 1, 1);
+        } else if (meta == META_HALF) {
+            setBlockBounds(0, 0, 0, 1, 0.5f, 1);
+        }
+    }
 
     @Override @SuppressWarnings("rawtypes")
     public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB mask, List list, Entity e) {
@@ -144,23 +151,23 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
      */
 
     private static final Part[] FOOTPRINT_SOUTH = new Part[] {
-            new Part(-2, 0, -1, META_L1),
-            new Part(-2, 0, 0, META_L2),
-            new Part(-2, 0, 1, META_L3),
-            // This part seems unnecessary
-            // new Part(-1, 0, -1, META_LSTUB1),
-            new Part(-1, 0, 1, META_LSTUB2),
-            new Part( 2, 0, -1, META_R1),
-            new Part( 2, 0, 0, META_R2),
-            new Part( 2, 0, 1, META_R3),
-            // This part seems unnecessary
-            // new Part( 1, 0, -1, META_RSTUB1),
-            new Part( 1, 0, 1, META_RSTUB2),
-            // Fill in the gaps
-            new Part(-1, 0, 0, META_FSTUB),
-            new Part(1, 0, 0, META_FSTUB)
-            // new Part( 0, 0,  2, META_FSTUB),
-            // new Part( 0, 0, -2, META_BSTUB)
+            new Part(-2, 0, 0, META_FULL),
+            new Part(-2, 0, 1, META_FULL),
+            new Part(-2, 1, 0, META_HALF),
+            new Part(-2, 1, 1, META_HALF),
+
+            new Part(-1, 0, 1, META_HALF),
+            new Part(-1, 0, 0, META_HALF),
+
+            new Part(0, 1, 0, META_HALF),
+
+            new Part( 1, 0, 1, META_HALF),
+            new Part(1, 0, 0, META_HALF),
+
+            new Part( 2, 0, 0, META_FULL),
+            new Part( 2, 0, 1, META_FULL),
+            new Part(2, 1, 0, META_HALF),
+            new Part(2, 1, 1, META_HALF),
     };
 
     private static class Part {
@@ -198,25 +205,29 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
     }
 
     private void removeParts(World w, int x, int y, int z) {
-        for (int dx = -3; dx <= 3; dx++)
-            for (int dy = -1; dy <= 1; dy++)
+        for (int dx = -3; dx <= 3; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
                 for (int dz = -3; dz <= 3; dz++) {
                     int px = x + dx, py = y + dy, pz = z + dz;
                     if (w.getBlock(px, py, pz) == this && w.getBlockMetadata(px, py, pz) != META_CORE) {
                         w.setBlockToAir(px, py, pz);
                     }
                 }
+            }
+        }
     }
 
     private int[] findCoreAround(World w, int x, int y, int z) {
-        for (int dx = -3; dx <= 3; dx++)
-            for (int dy = -1; dy <= 1; dy++)
+        for (int dx = -3; dx <= 3; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
                 for (int dz = -3; dz <= 3; dz++) {
                     int px = x + dx, py = y + dy, pz = z + dz;
                     if (w.getBlock(px, py, pz) == this && w.getBlockMetadata(px, py, pz) == META_CORE) {
                         return new int[]{px, py, pz};
                     }
                 }
+            }
+        }
         return null;
     }
 }

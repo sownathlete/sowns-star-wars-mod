@@ -38,10 +38,9 @@ public class ItemRendererPortableCoaxiumPump implements IItemRenderer {
 
         switch (type) {
             case INVENTORY:
-                GL11.glTranslatef(0.1f, 0.85f, 0f);
-                GL11.glRotatef(210, 1, 0, 0);
-                GL11.glRotatef(45, 0, 1, 0);
-                GL11.glScalef(0.8f, 0.8f, 0.8f);
+                GL11.glScalef(1f, 1f, 1f);
+                GL11.glTranslatef(0f, -1f, 0f);
+                GL11.glRotatef(180, 0, 1, 0);
                 break;
 
             case EQUIPPED:
@@ -50,9 +49,9 @@ public class ItemRendererPortableCoaxiumPump implements IItemRenderer {
                 break;
 
             case EQUIPPED_FIRST_PERSON:
-                GL11.glTranslatef(0.3f, 0.2f, 0.3f);
-                GL11.glRotatef(135, 0, 1, 0);
-                GL11.glScalef(1.2f, 1.2f, 1.2f);
+                GL11.glTranslatef(0f, 0.5f, 1.25f);
+                GL11.glRotatef(90, 0, 1, 0);
+                GL11.glScalef(1f, 1f, 1f);
                 break;
 
             default:

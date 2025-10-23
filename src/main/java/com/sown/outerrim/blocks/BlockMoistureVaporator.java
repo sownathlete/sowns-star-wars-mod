@@ -31,7 +31,7 @@ public class BlockMoistureVaporator extends ORBlockContainer implements IDebugPr
     public BlockMoistureVaporator(String name, Material material, float hardness, String toolType, int harvestLevel, SoundType stepSound, boolean isMultiSided) {
         super("moistureVaporator", Material.iron);
         this.setCreativeTab(OuterRim.tabUtil);
-        this.setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
+        this.setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 2.0f, 1.0f);
         this.setHardness(50.0f);
         this.setHarvestLevel("pickaxe", 2);
         this.setStepSound(stepSound);
@@ -119,8 +119,7 @@ public class BlockMoistureVaporator extends ORBlockContainer implements IDebugPr
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack item) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileEntityMoistureVaporator) {
-            TileEntityMoistureVaporator vap = (TileEntityMoistureVaporator) tile;
+        if (tile instanceof TileEntityMoistureVaporator vap) {
             int l = MathHelper.floor_double(player.rotationYaw * 8.0f / 360.0f + 0.5) & 3;
             vap.setFacing(l);
         }

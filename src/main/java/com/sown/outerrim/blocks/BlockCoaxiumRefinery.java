@@ -134,11 +134,11 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
     for y = 0
     X = Block, H = Half Block, M = center, . = space
              z = -1   z = 0    z = +1
-        x=-2   X        X        X
-        x=-1   H        H        H
+        x=-2   .        X        X
+        x=-1   .        H        H
         x= 0   .        M        .
-        x=+1   H        H        H
-        x=+2   X        X        X
+        x=+1   .        H        H
+        x=+2   .        X        X
      */
 
     private static final Part[] FOOTPRINT_SOUTH = new Part[] {

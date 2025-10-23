@@ -9,11 +9,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
-public class ItemRendererPortableCoaxiumPump implements IItemRenderer {
+public class RenderItemPortableCoaxiumPump implements IItemRenderer {
     private final RenderPortableCoaxiumPump tesr = new RenderPortableCoaxiumPump();
     private final TileEntityPortableCoaxiumPump dummy = new TileEntityPortableCoaxiumPump();
 
-    public ItemRendererPortableCoaxiumPump() {
+    public RenderItemPortableCoaxiumPump() {
         tesr.func_147497_a(TileEntityRendererDispatcher.instance);
         World w = Minecraft.getMinecraft().theWorld;
         if (w != null) {

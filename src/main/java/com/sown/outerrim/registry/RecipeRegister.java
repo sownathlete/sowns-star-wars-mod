@@ -18,7 +18,7 @@ public class RecipeRegister {
     	
     	// Coaxium Update
         GameRegistry.addShapedRecipe(new ItemStack(ItemRegister.getRegisteredItem("vialEmpty"), 1), " A ", " B ", " A ", 'A', Items.iron_ingot, 'B', Blocks.glass);
-        GameRegistry.addShapedRecipe(new ItemStack(ItemRegister.getRegisteredItem("portableCoaxiumPump"), 1), "IRI", " V ", "IRI", 'I', Items.iron_ingot, 'R', Items.redstone, 'V', ItemRegister.getRegisteredItem("vialEmpty"));
+        GameRegistry.addShapedRecipe(new ItemStack(ItemRegister.getRegisteredItem("portable_coaxium_pump"), 1), "IRI", " V ", "IRI", 'I', Items.iron_ingot, 'R', Items.redstone, 'V', ItemRegister.getRegisteredItem("vialEmpty"));
     	
         //GameRegistry.addShapedRecipe(new ItemStack(BlockRegister.getRegisteredBlock("beskar_block"), 1), new Object[]{"AAA", "AAA", "AAA", 'A', ItemRegister.getRegisteredItem("beskarIngot")});
         GameRegistry.addShapedRecipe(new ItemStack(BlockRegister.getRegisteredBlock("karnite_block"), 1), new Object[]{"AAA", "AAA", "AAA", 'A', ItemRegister.getRegisteredItem("karniteIngot")});

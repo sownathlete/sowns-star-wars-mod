@@ -97,8 +97,8 @@ public class TileEntityCoaxiumPump extends TileEntity implements IInventory {
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer p) {
-        return worldObj.getTileEntity(xCoord,yCoord,zCoord)==this
-            && p.getDistanceSq(xCoord+.5, yCoord+.5, zCoord+.5)<=64;
+        return worldObj.getTileEntity(xCoord,yCoord,zCoord) == this
+            && p.getDistanceSq(xCoord+.5, yCoord+.5, zCoord+.5) <= 64;
     }
     @Override public void openInventory() {}
 

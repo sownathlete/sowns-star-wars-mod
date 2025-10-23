@@ -106,6 +106,7 @@ public class BlockRegister {
 	public static Block coaxiumDepositVolatile;
 	public static Block coaxiumDepositFull;
 	public static Block coaxiumDepositEmpty;
+	public static Block coaxiumDepositActive;
 	//public static Block coaxiumContainer;
 	public static Block coaxiumRefinery;
 	public static Block coaxiumPump;
@@ -125,11 +126,12 @@ public class BlockRegister {
 	public static List<Block> redstoneComponentsList = new ArrayList<Block>();
 
 	public static void registerAll() {
-		coaxiumDepositVolatile = new BlockCoaxiumDepositVolatile();
-		GameRegistry.registerBlock(coaxiumDepositVolatile, "coaxiumDepositVolatile");
 
+		coaxiumDepositVolatile = new BlockCoaxiumDepositVolatile();
 		coaxiumDepositFull  = new BlockCoaxiumDeposit();
 		coaxiumDepositEmpty = new BlockCoaxiumDepositEmpty();
+
+		GameRegistry.registerBlock(coaxiumDepositVolatile, "coaxiumDepositVolatile");
 		GameRegistry.registerBlock(coaxiumDepositFull,  "coaxiumDeposit");
 		GameRegistry.registerBlock(coaxiumDepositEmpty, "coaxiumDepositEmpty");
 
@@ -139,7 +141,7 @@ public class BlockRegister {
 		//GameRegistry.registerBlock(coaxiumRefinery,  "coaxiumRefinery");
 
 		coaxiumPump = new BlockCoaxiumPump();
-		GameRegistry.registerBlock(coaxiumPump, "coaxiumPump");		
+		GameRegistry.registerBlock(coaxiumPump, "coaxium_pump");
 		GameRegistry.registerTileEntity(TileEntityCoaxiumPump.class,         "OR_CoaxiumPump");
 //		GameRegistry.registerTileEntity(TileEntityCoaxiumPortablePump.class, "OR_CoaxiumPortablePump");
 		//GameRegistry.registerTileEntity(TileEntityCoaxiumContainer.class,    "OR_CoaxiumContainer");

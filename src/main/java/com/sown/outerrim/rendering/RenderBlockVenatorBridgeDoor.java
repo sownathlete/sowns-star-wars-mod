@@ -1,82 +1,33 @@
 package com.sown.outerrim.rendering;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.IItemRenderer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-import com.sown.outerrim.OuterRim;
-import com.sown.outerrim.tileentities.TileEntityMoistureVaporator;
+import com.sown.outerrim.models.blocks.ModelVenatorBridgeDoor;
 import com.sown.outerrim.tileentities.TileEntityVenatorBridgeDoor;
+import com.sown.util.ui.P3D;
 
-public class RenderBlockVenatorBridgeDoor implements IItemRenderer {
-    private TileEntitySpecialRenderer render;
-    private TileEntityVenatorBridgeDoor tileEntity;
-
-    public RenderBlockVenatorBridgeDoor() {
-        // Initialize the tileEntity and render objects
-        this.tileEntity = new TileEntityVenatorBridgeDoor();
-        this.render = new RenderVenatorBridgeDoor();
-    }
+public class RenderBlockVenatorBridgeDoor extends TileEntitySpecialRenderer {
+    public static ResourceLocation defaultTexture = new ResourceLocation("outerrim:textures/models/blocks/venatorBridgeDoor.png");
+    private final ModelVenatorBridgeDoor model = new ModelVenatorBridgeDoor();
 
     @Override
-    public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type) {
-        return true;
-    }
+    public void renderTileEntityAt(TileEntity te, double x, double y, double z, float tickTime) {
+        TileEntityVenatorBridgeDoor VenatorBridgeDoor = (TileEntityVenatorBridgeDoor) te;
 
-    @Override
-    public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data) {
         GL11.glPushMatrix();
-        switch (type) {
-            case INVENTORY:
-                GL11.glPushMatrix();
-                GL11.glDisable(GL11.GL_LIGHTING);
-                GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScalef(1.0F, 1.0F, -1.0F);
-                GL11.glScalef(0.28F, 0.28F, -0.28F);
-                GL11.glTranslatef(0.0F, -1.0F, 0.0F);
-                GL11.glTranslatef(-0.7F, -1.1F, 0.0F);
-                this.render.renderTileEntityAt(this.tileEntity, 0.0D, 0.0D, 0.0D, 0.0F);
-                GL11.glEnable(GL11.GL_LIGHTING);
-                GL11.glPopMatrix();
-                break;
-            case EQUIPPED:
-                GL11.glPushMatrix();
-                GL11.glDisable(GL11.GL_LIGHTING);
-                GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScalef(0.25F, 0.25F, -0.25F);
-                GL11.glTranslatef(-0.5F, 2.0F, -5.0F);
-                GL11.glRotatef(45.0F, 1.0F, 0.0F, 0.0F);
-                this.render.renderTileEntityAt(this.tileEntity, 0.0D, 0.0D, 0.0D, 0.0F);
-                GL11.glEnable(GL11.GL_LIGHTING);
-                GL11.glPopMatrix();
-                break;
-            case EQUIPPED_FIRST_PERSON:
-                GL11.glPushMatrix();
-                GL11.glDisable(GL11.GL_LIGHTING);
-                GL11.glScalef(0.55F, 0.55F, -0.55F);
-                GL11.glTranslatef(3.0F, -1.0F, -0.5F);
-                GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
-                this.render.renderTileEntityAt(this.tileEntity, 0.0D, 0.0D, 0.0D, 0.0F);
-                GL11.glEnable(GL11.GL_LIGHTING);
-                GL11.glPopMatrix();
-                break;
-            default:
-                GL11.glPushMatrix();
-                GL11.glDisable(GL11.GL_LIGHTING);
-                GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScalef(0.45F, 0.45F, -0.45F);
-                GL11.glTranslatef(-0.5F, 0.4F, -0.5F);
-                this.render.renderTileEntityAt(this.tileEntity, 0.0D, 0.0D, 0.0D, 0.0F);
-                GL11.glEnable(GL11.GL_LIGHTING);
-                GL11.glPopMatrix();
-                break;
-        }
-        GL11.glPopMatrix();
-    }
+        GL11.glTranslated(x + 0.5, y + 1.5, z + 0.5);
+        GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
+        GL11.glRotatef(90 * VenatorBridgeDoor.getFacing(), 0.0f, 1.0f, 0.0f);
 
-    @Override
-    public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper) {
-        return true;
+        Minecraft.getMinecraft().renderEngine.bindTexture(defaultTexture);
+
+        P3D.glScalef(1.25f);
+        this.model.render(null, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.05f);
+
+        GL11.glPopMatrix();
     }
 }

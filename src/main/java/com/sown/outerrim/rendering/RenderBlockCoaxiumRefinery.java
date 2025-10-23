@@ -1,79 +1,45 @@
 package com.sown.outerrim.rendering;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
+import com.sown.outerrim.models.blocks.ModelCoaxiumRefinery;
 import com.sown.outerrim.tileentities.TileEntityCoaxiumRefinery;
+import com.sown.util.ui.P3D;
 
-public class RenderBlockCoaxiumRefinery implements IItemRenderer {
-    private final TileEntitySpecialRenderer tesr = new RenderCoaxiumRefineryTESR();
-    private final TileEntityCoaxiumRefinery dummyTE = new TileEntityCoaxiumRefinery();
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 
-    public RenderBlockCoaxiumRefinery() {
-        World w = Minecraft.getMinecraft().theWorld;
-        if (w != null) dummyTE.setWorldObj(w);
-    }
+public class RenderBlockCoaxiumRefinery extends TileEntitySpecialRenderer {
+    // Use the texture you actually ship; kept your current path/name:
+    private static final ResourceLocation TEX =
+            new ResourceLocation("outerrim", "textures/models/blocks/coaxium_refinery.png");
+
+    private final ModelCoaxiumRefinery model = new ModelCoaxiumRefinery();
 
     @Override
-    public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return true;
-    }
+    public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTick) {
+        if (!(te instanceof TileEntityCoaxiumRefinery)) return;
+        TileEntityCoaxiumRefinery refinery = (TileEntityCoaxiumRefinery) te;
 
-    @Override
-    public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
         GL11.glPushMatrix();
-        GL11.glDisable(GL11.GL_CULL_FACE); // avoid disappearing faces after transforms
 
-        switch (type) {
-            case INVENTORY: {
-                // Compact, centered, and rotated to show the front
-                GL11.glScalef(0.25f, 0.25f, 0.25f);
-                GL11.glTranslatef(1.25f, -0.25f, 0.0f);
-                GL11.glRotatef(225f, 0f, 1f, 0f); // <-- fix "backwards" for item views
-                GL11.glRotatef(45f, 0f, 1f, 0f);
-                break;
-            }
+        // Move to block center and raise to model origin
+        GL11.glTranslated(x + 0.5, y + 1.5, z + 0.5);
 
-            case EQUIPPED: {
-                GL11.glScalef(0.5f, 0.5f, 0.5f);
-                GL11.glTranslatef(0.5f, 0.5f, -0.5f);
-                GL11.glRotatef(45f, 1f, 0f, 0f);
-                GL11.glRotatef(45f, 0f, 1f, 0f);
-                // GL11.glRotatef(180f, 0f, 1f, 0f); // <-- same yaw correction
-                break;
-            }
+        // Most Techne/Blockbench (old) exports are upside-down in TESR space; fix that first.
+        GL11.glRotatef(180f, 0f, 0f, 1f);
 
-            case EQUIPPED_FIRST_PERSON: {
-                GL11.glScalef(1.5f, 1.5f, 1.5f);
-                GL11.glTranslatef(3.0f, -1.0f, 0.5f);
-                GL11.glRotatef(135f, 0f, 1f, 0f);
-                // GL11.glRotatef(180f, 0f, 1f, 0f); // <-- same yaw correction
-                break;
-            }
+        // Your model is "backwards": add +180 yaw, then apply block facing (03)
+        GL11.glRotatef(90f * refinery.getFacing() + 180f, 0f, 1f, 0f);
 
-            default: { // ENTITY / fallback
-                GL11.glScalef(0.85f, 0.85f, 0.85f);
-                GL11.glRotatef(90f, 0f, 1f, 0f);
-                GL11.glTranslatef(-0.5f, 0.4f, -0.5f);
-                // GL11.glRotatef(180f, 0f, 1f, 0f); // <-- same yaw correction
-                break;
-            }
-        }
+        // Scale if desired (1.0 = authoring scale)
+        P3D.glScalef(1.0);
 
-        // Render the same TESR the block uses so orientation stays consistent
-        tesr.renderTileEntityAt(dummyTE, 0.0, 0.0, 0.0, 0f);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TEX);
+        model.render(null, 0f, 0f, 0f, 0f, 0f, 0.0625f);
 
-        GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glPopMatrix();
-    }
-
-    @Override
-    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-        return true;
     }
 }

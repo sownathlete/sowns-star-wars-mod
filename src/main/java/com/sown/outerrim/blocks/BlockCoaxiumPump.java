@@ -26,7 +26,7 @@ public class BlockCoaxiumPump extends ORBlockContainer {
     // Metadata layout
     private static final int META_CORE = 0;   // has TileEntity + TESR
     private static final int META_PART = 1;   // solid, invisible, forwards clicks
-    private static final int META_HEAD = 2;   // solid, invisible, forwards clicks (top 1x1?1)
+    private static final int META_HEAD = 2;   // solid, invisible, forwards clicks (top 1x1x1)
 
     private static boolean BREAKING_CORE = false;
 
@@ -147,9 +147,9 @@ public class BlockCoaxiumPump extends ORBlockContainer {
     public void registerBlockIcons(IIconRegister r) { /* no icon */ }
 
     // ---- MULTIBLOCK SHAPE ----
-    // 3?3 area centered on core, from y..y+4; plus a single head at y+5
+    // 3x3 area centered on core, from y...y+4; plus a single head at y+5
     private void ensureParts(World w, int x, int y, int z) {
-        // fill 3?3?5 (skip the core itself at dy=0, (0,0))
+        // fill 3x3x5 (skip the core itself at dy=0, (0,0))
         for (int dy = 0; dy <= 4; dy++) {
             for (int dx = -1; dx <= 1; dx++) {
                 for (int dz = -1; dz <= 1; dz++) {

@@ -134,6 +134,7 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
     }
 
     /* This is a map of the bounding box. The player places the block from the left side of the chart
+    X = Block, M = center, . = space
              z = -1   z = 0    z = +1
         x=-2   X        X        X
         x=-1   .        X        X

@@ -32,20 +32,19 @@ public class RenderBlockCoaxiumRefinery implements IItemRenderer {
         switch (type) {
             case INVENTORY: {
                 // Compact, centered, and rotated to show the front
-                GL11.glTranslatef(0.0f, -0.55f, 0.0f);
-                GL11.glScalef(0.85f, 0.85f, 0.85f);
-                GL11.glRotatef(30f, 1f, 0f, 0f);
+                GL11.glScalef(0.25f, 0.25f, 0.25f);
+                GL11.glTranslatef(1.25f, -0.25f, 0.0f);
+                GL11.glRotatef(225f, 0f, 1f, 0f); // <-- fix "backwards" for item views
                 GL11.glRotatef(45f, 0f, 1f, 0f);
-                GL11.glRotatef(180f, 0f, 1f, 0f); // <-- fix "backwards" for item views
                 break;
             }
 
             case EQUIPPED: {
                 GL11.glScalef(0.5f, 0.5f, 0.5f);
-                GL11.glTranslatef(0.5f, 0.5f, -2.0f);
+                GL11.glTranslatef(0.5f, 0.5f, -0.5f);
                 GL11.glRotatef(45f, 1f, 0f, 0f);
                 GL11.glRotatef(45f, 0f, 1f, 0f);
-                GL11.glRotatef(180f, 0f, 1f, 0f); // <-- same yaw correction
+                // GL11.glRotatef(180f, 0f, 1f, 0f); // <-- same yaw correction
                 break;
             }
 
@@ -53,7 +52,7 @@ public class RenderBlockCoaxiumRefinery implements IItemRenderer {
                 GL11.glScalef(1.5f, 1.5f, 1.5f);
                 GL11.glTranslatef(3.0f, -1.0f, 0.5f);
                 GL11.glRotatef(135f, 0f, 1f, 0f);
-                GL11.glRotatef(180f, 0f, 1f, 0f); // <-- same yaw correction
+                // GL11.glRotatef(180f, 0f, 1f, 0f); // <-- same yaw correction
                 break;
             }
 
@@ -61,7 +60,7 @@ public class RenderBlockCoaxiumRefinery implements IItemRenderer {
                 GL11.glScalef(0.85f, 0.85f, 0.85f);
                 GL11.glRotatef(90f, 0f, 1f, 0f);
                 GL11.glTranslatef(-0.5f, 0.4f, -0.5f);
-                GL11.glRotatef(180f, 0f, 1f, 0f); // <-- same yaw correction
+                // GL11.glRotatef(180f, 0f, 1f, 0f); // <-- same yaw correction
                 break;
             }
         }

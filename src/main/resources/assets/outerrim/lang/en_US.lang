@@ -292,191 +292,6 @@ tile.malachorRock_button.name=Malachor Rock Button
 tile.malachorRock_pressure_plate.name=Malachor Rock Pressure Plate
 tile.volcanicEruption.name=Volcanic Eruption
 
-## Items ##
-item.outerrim.bounty_hunterHelmet.name=Bounty Hunter Helmet
-item.outerrim.bounty_hunterChestplate.name=Bounty Hunter Chestplate
-item.outerrim.bounty_hunterLeggings.name=Bounty Hunter Leggings
-item.outerrim.bounty_hunterBoots.name=Bounty Hunter Boots
-item.outerrim.cloneHelmet.name=Clone Trooper Helmet (Phase I)
-item.outerrim.nightbrotherMallet.name=Nightbrother Mallet
-item.outerrim.electricBaton.name=Electric Baton
-item.outerrim.japor_snippetChestplate.name=Japor Snippet
-item.outerrim.beskarHelmet.name=Beskar Helmet
-item.outerrim.beskarChestplate.name=Beskar Chestplate
-item.outerrim.beskarLeggings.name=Beskar Leggings
-item.outerrim.beskarBoots.name=Beskar Boots
-item.outerrim.inquisitorHelmet.name=Inquisitor Helmet
-item.outerrim.inquisitorChestplate.name=Inquisitor Chestplate
-item.outerrim.inquisitorLeggings.name=Inquisitor Leggings
-item.outerrim.inquisitorBoots.name=Inquisitor Boots
-item.outerrim.beskarShovel.name=Beskar Shovel
-item.outerrim.beskarPickaxe.name=Beskar Pickaxe
-item.outerrim.beskarAxe.name=Beskar Axe
-item.outerrim.beskarHoe.name=Beskar Hoe
-item.outerrim.beskarSword.name=Beskar Sword
-item.outerrim.coaxiumRaw.name=Raw Coaxium
-item.outerrim.coaxiumVial.name=Coaxium Vial
-item.outerrim.coaxiumVolatile1.name=Volatile Coaxium Vial
-item.outerrim.coaxiumVolatile2.name=Volatile Coaxium Vial
-item.outerrim.hyperdriveAhchTo.name=Ahch-To Hyperdrive
-item.outerrim.hyperdriveAlderaan.name=Alderaan Hyperdrive
-item.outerrim.hyperdriveBespin.name=Bespin Hyperdrive
-item.outerrim.hyperdriveBestine.name=Bestine Hyperdrive
-item.outerrim.hyperdriveBogano.name=Bogano Hyperdrive
-item.outerrim.hyperdriveBracca.name=Bracca Hyperdrive
-item.outerrim.hyperdriveCorellia.name=Corellia Hyperdrive
-item.outerrim.hyperdriveCoruscant.name=Coruscant Hyperdrive
-item.outerrim.hyperdriveCrait.name=Crait Hyperdrive
-item.outerrim.hyperdriveCristophsis.name=Cristophsis Hyperdrive
-item.outerrim.hyperdriveDQar.name=D'Qar Hyperdrive
-item.outerrim.hyperdriveDagobah.name=Dagobah Hyperdrive
-item.outerrim.hyperdriveDathomir.name=Dathomir Hyperdrive
-item.outerrim.hyperdriveDeathStar.name=Death Star Hyperdrive
-item.outerrim.hyperdriveEadu.name=Eadu Hyperdrive
-item.outerrim.hyperdriveEndor.name=Endor Hyperdrive
-item.outerrim.hyperdriveExegol.name=Exegol Hyperdrive
-item.outerrim.hyperdriveFelucia.name=Felucia Hyperdrive
-item.outerrim.hyperdriveFormos.name=Formos Hyperdrive
-item.outerrim.hyperdriveGamorr.name=Gamorr Hyperdrive
-item.outerrim.hyperdriveGeonosis.name=Geonosis Hyperdrive
-item.outerrim.hyperdriveHoth.name=Hoth Hyperdrive
-item.outerrim.hyperdriveIlum.name=Ilum Hyperdrive
-item.outerrim.hyperdriveJakku.name=Jakku Hyperdrive
-item.outerrim.hyperdriveJedha.name=Jedha Hyperdrive
-item.outerrim.hyperdriveKamino.name=Kamino Hyperdrive
-item.outerrim.hyperdriveKashyyyk.name=Kashyyyk Hyperdrive
-item.outerrim.hyperdriveKessel.name=Kessel Hyperdrive
-item.outerrim.hyperdriveLothal.name=Lothal Hyperdrive
-item.outerrim.hyperdriveManaan.name=Manaan Hyperdrive
-item.outerrim.hyperdriveMandalore.name=Mandalore Hyperdrive
-item.outerrim.hyperdriveMonCalamari.name=Mon Calamari Hyperdrive
-item.outerrim.hyperdriveMortis.name=Mortis Hyperdrive
-item.outerrim.hyperdriveMustafar.name=Mustafar Hyperdrive
-item.outerrim.hyperdriveNaboo.name=Naboo Hyperdrive
-item.outerrim.hyperdriveNur.name=Nur Hyperdrive
-item.outerrim.hyperdriveOrdMantell.name=Ord Mantell Hyperdrive
-item.outerrim.hyperdriveRodia.name=Rodia Hyperdrive
-item.outerrim.hyperdriveRyloth.name=Ryloth Hyperdrive
-item.outerrim.hyperdriveSavareen.name=Savareen Hyperdrive
-item.outerrim.hyperdriveScarif.name=Scarif Hyperdrive
-item.outerrim.hyperdriveSullust.name=Sullust Hyperdrive
-item.outerrim.hyperdriveTakodana.name=Takodana Hyperdrive
-item.outerrim.hyperdriveTatooine.name=Tatooine Hyperdrive
-item.outerrim.hyperdriveTython.name=Tython Hyperdrive
-item.outerrim.hyperdriveUtapau.name=Utapau Hyperdrive
-item.outerrim.hyperdriveYavin4.name=Yavin 4 Hyperdrive
-item.outerrim.hyperdriveZeffo.name=Zeffo Hyperdrive
-item.outerrim.karniteIngot.name=Karnite Ingot
-item.outerrim.vial.name=Vial
-item.liquid_acid_bucket.name=Acid Bucket
-item.outerrim.karnitePickaxe.name=Karnite Pickaxe
-item.outerrim.karniteAxe.name=Karnite Axe
-item.outerrim.karniteShovel.name=Karnite Shovel
-item.outerrim.karniteHoe.name=Karnite Hoe
-item.outerrim.karniteSword.name=Karnite Sword
-item.outerrim.karniteHelmet.name=Karnite Helmet
-item.outerrim.karniteChestplate.name=Karnite Chestplate
-item.outerrim.karniteLeggings.name=Karnite Leggings
-item.outerrim.karniteBoots.name=Karnite Boots
-item.outerrim.glass.name=Glass
-item.outerrim.mug.name=Mug
-item.outerrim.goblet.name=Goblet
-item.outerrim.blueMilkBottle.name=Blue Milk Bottle
-item.outerrim.blueMilkGlass.name=Blue Milk Glass
-item.outerrim.blueMilkMug.name=Blue Milk Mug
-item.outerrim.blueMilkBucket.name=Blue Milk Bucket
-item.outerrim.blueMilkGoblet.name=Blue Milk Goblet
-
-item.outerrim.greenMilkBottle.name=Green Milk Bottle
-item.outerrim.greenMilkGlass.name=Green Milk Glass
-item.outerrim.greenMilkMug.name=Green Milk Mug
-item.outerrim.greenMilkBucket.name=Green Milk Bucket
-item.outerrim.greenMilkGoblet.name=Green Milk Goblet
-
-item.outerrim.milkBottle.name=Milk Bottle
-item.outerrim.milkGlass.name=Milk Glass
-item.outerrim.milkMug.name=Milk Mug
-item.outerrim.milkBucket.name=Milk Bucket
-item.outerrim.milkGoblet.name=Milk Goblet
-
-item.outerrim.waterBottle.name=Water Bottle
-item.outerrim.waterGlass.name=Water Glass
-item.outerrim.waterMug.name=Water Mug
-item.outerrim.waterBucket.name=Water Bucket
-item.outerrim.waterGoblet.name=Water Goblet
-
-item.outerrim.redWineBottle.name=Red Wine Bottle
-item.outerrim.redWineGlass.name=Red Wine Glass
-item.outerrim.redWineMug.name=Red Wine Mug
-item.outerrim.redWineBucket.name=Red Wine Bucket
-item.outerrim.redWineGoblet.name=Red Wine Goblet
-
-item.outerrim.whiteWineBottle.name=White Wine Bottle
-item.outerrim.whiteWineGlass.name=White Wine Glass
-item.outerrim.whiteWineMug.name=White Wine Mug
-item.outerrim.whiteWineBucket.name=White Wine Bucket
-item.outerrim.whiteWineGoblet.name=White Wine Goblet
-
-item.outerrim.blueTonicBottle.name=Blue Tonic Bottle
-item.outerrim.blueTonicGlass.name=Blue Tonic Glass
-item.outerrim.blueTonicMug.name=Blue Tonic Mug
-item.outerrim.blueTonicBucket.name=Blue Tonic Bucket
-item.outerrim.blueTonicGoblet.name=Blue Tonic Goblet
-
-item.outerrim.reactorCoreBottle.name=Reactor Core Bottle
-item.outerrim.reactorCoreGlass.name=Reactor Core Glass
-item.outerrim.reactorCoreMug.name=Reactor Core Mug
-item.outerrim.reactorCoreBucket.name=Reactor Core Bucket
-item.outerrim.reactorCoreGoblet.name=Reactor Core Goblet
-
-item.outerrim.spiceLiqueurBottle.name=Spice Liqueur Bottle
-item.outerrim.spiceLiqueurGlass.name=Spice Liqueur Glass
-item.outerrim.spiceLiqueurMug.name=Spice Liqueur Mug
-item.outerrim.spiceLiqueurBucket.name=Spice Liqueur Bucket
-item.outerrim.spiceLiqueurGoblet.name=Spice Liqueur Goblet
-
-item.outerrim.ardeesBottle.name=Ardees Bottle
-item.outerrim.ardeesGlass.name=Ardees Glass
-item.outerrim.ardeesMug.name=Ardees Mug
-item.outerrim.ardeesBucket.name=Ardees Bucket
-item.outerrim.ardeesGoblet.name=Ardees Goblet
-
-item.outerrim.vodkaBottle.name=Vodka Bottle
-item.outerrim.vodkaGlass.name=Vodka Glass
-item.outerrim.vodkaMug.name=Vodka Mug
-item.outerrim.vodkaBucket.name=Vodka Bucket
-item.outerrim.vodkaGoblet.name=Vodka Goblet
-
-item.outerrim.beskarIngot.name=Beskar Ingot
-item.outerrim.kyberCrystalBlue.name=Blue Kyber Crystal
-item.outerrim.kyberCrystalGreen.name=Green Kyber Crystal
-item.outerrim.kyberCrystalRed.name=Red Kyber Crystal
-
-## Creative Tabs ##
-itemGroup.OuterRimBlocksTab=Star Wars Blocks
-itemGroup.OuterRimUtilTab=Star Wars Utilities
-itemGroup.OuterRimDecoTab=Star Wars Decorations
-itemGroup.OuterRimFoodTab=Star Wars Food and Drink
-itemGroup.OuterRimMaterialsTab=Star Wars Materials
-itemGroup.OuterRimMiscTab=Star Wars Miscellaneous
-itemGroup.OuterRimToolsTab=Star Wars Tools
-itemGroup.OuterRimCombatTab=Star Wars Combat
-itemGroup.OuterRimStoryTab=Star Wars Story
-itemGroup.OuterRimSpawnTab=Star Wars Spawning
-
-## Chat ##
-death.attack.MagmaBlock=%1$s discovered the floor was lava
-
-entity.outerrim.coruscantcommoner.name=Coruscant Commoner
-entity.outerrim.tatooinecommoner.name=Tatooine Commoner
-entity.outerrim.inquisitor.name=Inquisitor
-entity.outerrim.zabrak.name=Zabrak
-entity.outerrim.nightsister.name=Nightsister
-entity.outerrim.bograt.name=Bog Rat
-entity.outerrim.jabba.name=Jabba
-entity.outerrim.steve.name=Steve
-entity.outerrim.alex.name=Alex
-
 tile.christophsisRoad.name=Christophsis Road
 tile.transparisteel.name=Transparisteel
 tile.redTransparisteel.name=Red Transparisteel
@@ -629,21 +444,6 @@ tile.darkTreeLog.name=Dark Tree Log
 tile.japorIvoryLeaves.name=Japor Ivory Leaves
 tile.japorIvoryLog.name=Japor Ivory Log
 tile.japorIvoryPlanks_stairs.name=Japor Ivory Planks Stairs
-
-
-
-item.outerrim.galactic_credit_1.name=Galactic Credit (1)
-item.outerrim.galactic_credit_10.name=Galactic Credit (10)
-item.outerrim.galactic_credit_100.name=Galactic Credit (100)
-item.outerrim.galactic_credit_1000.name=Galactic Credit (1000)
-
-item.outerrim.deathStickRed.name=Red Death Stick
-item.outerrim.deathStickYellow.name=Yellow Death Stick
-item.outerrim.deathStarPlans.name=Death Star Plans
-item.outerrim.trinititeCrystal.name=Trinitite Crystal
-item.outerrim.darkTreeSapling.name=Dark Tree Sapling
-item.outerrim.japorIvorySapling.name=Japor Ivory Sapling
-
 tile.temple_brick.name=Temple Bricks
 tile.temple_brick_slab.name=Temple Bricks Slab
 tile.temple_brick_stairs.name=Temple Brick Stairs
@@ -664,11 +464,144 @@ tile.archive_bookshelf_2.name=Archive Bookshelf
 tile.archive_bookshelf_3.name=Archive Bookshelf
 tile.tatooine_crate.name=Tatooine Crate
 tile.tatooine_sand_bright.name=Bright Tatooine Sand
+tile.darkTreePlanks_fence.name=Dark Tree Fence
+tile.japorIvoryPlanks_fence.name=Japor Ivory Fence
+tile.snowyStone.name=Snowy Stone
+tile.sink.name=Sink
+tile.outerrim.coaxiumDepositVolatile.name=Volatile Coaxium Vein
+tile.outerrim.coaxiumDeposit.name=Active Coaxium Vein
+tile.outerrim.coaxiumDepositEmpty.name=Depleted Coaxium Vein
+
+## Liquids ##
+
+tile.liquid_acid.name=Acid Source
+tile.liquid_bacta.name=Bacta Source
+tile.liquid_ambori.name=Ambori Source
+
+## Tile Entities ##
+
+tile.outerrim.venator_screen.name=Venator Screen
+tile.outerrim.venator_bridge_chair.name=Venator Bridge Chair
+tile.outerrim.venator_bridge_mechanical_table.name=Venator Bridge Mechanical Table
+tile.outerrim.kamino_door_large.name=Large Kamino Door
+tile.outerrim.kamino_railing.name=Kamino Railing
+tile.outerrim.venator_holo_table.name=Venator Holotable
+tile.outerrim.venator_bridge_door.name=Venator Bridge Door
+tile.outerrim.kamino_door_small.name=Small Kamino Door
+tile.outerrim.coaxium_container.name=Coaxium Container
+tile.outerrim.coaxium_refinery.name=Coaxium Refinery
+tile.outerrim.coaxium_pump.name=Coaxium Pump
+tile.outerrim.portable_coaxium_pump.name=Portable Coaxium Pump
+
+## Items ##
+item.outerrim.nightbrotherMallet.name=Nightbrother Mallet
+item.outerrim.electricBaton.name=Electric Baton
+item.outerrim.beskarShovel.name=Beskar Shovel
+item.outerrim.beskarPickaxe.name=Beskar Pickaxe
+item.outerrim.beskarAxe.name=Beskar Axe
+item.outerrim.beskarHoe.name=Beskar Hoe
+item.outerrim.beskarSword.name=Beskar Sword
+item.outerrim.coaxiumRaw.name=Raw Coaxium
+item.outerrim.coaxiumVial.name=Coaxium Vial
+item.outerrim.coaxiumVolatile1.name=Volatile Coaxium Vial
+item.outerrim.coaxiumVolatile2.name=Volatile Coaxium Vial
+item.outerrim.karniteIngot.name=Karnite Ingot
+item.outerrim.vial.name=Vial
+item.liquid_acid_bucket.name=Acid Bucket
+item.outerrim.karnitePickaxe.name=Karnite Pickaxe
+item.outerrim.karniteAxe.name=Karnite Axe
+item.outerrim.karniteShovel.name=Karnite Shovel
+item.outerrim.karniteHoe.name=Karnite Hoe
+item.outerrim.karniteSword.name=Karnite Sword
+item.outerrim.glass.name=Glass
+item.outerrim.mug.name=Mug
+item.outerrim.goblet.name=Goblet
+item.outerrim.blueMilkBottle.name=Blue Milk Bottle
+item.outerrim.blueMilkGlass.name=Blue Milk Glass
+item.outerrim.blueMilkMug.name=Blue Milk Mug
+item.outerrim.blueMilkBucket.name=Blue Milk Bucket
+item.outerrim.blueMilkGoblet.name=Blue Milk Goblet
+
+item.outerrim.greenMilkBottle.name=Green Milk Bottle
+item.outerrim.greenMilkGlass.name=Green Milk Glass
+item.outerrim.greenMilkMug.name=Green Milk Mug
+item.outerrim.greenMilkBucket.name=Green Milk Bucket
+item.outerrim.greenMilkGoblet.name=Green Milk Goblet
+
+item.outerrim.milkBottle.name=Milk Bottle
+item.outerrim.milkGlass.name=Milk Glass
+item.outerrim.milkMug.name=Milk Mug
+item.outerrim.milkBucket.name=Milk Bucket
+item.outerrim.milkGoblet.name=Milk Goblet
+
+item.outerrim.waterBottle.name=Water Bottle
+item.outerrim.waterGlass.name=Water Glass
+item.outerrim.waterMug.name=Water Mug
+item.outerrim.waterBucket.name=Water Bucket
+item.outerrim.waterGoblet.name=Water Goblet
+
+item.outerrim.redWineBottle.name=Red Wine Bottle
+item.outerrim.redWineGlass.name=Red Wine Glass
+item.outerrim.redWineMug.name=Red Wine Mug
+item.outerrim.redWineBucket.name=Red Wine Bucket
+item.outerrim.redWineGoblet.name=Red Wine Goblet
+
+item.outerrim.whiteWineBottle.name=White Wine Bottle
+item.outerrim.whiteWineGlass.name=White Wine Glass
+item.outerrim.whiteWineMug.name=White Wine Mug
+item.outerrim.whiteWineBucket.name=White Wine Bucket
+item.outerrim.whiteWineGoblet.name=White Wine Goblet
+
+item.outerrim.blueTonicBottle.name=Blue Tonic Bottle
+item.outerrim.blueTonicGlass.name=Blue Tonic Glass
+item.outerrim.blueTonicMug.name=Blue Tonic Mug
+item.outerrim.blueTonicBucket.name=Blue Tonic Bucket
+item.outerrim.blueTonicGoblet.name=Blue Tonic Goblet
+
+item.outerrim.reactorCoreBottle.name=Reactor Core Bottle
+item.outerrim.reactorCoreGlass.name=Reactor Core Glass
+item.outerrim.reactorCoreMug.name=Reactor Core Mug
+item.outerrim.reactorCoreBucket.name=Reactor Core Bucket
+item.outerrim.reactorCoreGoblet.name=Reactor Core Goblet
+
+item.outerrim.spiceLiqueurBottle.name=Spice Liqueur Bottle
+item.outerrim.spiceLiqueurGlass.name=Spice Liqueur Glass
+item.outerrim.spiceLiqueurMug.name=Spice Liqueur Mug
+item.outerrim.spiceLiqueurBucket.name=Spice Liqueur Bucket
+item.outerrim.spiceLiqueurGoblet.name=Spice Liqueur Goblet
+
+item.outerrim.ardeesBottle.name=Ardees Bottle
+item.outerrim.ardeesGlass.name=Ardees Glass
+item.outerrim.ardeesMug.name=Ardees Mug
+item.outerrim.ardeesBucket.name=Ardees Bucket
+item.outerrim.ardeesGoblet.name=Ardees Goblet
+
+item.outerrim.vodkaBottle.name=Vodka Bottle
+item.outerrim.vodkaGlass.name=Vodka Glass
+item.outerrim.vodkaMug.name=Vodka Mug
+item.outerrim.vodkaBucket.name=Vodka Bucket
+item.outerrim.vodkaGoblet.name=Vodka Goblet
+
+item.outerrim.beskarIngot.name=Beskar Ingot
+item.outerrim.kyberCrystalBlue.name=Blue Kyber Crystal
+item.outerrim.kyberCrystalGreen.name=Green Kyber Crystal
+item.outerrim.kyberCrystalRed.name=Red Kyber Crystal
+
+item.outerrim.galactic_credit_1.name=Galactic Credit (1)
+item.outerrim.galactic_credit_10.name=Galactic Credit (10)
+item.outerrim.galactic_credit_100.name=Galactic Credit (100)
+item.outerrim.galactic_credit_1000.name=Galactic Credit (1000)
+
+item.outerrim.deathStickRed.name=Red Death Stick
+item.outerrim.deathStickYellow.name=Yellow Death Stick
+item.outerrim.deathStarPlans.name=Death Star Plans
+item.outerrim.trinititeCrystal.name=Trinitite Crystal
+item.outerrim.darkTreeSapling.name=Dark Tree Sapling
+item.outerrim.japorIvorySapling.name=Japor Ivory Sapling
+
 item.blaster.name=Blaster
-item.outerrim.sith_eyesHelmet.name=Sith Eyes
 item.outerrim.blue_milk_cheese.name=Blue Milk Cheese
 item.outerrim.beskarSpear.name=Beskar Spear
-item.outerrim.rebreatherHelmet.name=Rebreather
 item.outerrim.duraslug_roll.name=Duraslug Roll
 item.outerrim.colo_claw_roe.name=Colo Claw Roe
 item.outerrim.raw_nuna_leg.name=Raw Nuna Leg
@@ -701,6 +634,28 @@ item.outerrim.kavam.name=Kavam
 item.outerrim.kessel_spice.name=Kessel Spice
 item.outerrim.kessel_spice_jar.name=Kessel Spice Jar
 item.outerrim.vratixia_renanicus.name=Vratixia Renanicus
+item.outerrim.duriak.name=Duriak
+item.liquid_bacta_bucket.name=Bacta Bucket
+item.liquid_ambori_bucket.name=Ambori Bucket
+item.outerrim.spawn_egg.name=Spawn Egg
+item.outerrim.garden_salad.name=Garden Salad
+item.outerrim.ice_cream.name=Ice Cream
+item.outerrim.ice_cream_cone.name=Ice Cream Cone
+item.outerrim.meiloorun_fruit.name=Meiloorun Fruit
+item.outerrim.rootleaf_stew.name=Rootleaf Stew
+item.outerrim.republic_crest.name=Republic Crest
+item.outerrim.imperial_crest.name=Imperial Crest
+item.outerrim.separatist_hex_icon.name=Separatist Hex Icon
+item.outerrim.rebel_alliance_starbird.name=Rebel Alliance Starbird
+item.outerrim.first_order_insignia.name=First Order Insignia
+item.outerrim.jedi_crest.name=Jedi Crest
+
+item.outerrim.vialEmpty.name=Glass Vial
+item.outerrim.vialCoaxiumRaw.name=Volatile Coaxium Vial
+item.outerrim.vialCoaxiumRefined.name=Refined Coaxium Vial
+item.outerrim.portableCoaxiumPump.name=Portable Coaxium Pump
+
+## Hyperdrives ##
 
 item.outerrim.hyperdriveAbednedo.name=Abednedo Hyperdrive
 item.outerrim.hyperdriveAjanKloss.name=Ajan Kloss Hyperdrive
@@ -779,7 +734,159 @@ item.outerrim.hyperdriveWobani.name=Wobani Hyperdrive
 item.outerrim.hyperdriveWorldBetweenWorlds.name=World Between Worlds Hyperdrive
 item.outerrim.hyperdriveXyquineII.name=Xyquine II Hyperdrive
 
-item.outerrim.duriak.name=Duriak
+item.outerrim.hyperdriveAhchTo.name=Ahch-To Hyperdrive
+item.outerrim.hyperdriveAlderaan.name=Alderaan Hyperdrive
+item.outerrim.hyperdriveBespin.name=Bespin Hyperdrive
+item.outerrim.hyperdriveBestine.name=Bestine Hyperdrive
+item.outerrim.hyperdriveBogano.name=Bogano Hyperdrive
+item.outerrim.hyperdriveBracca.name=Bracca Hyperdrive
+item.outerrim.hyperdriveCoruscant.name=Coruscant Hyperdrive
+item.outerrim.hyperdriveCrait.name=Crait Hyperdrive
+item.outerrim.hyperdriveCristophsis.name=Cristophsis Hyperdrive
+item.outerrim.hyperdriveDQar.name=D'Qar Hyperdrive
+item.outerrim.hyperdriveDagobah.name=Dagobah Hyperdrive
+item.outerrim.hyperdriveDathomir.name=Dathomir Hyperdrive
+item.outerrim.hyperdriveDeathStar.name=Death Star Hyperdrive
+item.outerrim.hyperdriveEadu.name=Eadu Hyperdrive
+item.outerrim.hyperdriveEndor.name=Endor Hyperdrive
+item.outerrim.hyperdriveExegol.name=Exegol Hyperdrive
+item.outerrim.hyperdriveFelucia.name=Felucia Hyperdrive
+item.outerrim.hyperdriveFormos.name=Formos Hyperdrive
+item.outerrim.hyperdriveGamorr.name=Gamorr Hyperdrive
+item.outerrim.hyperdriveGeonosis.name=Geonosis Hyperdrive
+item.outerrim.hyperdriveHoth.name=Hoth Hyperdrive
+item.outerrim.hyperdriveIlum.name=Ilum Hyperdrive
+item.outerrim.hyperdriveJakku.name=Jakku Hyperdrive
+item.outerrim.hyperdriveJedha.name=Jedha Hyperdrive
+item.outerrim.hyperdriveKamino.name=Kamino Hyperdrive
+item.outerrim.hyperdriveKashyyyk.name=Kashyyyk Hyperdrive
+item.outerrim.hyperdriveKessel.name=Kessel Hyperdrive
+item.outerrim.hyperdriveLothal.name=Lothal Hyperdrive
+item.outerrim.hyperdriveManaan.name=Manaan Hyperdrive
+item.outerrim.hyperdriveMandalore.name=Mandalore Hyperdrive
+item.outerrim.hyperdriveMonCalamari.name=Mon Calamari Hyperdrive
+item.outerrim.hyperdriveMortis.name=Mortis Hyperdrive
+item.outerrim.hyperdriveMustafar.name=Mustafar Hyperdrive
+item.outerrim.hyperdriveNaboo.name=Naboo Hyperdrive
+item.outerrim.hyperdriveNur.name=Nur Hyperdrive
+item.outerrim.hyperdriveOrdMantell.name=Ord Mantell Hyperdrive
+item.outerrim.hyperdriveRodia.name=Rodia Hyperdrive
+item.outerrim.hyperdriveRyloth.name=Ryloth Hyperdrive
+item.outerrim.hyperdriveSavareen.name=Savareen Hyperdrive
+item.outerrim.hyperdriveScarif.name=Scarif Hyperdrive
+item.outerrim.hyperdriveSullust.name=Sullust Hyperdrive
+item.outerrim.hyperdriveTakodana.name=Takodana Hyperdrive
+item.outerrim.hyperdriveTatooine.name=Tatooine Hyperdrive
+item.outerrim.hyperdriveTython.name=Tython Hyperdrive
+item.outerrim.hyperdriveUtapau.name=Utapau Hyperdrive
+item.outerrim.hyperdriveYavin4.name=Yavin 4 Hyperdrive
+item.outerrim.hyperdriveZeffo.name=Zeffo Hyperdrive
+
+item.outerrim.hyperdriveNiamos.name=Niamos Hyperdrive
+item.outerrim.hyperdriveRiflor.name=Riflor Hyperdrive
+
+# Music Discs
+item.outerrim.anakin_vs_obi_wan.name=Music Disc
+item.record.anakin_vs_obi_wan.desc=John Williams - Anakin vs. Obi-Wan
+
+item.outerrim.battle_of_the_heroes.name=Music Disc
+item.record.battle_of_the_heroes.desc=John Williams - Battle of the Heroes
+
+item.outerrim.battle_over_coruscant.name=Music Disc
+item.record.battle_over_coruscant.desc=John Williams - Battle Over Coruscant
+
+item.outerrim.cantina_band.name=Music Disc
+item.record.cantina_band.desc=Figrin D'an and the Modal Nodes - Cantina Band
+
+item.outerrim.clone_army_march.name=Music Disc
+item.record.clone_army_march.desc=John Williams - Clone Army March
+
+item.outerrim.droid_army_march.name=Music Disc
+item.record.droid_army_march.desc=John Williams - Droid Army March
+
+item.outerrim.duel_of_the_fates.name=Music Disc
+item.record.duel_of_the_fates.desc=John Williams - Duel of the Fates
+
+item.outerrim.the_imperial_march.name=Music Disc
+item.record.the_imperial_march.desc=John Williams - The Imperial March
+
+item.outerrim.jedi_rocks.name=Music Disc
+item.record.jedi_rocks.desc=Max Rebo Band - Jedi Rocks
+
+item.outerrim.niamos.name=Music Disc
+item.record.niamos.desc=Nicholas Britell - Niamos!
+
+item.outerrim.sugaan_essena.name=Music Disc
+item.record.sugaan_essena.desc=The Agasar - Sugaan Essena
+
+item.outerrim.yub_nub.name=Music Disc
+item.record.yub_nub.desc=John Williams - Yub Nub
+
+## Armor ##
+
+item.outerrim.darth_vader_helmet.name=Darth Vader's Helmet
+item.outerrim.darth_vader_chestplate.name=Darth Vader's Chestplate
+item.outerrim.darth_vader_leggings.name=Darth Vader's Leggings
+item.outerrim.darth_vader_boots.name=Darth Vader's Boots
+
+item.outerrim.kessel_worker_helmet.name=Kessel Worker Helmet
+item.outerrim.kessel_worker_chestplate.name=Kessel Worker Chestplate
+item.outerrim.kessel_worker_leggings.name=Kessel Worker Leggings
+item.outerrim.kessel_worker_boots.name=Kessel Worker Boots
+
+item.outerrim.smuggler_han_solo_helmet.name=Han Solo's Head
+item.outerrim.smuggler_han_solo_chestplate.name=Han Solo's Vest
+item.outerrim.smuggler_han_solo_leggings.name=Han Solo's Pants
+item.outerrim.smuggler_han_solo_boots.name=Han Solo's Boots
+
+item.outerrim.count_dooku_helmet.name=Count Dooku's Helmet
+item.outerrim.count_dooku_chestplate.name=Count Dooku's Chestplate
+item.outerrim.count_dooku_leggings.name=Count Dooku's Leggings
+item.outerrim.count_dooku_boots.name=Count Dooku's Boots
+
+item.outerrim.bounty_hunterHelmet.name=Bounty Hunter Helmet
+item.outerrim.bounty_hunterChestplate.name=Bounty Hunter Chestplate
+item.outerrim.bounty_hunterLeggings.name=Bounty Hunter Leggings
+item.outerrim.bounty_hunterBoots.name=Bounty Hunter Boots
+
+item.outerrim.cloneHelmet.name=Clone Trooper Helmet (Phase I)
+
+item.outerrim.beskarHelmet.name=Beskar Helmet
+item.outerrim.beskarChestplate.name=Beskar Chestplate
+item.outerrim.beskarLeggings.name=Beskar Leggings
+item.outerrim.beskarBoots.name=Beskar Boots
+
+item.outerrim.inquisitorHelmet.name=Inquisitor Helmet
+item.outerrim.inquisitorChestplate.name=Inquisitor Chestplate
+item.outerrim.inquisitorLeggings.name=Inquisitor Leggings
+item.outerrim.inquisitorBoots.name=Inquisitor Boots
+
+item.outerrim.karniteHelmet.name=Karnite Helmet
+item.outerrim.karniteChestplate.name=Karnite Chestplate
+item.outerrim.karniteLeggings.name=Karnite Leggings
+item.outerrim.karniteBoots.name=Karnite Boots
+
+item.outerrim.sith_eyesHelmet.name=Sith Eyes
+item.outerrim.rebreatherHelmet.name=Rebreather
+item.outerrim.japor_snippetChestplate.name=Japor Snippet
+
+## Creative Tabs ##
+itemGroup.OuterRimBlocksTab=Star Wars Blocks
+itemGroup.OuterRimUtilTab=Star Wars Utilities
+itemGroup.OuterRimDecoTab=Star Wars Decorations
+itemGroup.OuterRimFoodTab=Star Wars Food and Drink
+itemGroup.OuterRimMaterialsTab=Star Wars Materials
+itemGroup.OuterRimMiscTab=Star Wars Miscellaneous
+itemGroup.OuterRimToolsTab=Star Wars Tools
+itemGroup.OuterRimCombatTab=Star Wars Combat
+itemGroup.OuterRimStoryTab=Star Wars Story
+itemGroup.OuterRimSpawnTab=Star Wars Spawning
+itemGroup.OuterRimHyperdrivesTab=Star Wars Hyperdrives
+
+## Chat ##
+death.attack.MagmaBlock=%1$s discovered the floor was lava
+
+## Entities ##
 
 entity.outerrim.cloneTrooperP1.name=Clone Trooper (Phase I)
 entity.outerrim.cloneTrooperPhase1.name=Clone Trooper (Phase I)
@@ -808,82 +915,19 @@ entity.outerrim.reconTrooper187th.name=187th Clone ARF Trooper
 entity.outerrim.reconTrooperCoruscantGuard.name=Coruscant Guard Clone ARF Trooper
 entity.outerrim.captain_rex.name=Captain Rex
 entity.outerrim.yoda.name=Yoda
-
-tile.darkTreePlanks_fence.name=Dark Tree Fence
-tile.japorIvoryPlanks_fence.name=Japor Ivory Fence
-
-itemGroup.OuterRimHyperdrivesTab=Star Wars Hyperdrives
-tile.liquid_acid.name=Acid Source
-tile.liquid_bacta.name=Bacta Source
-tile.liquid_ambori.name=Ambori Source
-item.liquid_bacta_bucket.name=Bacta Bucket
-item.liquid_ambori_bucket.name=Ambori Bucket
-item.outerrim.spawn_egg.name=Spawn Egg
-item.outerrim.garden_salad.name=Garden Salad
-item.outerrim.ice_cream.name=Ice Cream
-item.outerrim.ice_cream_cone.name=Ice Cream Cone
-item.outerrim.meiloorun_fruit.name=Meiloorun Fruit
-item.outerrim.rootleaf_stew.name=Rootleaf Stew
-
+entity.outerrim.coruscantcommoner.name=Coruscant Commoner
+entity.outerrim.tatooinecommoner.name=Tatooine Commoner
+entity.outerrim.inquisitor.name=Inquisitor
+entity.outerrim.zabrak.name=Zabrak
+entity.outerrim.nightsister.name=Nightsister
+entity.outerrim.bograt.name=Bog Rat
+entity.outerrim.jabba.name=Jabba
+entity.outerrim.steve.name=Steve
+entity.outerrim.alex.name=Alex
 entity.outerrim.droideka.name=Droideka
-
-# Music Discs
-item.outerrim.anakin_vs_obi_wan.name=Music Disc
-item.record.anakin_vs_obi_wan.desc=John Williams - Anakin vs. Obi-Wan
-
-item.outerrim.battle_of_the_heroes.name=Music Disc
-item.record.battle_of_the_heroes.desc=John Williams - Battle of the Heroes
-
-item.outerrim.battle_over_coruscant.name=Music Disc
-item.record.battle_over_coruscant.desc=John Williams - Battle Over Coruscant
-
-item.outerrim.cantina_band.name=Music Disc
-item.record.cantina_band.desc=Figrin D'an and the Modal Nodes - Cantina Band
-
-item.outerrim.clone_army_march.name=Music Disc
-item.record.clone_army_march.desc=John Williams - Clone Army March
-
-item.outerrim.droid_army_march.name=Music Disc
-item.record.droid_army_march.desc=John Williams - Droid Army March
-
-item.outerrim.duel_of_the_fates.name=Music Disc
-item.record.duel_of_the_fates.desc=John Williams - Duel of the Fates
-
-item.outerrim.the_imperial_march.name=Music Disc
-item.record.the_imperial_march.desc=John Williams - The Imperial March
-
-tile.outerrim.venator_screen.name=Venator Screen
-tile.outerrim.venator_bridge_chair.name=Venator Bridge Chair
-tile.outerrim.venator_bridge_mechanical_table.name=Venator Bridge Mechanical Table
-tile.outerrim.kamino_door_large.name=Large Kamino Door
-tile.outerrim.kamino_railing.name=Kamino Railing
-tile.outerrim.venator_holo_table.name=Venator Holotable
-tile.outerrim.venator_bridge_door.name=Venator Bridge Door
-tile.outerrim.kamino_door_small.name=Small Kamino Door
-
-item.outerrim.republic_crest.name=Republic Crest
-item.outerrim.imperial_crest.name=Imperial Crest
-item.outerrim.separatist_hex_icon.name=Separatist Hex Icon
-item.outerrim.rebel_alliance_starbird.name=Rebel Alliance Starbird
-item.outerrim.first_order_insignia.name=First Order Insignia
-item.outerrim.jedi_crest.name=Jedi Crest
-
-tile.snowyStone.name=Snowy Stone
 entity.outerrim.astromech.name=Astromech Droid
 entity.outerrim.rusty_b2_battle_droid.name=Rusty B2 Battle Droid
 entity.outerrim.tusken_raider.name=Tusken Raider
-
-item.outerrim.vialEmpty.name=Glass Vial
-item.outerrim.vialCoaxiumRaw.name=Volatile Coaxium Vial
-item.outerrim.vialCoaxiumRefined.name=Refined Coaxium Vial
-item.outerrim.portableCoaxiumPump.name=Portable Coaxium Pump
-tile.outerrim.coaxiumDepositVolatile.name=Volatile Coaxium Vein
-tile.outerrim.coaxiumDeposit.name=Active Coaxium Vein
-tile.outerrim.coaxiumDepositEmpty.name=Depleted Coaxium Vein
-tile.outerrim.coaxium_container.name=Coaxium Container
-tile.outerrim.coaxium_refinery.name=Coaxium Refinery
-tile.outerrim.coaxiumPump.name=Coaxium Pump
-
 entity.outerrim.ewok.name=Ewok
 entity.outerrim.wookiee.name=Wookiee
 entity.outerrim.kessel_mine_worker.name=Kessel Mine Worker
@@ -891,41 +935,4 @@ entity.outerrim.pyke_sentinel.name=Pyke Sentinel
 entity.outerrim.gm12_l1.name=GM12-L1
 entity.outerrim.smuggler_han_solo.name=Han Solo
 entity.outerrim.count_dooku.name=Count Dooku
-
-item.outerrim.hyperdriveNiamos.name=Niamos Hyperdrive
-item.outerrim.hyperdriveRiflor.name=Riflor Hyperdrive
-
-item.outerrim.jedi_rocks.name=Music Disc
-item.record.jedi_rocks.desc=Max Rebo Band - Jedi Rocks
-
-item.outerrim.niamos.name=Music Disc
-item.record.niamos.desc=Nicholas Britell - Niamos!
-
-item.outerrim.sugaan_essena.name=Music Disc
-item.record.sugaan_essena.desc=The Agasar - Sugaan Essena
-
-item.outerrim.yub_nub.name=Music Disc
-item.record.yub_nub.desc=John Williams - Yub Nub
-
-item.outerrim.darth_vader_helmet.name=Darth Vader's Helmet
-item.outerrim.darth_vader_chestplate.name=Darth Vader's Chestplate
-item.outerrim.darth_vader_leggings.name=Darth Vader's Leggings
-item.outerrim.darth_vader_boots.name=Darth Vader's Boots
-
-item.outerrim.kessel_worker_helmet.name=Kessel Worker Helmet
-item.outerrim.kessel_worker_chestplate.name=Kessel Worker Chestplate
-item.outerrim.kessel_worker_leggings.name=Kessel Worker Leggings
-item.outerrim.kessel_worker_boots.name=Kessel Worker Boots
-
-item.outerrim.smuggler_han_solo_helmet.name=Han Solo's Head
-item.outerrim.smuggler_han_solo_chestplate.name=Han Solo's Vest
-item.outerrim.smuggler_han_solo_leggings.name=Han Solo's Pants
-item.outerrim.smuggler_han_solo_boots.name=Han Solo's Boots
-
-item.outerrim.count_dooku_helmet.name=Count Dooku's Helmet
-item.outerrim.count_dooku_chestplate.name=Count Dooku's Chestplate
-item.outerrim.count_dooku_leggings.name=Count Dooku's Leggings
-item.outerrim.count_dooku_boots.name=Count Dooku's Boots
-
-tile.sink.name=Sink
 entity.outerrim.darth_vader.name=Darth Vader

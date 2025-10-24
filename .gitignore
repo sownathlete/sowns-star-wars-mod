@@ -19,3 +19,5 @@ layout.json
 .editorconfig
 options.txt
 options.txt
+*.prefs
+.project

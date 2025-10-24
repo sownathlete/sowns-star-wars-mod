@@ -17,13 +17,13 @@ public class GenLayerBiomeAthulla extends GenLayer {
 				initChunkSeed(x + areaX, y + areaY);
 				int n = nextInt(100);
 
-				if (n < 25)
+				if (n < 50)
 					biomes[x + y * areaWidth] = BiomeGenBase.jungle.biomeID;
-				else if (n < 50)
+				else if (n < 75)
 					biomes[x + y * areaWidth] = BiomeGenBase.forest.biomeID;
-				else if (n < 70)
+				else if (n < 95)
 					biomes[x + y * areaWidth] = BiomeGenBase.swampland.biomeID;
-				else if (n < 90)
+				else if (n < 99)
 					biomes[x + y * areaWidth] = BiomeGenBase.plains.biomeID;
 				else
 					biomes[x + y * areaWidth] = BiomeGenBase.extremeHills.biomeID;

@@ -4,6 +4,7 @@ import com.sown.outerrim.client.render.RenderPortableCoaxiumPump;
 import com.sown.outerrim.entities.*;
 import com.sown.outerrim.handlers.FrozenPlayerHandler;
 import com.sown.outerrim.registry.BlockRegister;
+import com.sown.outerrim.rendering.ItemRendererPortableCoaxiumExtractor;
 import com.sown.outerrim.rendering.ItemRendererPortableCoaxiumPump;
 import com.sown.outerrim.rendering.RenderBlockCarbonite;
 import com.sown.outerrim.rendering.RenderBlockCoaxiumContainer;
@@ -15,6 +16,7 @@ import com.sown.outerrim.rendering.RenderBlockKaminoDoorLarge;
 import com.sown.outerrim.rendering.RenderBlockKaminoDoorSmall;
 import com.sown.outerrim.rendering.RenderBlockKaminoRailing;
 import com.sown.outerrim.rendering.RenderBlockMoistureVaporator;
+import com.sown.outerrim.rendering.RenderBlockPortableCoaxiumExtractor;
 import com.sown.outerrim.rendering.RenderBlockVenatorBridgeChair;
 import com.sown.outerrim.rendering.RenderBlockVenatorBridgeDoor;
 import com.sown.outerrim.rendering.RenderBlockVenatorBridgeMechanicalTable;
@@ -30,6 +32,7 @@ import com.sown.outerrim.rendering.RenderKaminoDoorLarge;
 import com.sown.outerrim.rendering.RenderKaminoDoorSmall;
 import com.sown.outerrim.rendering.RenderKaminoRailing;
 import com.sown.outerrim.rendering.RenderMoistureVaporator;
+import com.sown.outerrim.rendering.RenderPortableCoaxiumExtractorTESR;
 import com.sown.outerrim.rendering.RenderVenatorBridgeChair;
 import com.sown.outerrim.rendering.RenderVenatorBridgeDoor;
 import com.sown.outerrim.rendering.RenderVenatorBridgeMechanicalTable;
@@ -182,8 +185,13 @@ public class OuterRimClientProxy extends OuterRimCommonProxy {
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("felucia_flower_tall_turquoise")), (IItemRenderer)new RenderBlockFeluciaFlowerTallTurquoise());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFeluciaFlowerTurquoise.class, (TileEntitySpecialRenderer)new RenderFeluciaFlowerTallTurquoise());
 
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("portable_coaxium_pump")), new ItemRendererPortableCoaxiumPump());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPortableCoaxiumPump.class, new RenderPortableCoaxiumPump());
+        //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("portable_coaxium_pump")), new ItemRendererPortableCoaxiumPump());
+        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPortableCoaxiumPump.class, new RenderPortableCoaxiumPump());
+        
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("portable_coaxium_pump")), new ItemRendererPortableCoaxiumExtractor());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPortableCoaxiumPump.class, new RenderPortableCoaxiumExtractorTESR());
+
+
 
 //        // KaminoDoorLarge
 //        MinecraftForgeClient.registerItemRenderer(

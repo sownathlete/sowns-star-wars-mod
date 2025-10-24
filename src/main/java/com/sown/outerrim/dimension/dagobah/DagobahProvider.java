@@ -1,10 +1,3 @@
-/*
- * Decompiled with CFR 0.148.
- * 
- * Could not load the following classes:
- *  net.minecraft.world.biome.WorldChunkManager
- *  net.minecraft.world.chunk.IChunkProvider
- */
 package com.sown.outerrim.dimension.dagobah;
 
 import java.util.ArrayList;
@@ -23,160 +16,159 @@ import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
 
-public class DagobahProvider
-extends WorldProviderSpace{
-    public static final List<BiomeGenBase> biomes = new ArrayList<>();
-    protected static final BiomeGenBase.Height height_PartiallySubmerged = new BiomeGenBase.Height(-0.2F, 0.1F);
-    public static final BiomeGenBase dagobah = (new BiomeGenDagobah(OuterRimResources.ConfigOptions.biomeDagobahId)).setBiomeName("Dagobah Swamp").setHeight(height_PartiallySubmerged).setTemperatureRainfall(0.8F, 0.9F);
-    @SideOnly(value=Side.CLIENT)
-    private IRenderHandler skyRenderer;
-    
+public class DagobahProvider extends WorldProviderSpace {
+	public static final List<BiomeGenBase> biomes = new ArrayList<>();
+	protected static final BiomeGenBase.Height height_PartiallySubmerged = new BiomeGenBase.Height(-0.2F, 0.1F);
+	public static final BiomeGenBase dagobah = (new BiomeGenDagobah(OuterRimResources.ConfigOptions.biomeDagobahId))
+			.setBiomeName("Dagobah Swamp").setHeight(height_PartiallySubmerged).setTemperatureRainfall(0.8F, 0.9F);
 
-    static {
-        // Add other biomes as needed
-    	biomes.add(dagobah);
-    }
-    
-    @Override
-    public boolean canRainOrSnow() {
-        return true;
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public Vec3 getFogColor(float celestialAngle, float partialTicks) {
-        // calculate brightness (clamped 01)
-        float brightness = MathHelper.cos(celestialAngle * (float)Math.PI * 2F) * 2F + 0.5F;
-        brightness = Math.max(0F, Math.min(1F, brightness));
+	@SideOnly(value = Side.CLIENT)
+	private IRenderHandler skyRenderer;
 
-        // base color = #172A28   R=23, G=42, B=40
-        float baseR = 23f  / 255f;  //  0.0902
-        float baseG = 42f  / 255f;  //  0.1647
-        float baseB = 40f  / 255f;  //  0.1569
+	static {
+		biomes.add(dagobah);
+	}
 
-        // apply your original multipliers
-        float red   = baseR * (brightness * 0.94F + 0.06F);
-        float green = baseG * (brightness * 0.94F + 0.06F);
-        float blue  = baseB * (brightness * 0.91F + 0.09F);
+	@Override
+	public boolean canRainOrSnow() {
+		return true;
+	}
 
-        return Vec3.createVectorHelper(red, green, blue);
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Vec3 getFogColor(float celestialAngle, float partialTicks) {
+		float brightness = MathHelper.cos(celestialAngle * (float) Math.PI * 2F) * 2F + 0.5F;
+		brightness = Math.max(0F, Math.min(1F, brightness));
 
-    @Override
-    public boolean hasSunset() {
-        return true;
-    }
+		// base color = #172A28 R=23, G=42, B=40
+		float baseR = 23f / 255f;
+		float baseG = 42f / 255f;
+		float baseB = 40f / 255f;
 
-    @Override
-    public boolean canBlockFreeze(int x, int y, int z, boolean byWater) {
-        return false;
-    }
+		// make fog appear thicker (reduce visible distance) by lowering the brightness
+		// multipliers
+		float red = baseR * (brightness * 0.25F + 0.03F);
+		float green = baseG * (brightness * 0.25F + 0.03F);
+		float blue = baseB * (brightness * 0.25F + 0.03F);
 
-    @Override
-    public long getDayLength() {
-        return 24000L;
-    }
-    
-    public boolean isRaining() {
-        return false;
-    }
+		return Vec3.createVectorHelper(red, green, blue);
+	}
 
-    public boolean shouldForceRespawn() {
-        return true;
-    }
+	@Override
+	public boolean hasSunset() {
+		return true;
+	}
 
-    @Override
-    public Class<? extends IChunkProvider> getChunkProviderClass() {
-        return BiomeChunkProviderDagobah.class;
-    }
+	@Override
+	public boolean canBlockFreeze(int x, int y, int z, boolean byWater) {
+		return false;
+	}
 
-    @Override
-    public Class<? extends WorldChunkManager> getWorldChunkManagerClass() {
-        return WorldChunkManagerDagobah.class;
-    }
+	@Override
+	public long getDayLength() {
+		return 24000L;
+	}
 
-    public double getHorizon() {
-        return 44.0;
-    }
+	public boolean isRaining() {
+		return false;
+	}
 
-    @SideOnly(value=Side.CLIENT)
-    public IRenderHandler getSkyRenderer() {
-        return null;
-    }
+	public boolean shouldForceRespawn() {
+		return true;
+	}
 
-    public int getAverageGroundLevel() {
-        return 44;
-    }
+	@Override
+	public Class<? extends IChunkProvider> getChunkProviderClass() {
+		return BiomeChunkProviderDagobah.class;
+	}
 
-    public boolean canCoordinateBeSpawn(int var1, int var2) {
-        return true;
-    }
+	@Override
+	public Class<? extends WorldChunkManager> getWorldChunkManagerClass() {
+		return WorldChunkManagerDagobah.class;
+	}
 
-    @Override
-    public float getGravity() {
-        return 0.03f;
-    }
+	public double getHorizon() {
+		return 44.0;
+	}
 
-    public int getHeight() {
-        return 800;
-    }
+	@SideOnly(value = Side.CLIENT)
+	public IRenderHandler getSkyRenderer() {
+		return null;
+	}
 
-    @Override
-    public double getMeteorFrequency() {
-        return 0.0;
-    }
+	public int getAverageGroundLevel() {
+		return 44;
+	}
 
-    @Override
-    public double getFuelUsageMultiplier() {
-        return 1.0;
-    }
+	public boolean canCoordinateBeSpawn(int var1, int var2) {
+		return true;
+	}
 
-    @Override
-    public float getFallDamageModifier() {
-        return 0.95f;
-    }
+	@Override
+	public float getGravity() {
+		return 0.03f;
+	}
 
-    @Override
-    public float getSoundVolReductionAmount() {
-        return 5.0f;
-    }
+	public int getHeight() {
+		return 800;
+	}
 
-    @Override
-    public boolean hasBreathableAtmosphere() {
-        return true;
-    }
+	@Override
+	public double getMeteorFrequency() {
+		return 0.0;
+	}
 
-    @Override
-    public float getThermalLevelModifier() {
-        return 0.0f;
-    }
+	@Override
+	public double getFuelUsageMultiplier() {
+		return 1.0;
+	}
 
-    @Override
-    public float getWindLevel() {
-        return 3.0f;
-    }
+	@Override
+	public float getFallDamageModifier() {
+		return 0.95f;
+	}
 
-    @Override
-    public boolean canSpaceshipTierPass(int var1) {
-        return false;
-    }
+	@Override
+	public float getSoundVolReductionAmount() {
+		return 5.0f;
+	}
 
-    @Override
-    public GlobalPreset getCelestialBody() {
-        return null;
-    }
+	@Override
+	public boolean hasBreathableAtmosphere() {
+		return true;
+	}
 
-    public String getDimensionName() {
-        return null;
-    }
+	@Override
+	public float getThermalLevelModifier() {
+		return 0.0f;
+	}
 
-    @Override
-    public float getCloudHeight() {
-        return 100.0F;  // This is the typical cloud height for the Overworld in Minecraft. Adjust as necessary.
-    }
+	@Override
+	public float getWindLevel() {
+		return 3.0f;
+	}
 
-    @Override
-    public boolean doesXZShowFog(int x, int z) {
-        return true;  // This ensures that the (x, z) coordinates won't show fog, which can obscure clouds.
-    }
+	@Override
+	public boolean canSpaceshipTierPass(int var1) {
+		return false;
+	}
+
+	@Override
+	public GlobalPreset getCelestialBody() {
+		return null;
+	}
+
+	public String getDimensionName() {
+		return null;
+	}
+
+	@Override
+	public float getCloudHeight() {
+		return 100.0F;
+	}
+
+	@Override
+	public boolean doesXZShowFog(int x, int z) {
+		return true;
+	}
 }

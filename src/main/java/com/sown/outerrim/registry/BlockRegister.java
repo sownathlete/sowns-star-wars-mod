@@ -81,6 +81,7 @@ import com.sown.outerrim.tileentities.TileEntityVenatorBridgeDoor;
 import com.sown.outerrim.tileentities.TileEntityVenatorBridgeMechanicalTable;
 import com.sown.outerrim.tileentities.TileEntityVenatorHoloTable;
 import com.sown.outerrim.tileentities.TileEntityVenatorScreen;
+import com.sown.outerrim.utils.BoundingBoxTile;
 import com.sown.outerrim.world.gen.WorldGenDarkTree;
 import com.sown.outerrim.world.gen.WorldGenJaporIvoryTree;
 import com.sown.util.block.ORBlockContainer;
@@ -134,6 +135,9 @@ public class BlockRegister {
 		GameRegistry.registerBlock(coaxiumDepositVolatile, "coaxiumDepositVolatile");
 		GameRegistry.registerBlock(coaxiumDepositFull,  "coaxiumDeposit");
 		GameRegistry.registerBlock(coaxiumDepositEmpty, "coaxiumDepositEmpty");
+
+		// This is a dummy tile used for collisions, it doesn't have a real block associated with it.
+		GameRegistry.registerTileEntity(BoundingBoxTile.class, "OuterRimBoundingBoxTile");
 
 		//coaxiumContainer = new BlockCoaxiumContainer();
 		//coaxiumRefinery  = new BlockCoaxiumRefinery();

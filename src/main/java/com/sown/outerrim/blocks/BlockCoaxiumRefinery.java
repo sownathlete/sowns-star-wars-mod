@@ -2,7 +2,10 @@ package com.sown.outerrim.blocks;
 
 import com.sown.outerrim.OuterRim;
 import com.sown.outerrim.OuterRimResources;
+import com.sown.outerrim.tileentities.TileEntityCoaxiumPump;
 import com.sown.outerrim.tileentities.TileEntityCoaxiumRefinery;
+import com.sown.outerrim.utils.BoundingBoxTile;
+import com.sown.outerrim.utils.BoundingComponent;
 import com.sown.util.block.ORBlockContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -18,14 +21,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BlockCoaxiumRefinery extends ORBlockContainer {
 
     private static final int META_CORE = 0;
-    private static final int META_FULL = 1;
-    private static final int META_HALF = 2;
-
     private static boolean BREAKING_CORE = false;
 
     public BlockCoaxiumRefinery(String name, Material material, float hardness, String toolType, int harvestLevel, Block.SoundType stepSound, boolean isMultiSided) {
@@ -47,14 +49,29 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
     }
 
     @Override
-    public void onBlockPlacedBy(World w, int x, int y, int z, EntityLivingBase placer, ItemStack stack) {
-        super.onBlockPlacedBy(w, x, y, z, placer, stack);
-        w.setBlockMetadataWithNotify(x, y, z, META_CORE, 2);
-        TileEntity te = w.getTileEntity(x, y, z);
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase placer, ItemStack stack) {
+        super.onBlockPlacedBy(world, x, y, z, placer, stack);
+        world.setBlockMetadataWithNotify(x, y, z, META_CORE, 2);
+        TileEntity te = world.getTileEntity(x, y, z);
         if (te instanceof TileEntityCoaxiumRefinery) {
-            int rot = (MathHelper.floor_double(placer.rotationYaw * 4.0 / 360.0 + 0.5) & 3);
-            ((TileEntityCoaxiumRefinery) te).setFacing(rot);
-            ensureParts(w, x, y, z, rot);
+            int rot = (placer != null) ? (MathHelper.floor_double(placer.rotationYaw * 4.0 / 360.0 + 0.5) & 3) : 0;
+            if (canPlaceParts(world, x, y, z, rot)) {
+                ((TileEntityCoaxiumRefinery) te).setFacing(rot);
+                ensureParts(world, x, y, z, rot);
+            } else {
+                world.setBlockToAir(x, y, z);
+                if (!world.isRemote && placer instanceof EntityPlayer player) {
+                    if (player.capabilities.isCreativeMode) return;
+                    ItemStack returned = new ItemStack(this);
+
+                    if (!player.inventory.addItemStackToInventory(returned)) {
+                        player.dropPlayerItemWithRandomChoice(returned, false);
+                    }
+
+                    player.inventoryContainer.detectAndSendChanges();
+                }
+
+            }
         }
     }
 
@@ -75,38 +92,41 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
     }
 
     @Override
-    public void onBlockPreDestroy(World w, int x, int y, int z, int meta) {
-        if (meta == META_CORE) {
-            removeParts(w, x, y, z);
-        } else {
-            if (!BREAKING_CORE) {
-                int[] c = findCoreAround(w, x, y, z);
-                if (c != null) {
-                    try {
-                        BREAKING_CORE = true;
-                        w.func_147480_a(c[0], c[1], c[2], false);
-                    } finally {
-                        BREAKING_CORE = false;
-                    }
-                }
-            }
+    public void onBlockPreDestroy(World world, int x, int y, int z, int meta) {
+        if (BREAKING_CORE) return;
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+        TileEntityCoaxiumRefinery core = null;
+        boolean breakCore = false;
+        if (tileEntity instanceof TileEntityCoaxiumRefinery) {
+            core = (TileEntityCoaxiumRefinery) tileEntity;
+        } else if (tileEntity instanceof BoundingBoxTile boundingBoxTile) {
+            core = (TileEntityCoaxiumRefinery) boundingBoxTile.getCore();
+            breakCore = true;
         }
-        super.onBlockPreDestroy(w, x, y, z, meta);
-    }
 
-    @Override
-    public void breakBlock(World w, int x, int y, int z, Block b, int meta) {
-        if (meta == META_CORE) removeParts(w, x, y, z);
-        super.breakBlock(w, x, y, z, b, meta);
+        if (core != null) {
+            BREAKING_CORE = true;
+            removeParts(world, core.xCoord, core.yCoord, core.zCoord, core.getFacing(), breakCore);
+        }
+
+        BREAKING_CORE = false;
+        super.onBlockPreDestroy(world, x, y, z, meta);
     }
 
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
-        if (meta == META_CORE || meta == META_FULL) {
-            setBlockBounds(0, 0, 0, 1, 1, 1);
-        } else if (meta == META_HALF) {
-            setBlockBounds(0, 0, 0, 1, 0.5f, 1);
+
+        BoundingComponent bounds = BOUNDS_MAP.get(meta);
+
+        if (bounds != null) {
+            this.setBlockBounds(
+                bounds.minX, bounds.minY, bounds.minZ,
+                bounds.maxX, bounds.maxY, bounds.maxZ
+            );
+        } else {
+            // Fallback for an unknown metadata value
+            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
     }
 
@@ -120,8 +140,10 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World w, int x, int y, int z) {
         double d = 0.0001;
-        return AxisAlignedBB.getBoundingBox(x + 0.5 - d, y + 0.5 - d, z + 0.5 - d,
-                                            x + 0.5 + d, y + 0.5 + d, z + 0.5 + d);
+        return AxisAlignedBB.getBoundingBox(
+                x + 0.5 - d, y + 0.5 - d, z + 0.5 - d,
+                x + 0.5 + d, y + 0.5 + d, z + 0.5 + d
+        );
     }
 
     @Override
@@ -140,84 +162,149 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
         x=+2   .        X        X
      */
 
-    private static final Part[] FOOTPRINT_SOUTH = new Part[] {
-            new Part(-2, 0, 0, META_FULL),
-            new Part(-2, 0, 1, META_FULL),
-            //new Part(-2, 1, 0, META_HALF),
-            //new Part(-2, 1, 1, META_HALF),
+    private static final BoundingComponent[] FOOTPRINT_SOUTH = new BoundingComponent[] {
+            new BoundingComponent(-2, 0, 0),
+            new BoundingComponent(-2, 0, 1),
 
-            new Part(-1, 0, 1, META_HALF),
-            new Part(-1, 0, 0, META_HALF),
+            new BoundingComponent(-1, 0, 1, 0.5f),
+            new BoundingComponent(-1, 0, 0, 0.5f),
 
-            new Part(0, 1, 0, META_HALF),
+            new BoundingComponent(0, 1, 0, 0.5f),
 
-            new Part( 1, 0, 1, META_HALF),
-            new Part(1, 0, 0, META_HALF),
+            new BoundingComponent( 1, 0, 1, 0.5f),
+            new BoundingComponent(1, 0, 0, 0.5f),
 
-            new Part( 2, 0, 0, META_FULL),
-            new Part( 2, 0, 1, META_FULL),
-            //new Part(2, 1, 0, META_HALF),
-            //new Part(2, 1, 1, META_HALF),
+            new BoundingComponent( 2, 0, 0),
+            new BoundingComponent( 2, 0, 1),
     };
 
-    private static class Part {
-        final int dx, dy, dz, meta;
-        Part(int dx, int dy, int dz, int meta) { this.dx = dx; this.dy = dy; this.dz = dz; this.meta = meta; }
+    private static final Map<Integer, BoundingComponent> BOUNDS_MAP = new HashMap<>();
+    private static final Map<Integer, Integer> META_MAP = new HashMap<>();
+
+    private static final Map<String, BoundingComponent> FOOTPRINT_MAP_SOUTH = new HashMap<>();
+
+    // Static initializer to populate the maps based on unique bounding box sizes
+    static {
+        // Map to track unique sizes encountered and the metadata assigned to them
+        Map<BoundingComponent, Integer> sizeToMetaMap = new HashMap<>();
+        int nextUniqueMeta = 1; // Start assignment for unique non-core sizes from 1.
+
+        for (int partIndex = 0; partIndex < FOOTPRINT_SOUTH.length; partIndex++) {
+            BoundingComponent comp = FOOTPRINT_SOUTH[partIndex];
+            int metaToAssign;
+
+            Integer assignedMeta = sizeToMetaMap.get(comp);
+
+            if (assignedMeta == null) {
+                if (nextUniqueMeta > 15) {
+                    System.err.println("MultiBlock structure exceeded 16 unique bounding box sizes!");
+                    metaToAssign = 15;
+                } else {
+                    metaToAssign = nextUniqueMeta++;
+                }
+
+                sizeToMetaMap.put(comp, metaToAssign);
+            } else {
+                metaToAssign = assignedMeta;
+            }
+
+
+            META_MAP.put(partIndex, metaToAssign);
+            BOUNDS_MAP.put(metaToAssign, comp);
+        }
     }
 
-    private static Part rotate(Part p, int rot) {
+    private static BoundingComponent rotate(BoundingComponent p, int rot) {
         int dx = p.dx, dz = p.dz;
         for (int i = 0; i < rot; i++) { int ndx = -dz; int ndz = dx; dx = ndx; dz = ndz; }
-        return new Part(dx, p.dy, dz, p.meta);
+        return new BoundingComponent(dx, p.dy, dz, p.minX, p.minY, p.minZ, p.maxX, p.maxY, p.maxZ);
     }
-    private static List<Part> footprintFor(int rot) {
-        List<Part> out = new ArrayList<Part>(FOOTPRINT_SOUTH.length);
-        for (Part p : FOOTPRINT_SOUTH) out.add(rotate(p, rot));
+
+    private static List<BoundingComponent> footprintFor(int rot) {
+        List<BoundingComponent> out = new ArrayList<>(FOOTPRINT_SOUTH.length);
+        for (BoundingComponent p : FOOTPRINT_SOUTH) out.add(rotate(p, rot));
         return out;
     }
 
-    private void ensureParts(World w, int x, int y, int z, int rot) {
-        for (Part p : footprintFor(rot)) {
-            int px = x + p.dx, py = y + p.dy, pz = z + p.dz;
-            Block b = w.getBlock(px, py, pz);
-            int m = w.getBlockMetadata(px, py, pz);
-            if (b != this || m != p.meta) {
-                placeOrReplace(w, px, py, pz, p.meta);
+    // Here the c prefix for the coordinates stands for center
+    private void ensureParts(World world, int cx, int cy, int cz, int rot) {
+        List<BoundingComponent> components = footprintFor(rot);
+
+        for (int partIndex = 0; partIndex < components.size(); partIndex++) {
+            BoundingComponent comp = components.get(partIndex);
+
+            Integer meta = META_MAP.get(partIndex);
+            if (meta == null) {
+                continue;
+            }
+
+            int px = cx + comp.dx;
+            int py = cy + comp.dy;
+            int pz = cz + comp.dz;
+
+            boolean isSpace = placeOrReplace(world, px, py, pz, meta);
+
+            if (isSpace) {
+                world.setTileEntity(px, py, pz, new BoundingBoxTile());
+            }
+
+            TileEntity placedTE = world.getTileEntity(px, py, pz);
+            if (placedTE instanceof BoundingBoxTile part) {
+                part.setCorePos(cx, cy, cz);
             }
         }
     }
 
-    private void placeOrReplace(World w, int x, int y, int z, int meta) {
-        Block existing = w.getBlock(x, y, z);
-        if (w.isAirBlock(x, y, z) || existing.isReplaceable(w, x, y, z)) {
-            w.setBlock(x, y, z, this, meta, 3);
+    private boolean canPlaceParts(World world, int cx, int cy, int cz, int rot) {
+        for (BoundingComponent p : footprintFor(rot)) {
+            int px = cx + p.dx;
+            int py = cy + p.dy;
+            int pz = cz + p.dz;
+
+            Block existing = world.getBlock(px, py, pz);
+            if (!world.isAirBlock(px, py, pz) && !existing.isReplaceable(world, px, py, pz)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean placeOrReplace(World world, int x, int y, int z, int meta) {
+        Block existing = world.getBlock(x, y, z);
+        if (world.isAirBlock(x, y, z) || existing.isReplaceable(world, x, y, z)) {
+            world.setBlock(x, y, z, this, meta, 3);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void removeParts(World world, int cx, int cy, int cz, int rot, boolean breakCore) {
+        for (BoundingComponent comp : footprintFor(rot)) {
+            int px = cx + comp.dx;
+            int py = cy + comp.dy;
+            int pz = cz + comp.dz;
+
+            TileEntity placedTE = world.getTileEntity(px, py, pz);
+            if (placedTE instanceof BoundingBoxTile) {
+                world.setBlockToAir(px, py, pz);
+                world.setTileEntity(px, py, pz, null);
+            }
+        }
+
+        if (breakCore) {
+            world.setBlockToAir(cx, cy, cz);
+            world.setTileEntity(cx, cy, cz, null);
         }
     }
 
-    private void removeParts(World w, int x, int y, int z) {
-        for (int dx = -3; dx <= 3; dx++) {
-            for (int dy = -1; dy <= 1; dy++) {
-                for (int dz = -3; dz <= 3; dz++) {
-                    int px = x + dx, py = y + dy, pz = z + dz;
-                    if (w.getBlock(px, py, pz) == this && w.getBlockMetadata(px, py, pz) != META_CORE) {
-                        w.setBlockToAir(px, py, pz);
-                    }
-                }
-            }
+    private int[] findCoreAround(World world, int x, int y, int z) {
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+        if (tileEntity instanceof TileEntityCoaxiumPump) return new int[] { x, y, z};
+        else if (tileEntity instanceof BoundingBoxTile boundingBoxTile) {
+            return boundingBoxTile.getCorePos();
+        } else {
+            return null;
         }
-    }
-
-    private int[] findCoreAround(World w, int x, int y, int z) {
-        for (int dx = -3; dx <= 3; dx++) {
-            for (int dy = -1; dy <= 1; dy++) {
-                for (int dz = -3; dz <= 3; dz++) {
-                    int px = x + dx, py = y + dy, pz = z + dz;
-                    if (w.getBlock(px, py, pz) == this && w.getBlockMetadata(px, py, pz) == META_CORE) {
-                        return new int[]{px, py, pz};
-                    }
-                }
-            }
-        }
-        return null;
     }
 }

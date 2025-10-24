@@ -152,13 +152,15 @@ public class OuterRimClientProxy extends OuterRimCommonProxy {
 
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("coaxium_refinery")), new RenderItemCoaxiumRefinery());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCoaxiumRefinery.class, new RenderBlockCoaxiumRefinery());
-        
+
+        System.out.println("Found: "+BlockRegister.getRegisteredBlock("coaxium_pump"));
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("coaxium_pump")), new RenderItemCoaxiumPump());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCoaxiumPump.class, new RenderBlockCoaxiumPump());
 
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("felucia_flower_tall_turquoise")), new RenderItemFeluciaFlowerTallTurquoise());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFeluciaFlowerTurquoise.class, new RenderBlockFeluciaFlowerTallTurquoise());
 
+        System.out.println("Found: "+BlockRegister.getRegisteredBlock("portable_coaxium_pump"));
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("portable_coaxium_pump")), new ItemRendererPortableCoaxiumExtractor());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPortableCoaxiumPump.class, new RenderPortableCoaxiumExtractorTESR());
 

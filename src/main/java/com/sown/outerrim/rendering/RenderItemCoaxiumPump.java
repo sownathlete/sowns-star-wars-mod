@@ -35,10 +35,8 @@ public class RenderItemCoaxiumPump implements IItemRenderer {
 
         switch (type) {
             case INVENTORY -> {
-                GL11.glTranslatef(0.0f, -0.55f, 0.0f);
-                GL11.glScalef(0.85f, 0.85f, 0.85f);
-                GL11.glRotatef(30f, 1f, 0f, 0f);
-                GL11.glRotatef(45f, 0f, 1f, 0f);
+                GL11.glScalef(0.2f, 0.2f, 0.2f);
+                GL11.glTranslatef(-1.0f, -3.5f, 0.0f);
                 GL11.glRotatef(180f, 0f, 1f, 0f);
             }
             case EQUIPPED -> {

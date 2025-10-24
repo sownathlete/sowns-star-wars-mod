@@ -30,14 +30,14 @@ public class BlockCoaxiumPump extends ORBlockContainer {
 
     private static boolean BREAKING_CORE = false;
 
-    public BlockCoaxiumPump() {
-        super("coaxium_pump", Material.iron);
+    public BlockCoaxiumPump(String name, Material material, float hardness, String toolType, int harvestLevel, Block.SoundType stepSound, boolean isMultiSided) {
+        super(name, material);
         setCreativeTab(OuterRim.tabUtil);
-        setHardness(3.5f);
+        setHardness(hardness);
+        setHarvestLevel(toolType, harvestLevel);
         setResistance(50f);
-        setStepSound(Block.soundTypeMetal);
-        // logical bounds of a single block; parts are full cubes
-        setBlockBounds(0, 0, 0, 1, 1, 1);
+        setStepSound(stepSound);
+        setBlockBounds(0f, 0f, 0f, 1f, 1f, 1f);
     }
 
     // TESR render-type

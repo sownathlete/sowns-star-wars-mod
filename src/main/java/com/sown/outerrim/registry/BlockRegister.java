@@ -140,9 +140,8 @@ public class BlockRegister {
 		//GameRegistry.registerBlock(coaxiumContainer, "coaxiumContainer");
 		//GameRegistry.registerBlock(coaxiumRefinery,  "coaxiumRefinery");
 
-		coaxiumPump = new BlockCoaxiumPump();
-		GameRegistry.registerBlock(coaxiumPump, "coaxium_pump");
-		GameRegistry.registerTileEntity(TileEntityCoaxiumPump.class,         "OR_CoaxiumPump");
+		// GameRegistry.registerBlock(coaxiumPump, "coaxium_pump");
+		// GameRegistry.registerTileEntity(TileEntityCoaxiumPump.class,         "OR_CoaxiumPump");
 //		GameRegistry.registerTileEntity(TileEntityCoaxiumPortablePump.class, "OR_CoaxiumPortablePump");
 		//GameRegistry.registerTileEntity(TileEntityCoaxiumContainer.class,    "OR_CoaxiumContainer");
 		//GameRegistry.registerTileEntity(TileEntityCoaxiumRefinery.class,     "OR_CoaxiumRefinery");
@@ -267,6 +266,11 @@ public class BlockRegister {
 				BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
 				BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
 				decorationBlocks);*/
+		registerBlockWithTileEntity(BlockCoaxiumPump.class, TileEntityCoaxiumPump.class, "coaxium_pump",
+				BlockConstants.MATERIAL_IRON, 4.0F, BlockConstants.TOOL_PICKAXE, 1, BlockConstants.SOUND_METAL, BlockConstants.LIGHT_NONE,
+				BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
+				BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
+				decorationBlocks);
 		registerBlockWithTileEntity(BlockPortableCoaxiumPump.class, TileEntityPortableCoaxiumPump.class, "portable_coaxium_pump",
 			    BlockConstants.MATERIAL_IRON, 4.0F, BlockConstants.TOOL_PICKAXE, 1, BlockConstants.SOUND_METAL, BlockConstants.LIGHT_NONE,
 			    BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,

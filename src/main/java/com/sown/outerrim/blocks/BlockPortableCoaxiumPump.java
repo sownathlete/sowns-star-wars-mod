@@ -18,13 +18,7 @@ import net.minecraft.world.World;
 
 public class BlockPortableCoaxiumPump extends ORBlockContainer {
 
-    public BlockPortableCoaxiumPump(String name,
-                                    Material material,
-                                    float hardness,
-                                    String toolType,
-                                    int harvestLevel,
-                                    Block.SoundType stepSound,
-                                    boolean isMultiSided) {
+    public BlockPortableCoaxiumPump(String name, Material material, float hardness, String toolType, int harvestLevel, Block.SoundType stepSound, boolean isMultiSided) {
         super(name, material);
         setCreativeTab(OuterRim.tabUtil);
         setHardness(hardness);
@@ -34,19 +28,20 @@ public class BlockPortableCoaxiumPump extends ORBlockContainer {
         setBlockBounds(0f, 0f, 0f, 1f, 1f, 1f);
     }
 
-    public BlockPortableCoaxiumPump() {
-        this("portable_coaxium_pump",
-             Material.iron,
-             4.0f,
-             "pickaxe",
-             1,
-             Block.soundTypeMetal,
-             false);
+    @Override
+    public int getRenderType() {
+        return -1;
     }
 
-    @Override public int getRenderType()           { return -1; }
-    @Override public boolean isOpaqueCube()        { return false; }
-    @Override public boolean renderAsNormalBlock() { return false; }
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
 
     @Override
     public TileEntity createNewTileEntity(World world, int meta) {
@@ -54,19 +49,14 @@ public class BlockPortableCoaxiumPump extends ORBlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z,
-                                    EntityPlayer player, int side,
-                                    float hx, float hy, float hz) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hx, float hy, float hz) {
         if (world.isRemote) return true;
-        player.openGui(OuterRim.instance,
-                       OuterRimResources.ConfigOptions.GUI_PORTABLE_PUMP,
-                       world, x, y, z);
+        player.openGui(OuterRim.instance, OuterRimResources.ConfigOptions.GUI_PORTABLE_PUMP, world, x, y, z);
         return true;
     }
 
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z,
-                                EntityLivingBase placer, ItemStack stack) {
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase placer, ItemStack stack) {
         super.onBlockPlacedBy(world, x, y, z, placer, stack);
         TileEntity te = world.getTileEntity(x, y, z);
         if (te instanceof TileEntityPortableCoaxiumPump) {

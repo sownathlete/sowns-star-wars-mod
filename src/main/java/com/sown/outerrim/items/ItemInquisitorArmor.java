@@ -14,14 +14,13 @@ import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ItemInquisitorArmor extends ItemArmor {
     
-    private ModelInquisitor customModel;  // Declare here, but don't initialize yet
+    private ModelInquisitor customModel;
 
     public ItemInquisitorArmor(ArmorMaterial material, int armorType, String armorName) {
         super(material, 0, armorType);
 
-        // Check if we are on the client side before initializing client-only classes
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-            this.customModel = new ModelInquisitor();  // Initialize only on client side
+            this.customModel = new ModelInquisitor();
         }
 
         this.setUnlocalizedName("outerrim." + armorName);
@@ -34,7 +33,6 @@ public class ItemInquisitorArmor extends ItemArmor {
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
     	ModelInquisitor model = new ModelInquisitor();
         
-        // Set default visibility
     	model.bipedHead.showModel = armorSlot == 0;
         model.bipedHeadwear.showModel = armorSlot == 0;
         model.bipedBody.showModel = armorSlot == 1;
@@ -43,8 +41,6 @@ public class ItemInquisitorArmor extends ItemArmor {
         model.bipedRightLeg.showModel = (armorSlot == 2 || armorSlot == 3);
         model.bipedLeftLeg.showModel = (armorSlot == 2 || armorSlot == 3);
         
-        // Handle custom visibility and rotations
-        // Example: If the helmet is worn, hide the headwear
         if (armorSlot == 0) {
         	model.bipedHeadwear.showModel = false;
         }
@@ -54,7 +50,7 @@ public class ItemInquisitorArmor extends ItemArmor {
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-        if (this.armorType == 2) { // Leggings
+        if (this.armorType == 2) {
             return "outerrim:textures/models/armor/" + this.getArmorMaterial().name().toLowerCase() + "_layer_2.png";
         } else {
             return "outerrim:textures/models/armor/" + this.getArmorMaterial().name().toLowerCase() + "_layer_1.png";

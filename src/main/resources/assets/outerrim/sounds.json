@@ -1432,6 +1432,15 @@
         ],
         "category": "music"
     },
+    "voice.vader.breathing": {
+        "sounds": [
+            {
+                "name": "voice/vader/vader_breathing",
+                "stream": true
+            }
+        ],
+        "category": "neutral"
+    },
     "voice.anakin.liar": {
         "sounds": [
             {

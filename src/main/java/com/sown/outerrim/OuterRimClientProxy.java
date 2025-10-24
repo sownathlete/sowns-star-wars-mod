@@ -14,7 +14,10 @@ import com.sown.outerrim.rendering.RenderItemHoloProjector;
 import com.sown.outerrim.rendering.RenderItemMoistureVaporator;
 import com.sown.outerrim.rendering.RenderItemVenatorScreen;
 import com.sown.outerrim.rendering.RenderPortableCoaxiumExtractorTESR;
+import com.sown.outerrim.rendering.DarthVaderHelmetVisionHandler;
+import com.sown.outerrim.rendering.InquisitorHelmetVisionHandler;
 import com.sown.outerrim.rendering.ItemRendererPortableCoaxiumExtractor;
+import com.sown.outerrim.rendering.KesselWorkerHelmetVisionHandler;
 import com.sown.outerrim.rendering.RenderBlockCarbonite;
 import com.sown.outerrim.rendering.RenderBlockCoaxiumPump;
 import com.sown.outerrim.rendering.RenderBlockCoaxiumRack;
@@ -85,6 +88,9 @@ public class OuterRimClientProxy extends OuterRimCommonProxy {
     }
 
     public void registerRendering() {
+        MinecraftForge.EVENT_BUS.register(new InquisitorHelmetVisionHandler());
+        MinecraftForge.EVENT_BUS.register(new DarthVaderHelmetVisionHandler());
+        MinecraftForge.EVENT_BUS.register(new KesselWorkerHelmetVisionHandler());
         //RenderingRegistry.registerEntityRenderingHandler(EntityBlasterVariableBolt.class, new RenderBlasterBolt(GLPalette.BRIGHT_RED));
         //MinecraftForgeClient.registerItemRenderer((Item)ItemRegister.blasterPistol, new RenderBlasterPistol());
         RenderingRegistry.registerEntityRenderingHandler(MobCoruscantCommoner.class, new RenderCoruscantCommoner(new ModelHuman(), 0.5f));

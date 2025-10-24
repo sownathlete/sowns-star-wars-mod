@@ -119,10 +119,9 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
 
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World w, int x, int y, int z) {
-        setBlockBoundsBasedOnState(w,x,y,z);
-        AxisAlignedBB a = super.getSelectedBoundingBoxFromPool(w, x, y, z);
-        setBlockBounds(0,0,0,1,1,1);
-        return a;
+        double d = 0.0001;
+        return AxisAlignedBB.getBoundingBox(x + 0.5 - d, y + 0.5 - d, z + 0.5 - d,
+                                            x + 0.5 + d, y + 0.5 + d, z + 0.5 + d);
     }
 
     @Override
@@ -144,8 +143,8 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
     private static final Part[] FOOTPRINT_SOUTH = new Part[] {
             new Part(-2, 0, 0, META_FULL),
             new Part(-2, 0, 1, META_FULL),
-            new Part(-2, 1, 0, META_HALF),
-            new Part(-2, 1, 1, META_HALF),
+            //new Part(-2, 1, 0, META_HALF),
+            //new Part(-2, 1, 1, META_HALF),
 
             new Part(-1, 0, 1, META_HALF),
             new Part(-1, 0, 0, META_HALF),
@@ -157,8 +156,8 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
 
             new Part( 2, 0, 0, META_FULL),
             new Part( 2, 0, 1, META_FULL),
-            new Part(2, 1, 0, META_HALF),
-            new Part(2, 1, 1, META_HALF),
+            //new Part(2, 1, 0, META_HALF),
+            //new Part(2, 1, 1, META_HALF),
     };
 
     private static class Part {

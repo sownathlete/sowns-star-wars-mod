@@ -16,13 +16,8 @@
  */
 package com.sown.outerrim.rendering;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -32,8 +27,7 @@ import com.sown.outerrim.models.blocks.ModelCoaxiumRack;
 import com.sown.outerrim.tileentities.TileEntityCoaxiumContainer;
 import com.sown.util.ui.P3D;
 
-public class RenderCoaxiumRack
-extends TileEntitySpecialRenderer {
+public class RenderBlockCoaxiumRack extends TileEntitySpecialRenderer {
     public static ResourceLocation texture = new ResourceLocation("outerrim:textures/models/blocks/coaxiumRack.png");
     private final ModelCoaxiumRack model = new ModelCoaxiumRack();
 

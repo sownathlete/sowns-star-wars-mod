@@ -1,73 +1,34 @@
 package com.sown.outerrim.rendering;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
+import com.sown.outerrim.models.blocks.ModelFeluciaFlowerTallTurquoise;
 import com.sown.outerrim.tileentities.TileEntityFeluciaFlowerTurquoise;
+import com.sown.util.ui.P3D;
 
-public class RenderBlockFeluciaFlowerTallTurquoise implements IItemRenderer {
-    private final TileEntitySpecialRenderer tesr = new RenderFeluciaFlowerTallTurquoise();
-    private final TileEntityFeluciaFlowerTurquoise dummyTE = new TileEntityFeluciaFlowerTurquoise();
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 
-    public RenderBlockFeluciaFlowerTallTurquoise() {
-        World w = Minecraft.getMinecraft().theWorld;
-        if (w != null) {
-            dummyTE.setWorldObj(w);
-        }
-    }
-
-    @Override
-    public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return true;
-    }
+public class RenderBlockFeluciaFlowerTallTurquoise extends TileEntitySpecialRenderer {
+    private static final ResourceLocation texture = new ResourceLocation("outerrim:textures/models/blocks/felucia_flower_tall_turquoise.png");
+    private final ModelFeluciaFlowerTallTurquoise model = new ModelFeluciaFlowerTallTurquoise();
 
     @Override
-    public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+    public void renderTileEntityAt(TileEntity te, double x, double y, double z, float tickTime) {
+        if (!(te instanceof TileEntityFeluciaFlowerTurquoise)) return;
+        TileEntityFeluciaFlowerTurquoise flower = (TileEntityFeluciaFlowerTurquoise) te;
+
         GL11.glPushMatrix();
+        GL11.glTranslated(x + 0.5, y + 0.75, z + 0.5); // center + lift up 12px
+        GL11.glRotatef(180f, 0f, 0f, 1f);              // flip model
+        GL11.glRotatef(90f * flower.getFacing(), 0f, 1f, 0f); // rotate based on facing
+        P3D.glScalef(0.5f); // downscale to 50%
 
-        switch (type) {
-        	case INVENTORY:
-        		GL11.glDisable(GL11.GL_CULL_FACE);
-        		GL11.glTranslatef(1f, -0.225f, 0f);
-                GL11.glRotatef(180f, 0f, 1f, 0f);
-                GL11.glScalef(1f, 1f, -1f);
-        		break;
+        Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+        model.render(null, 0f, 0f, 0f, 0f, 0f, 0.0625f); // standard render call
 
-            case EQUIPPED:
-                GL11.glDisable(GL11.GL_CULL_FACE);
-                GL11.glScalef(0.5f, 0.5f, -0.5f);
-                GL11.glTranslatef(1f, 1.5f, -2f);
-                GL11.glRotatef(90f, 1f, 0f, 0f);
-                break;
-
-            case EQUIPPED_FIRST_PERSON:
-                GL11.glDisable(GL11.GL_CULL_FACE);
-                GL11.glScalef(1.3f, 1.3f, -1.3f);
-                GL11.glTranslatef(2f, -0.8f, 0.2f);
-                GL11.glRotatef(135f, 0f, 1f, 0f);
-                break;
-
-            default: // ENTITY
-                GL11.glDisable(GL11.GL_CULL_FACE);
-                GL11.glRotatef(90f, 0f, 1f, 0f);
-                GL11.glScalef(0.85f, 0.85f, -0.85f);
-                GL11.glTranslatef(-0.5f, 0.4f, -0.5f);
-                break;
-        }
-
-        tesr.renderTileEntityAt(dummyTE, 0.0, 0.0, 0.0, 0f);
-
-        GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glPopMatrix();
-    }
-
-    @Override
-    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-        return true;
     }
 }

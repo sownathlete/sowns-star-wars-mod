@@ -1,91 +1,37 @@
 package com.sown.outerrim.rendering;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
+import com.sown.outerrim.models.blocks.ModelHoloProjector;
 import com.sown.outerrim.tileentities.TileEntityHoloProjector;
-import com.sown.util.ui.P3D;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.Minecraft;
 
-public class RenderBlockHoloProjector implements IItemRenderer {
-    // Use the custom HoloProjector renderer and TileEntity
-    private TileEntitySpecialRenderer render = new RenderHoloProjector();
-    private TileEntity tile = new TileEntityHoloProjector();
-
-    public RenderBlockHoloProjector() {
-        // If required, set the world object here
-        // this.tile.setWorldObj(OuterRim.mc.theWorld);
-    }
+public class RenderBlockHoloProjector extends TileEntitySpecialRenderer {
+    public static final ResourceLocation texture = new ResourceLocation("outerrim:textures/models/blocks/holoProjector.png");
+    private final ModelHoloProjector model = new ModelHoloProjector();
 
     @Override
-    public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type) {
-        return true; // We want to handle all types of rendering
-    }
+    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float partialTicks) {
+        if (tileEntity instanceof TileEntityHoloProjector) {
+            TileEntityHoloProjector projector = (TileEntityHoloProjector) tileEntity;
 
-    @Override
-    public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data) {
-        GL11.glPushMatrix();
-        // this.tile.setWorldObj(OuterRim.mc.theWorld); // Uncomment if the world object is needed
+            GL11.glPushMatrix();
+            GL11.glTranslated(x + 0.5, y + 1.5, z + 0.5);  // Move to the correct block position
+            GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);      // Rotate to ensure correct orientation
+            GL11.glRotatef(90 * projector.getFacing(), 0.0f, 1.0f, 0.0f);
 
-        this.tile.updateEntity(); // Update the tile entity before rendering
+            Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 
-        switch (type) {
-            case INVENTORY: {
-                GL11.glPushMatrix();
-                GL11.glDisable(GL11.GL_CULL_FACE); // Disable face culling
-                GL11.glTranslatef(0.03f, -0.28f, 0.0f);
-                GL11.glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
-                P3D.glScalef(1.0);
-                GL11.glScalef(1.0f, 1.0f, -1.0f);
-                GL11.glTranslatef(-0.03f, -0.6f, 0.0f);
-                this.render.renderTileEntityAt(this.tile, 0.0, 0.0, 0.0, 0.0f);
-                GL11.glEnable(GL11.GL_CULL_FACE); // Re-enable face culling
-                GL11.glPopMatrix();
-                break;
-            }
-            case EQUIPPED: {
-                GL11.glPushMatrix();
-                GL11.glDisable(GL11.GL_CULL_FACE);
-                GL11.glRotatef(45.0f, 0.0f, 1.0f, 0.0f);
-                GL11.glScalef(0.5f, 0.5f, -0.5f);
-                GL11.glTranslatef(0.5f, 0.5f, -2.0f);
-                GL11.glRotatef(45.0f, 1.0f, 0.0f, 0.0f);
-                GL11.glRotatef(-180.0f, 0.0f, 1.0f, 0.0f);
-                this.render.renderTileEntityAt(this.tile, 0.0, 0.0, 0.0, 0.0f);
-                GL11.glEnable(GL11.GL_CULL_FACE);
-                GL11.glPopMatrix();
-                break;
-            }
-            case EQUIPPED_FIRST_PERSON: {
-                GL11.glPushMatrix();
-                GL11.glDisable(GL11.GL_CULL_FACE);
-                GL11.glScalef(1.5f, 1.5f, -1.5f);
-                GL11.glTranslatef(3.0f, -1.0f, 0.5f);
-                GL11.glRotatef(135.0f, 0.0f, 1.0f, 0.0f);
-                this.render.renderTileEntityAt(this.tile, 0.0, 0.0, 0.0, 0.0f);
-                GL11.glEnable(GL11.GL_CULL_FACE);
-                GL11.glPopMatrix();
-                break;
-            }
-            default: {
-                GL11.glPushMatrix();
-                GL11.glDisable(GL11.GL_CULL_FACE);
-                GL11.glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
-                GL11.glScalef(0.85f, 0.85f, -0.85f);
-                GL11.glTranslatef(-0.5f, 0.4f, -0.5f);
-                this.render.renderTileEntityAt(this.tile, 0.0, 0.0, 0.0, 0.0f);
-                GL11.glEnable(GL11.GL_CULL_FACE);
-                GL11.glPopMatrix();
-            }
+            // Render the main body of the projector (shape3, shape4, shape5)
+            this.model.renderBase();
+
+            // Always render shape6
+            this.model.renderShape6(); 
+
+            GL11.glPopMatrix();  // Restore the matrix to the default state
         }
-        GL11.glPopMatrix();
-    }
-
-    @Override
-    public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper) {
-        return true; // Always use render helpers
     }
 }

@@ -1,0 +1,90 @@
+package com.sown.outerrim.rendering;
+
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
+
+import com.sown.outerrim.tileentities.TileEntityHoloProjector;
+import com.sown.util.ui.P3D;
+
+public class RenderItemHoloProjector implements IItemRenderer {
+    // Use the custom HoloProjector renderer and TileEntity
+    private TileEntitySpecialRenderer render = new RenderBlockHoloProjector();
+    private TileEntity tile = new TileEntityHoloProjector();
+
+    public RenderItemHoloProjector() {
+        // If required, set the world object here
+        // this.tile.setWorldObj(OuterRim.mc.theWorld);
+    }
+
+    @Override
+    public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type) {
+        return true; // We want to handle all types of rendering
+    }
+
+    @Override
+    public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data) {
+        GL11.glPushMatrix();
+        // this.tile.setWorldObj(OuterRim.mc.theWorld); // Uncomment if the world object is needed
+
+        this.tile.updateEntity(); // Update the tile entity before rendering
+
+        switch (type) {
+            case INVENTORY: {
+                GL11.glPushMatrix();
+                GL11.glDisable(GL11.GL_CULL_FACE); // Disable face culling
+                GL11.glTranslatef(0.03f, -0.28f, 0.0f);
+                GL11.glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+                P3D.glScalef(1.0);
+                GL11.glScalef(1.0f, 1.0f, -1.0f);
+                GL11.glTranslatef(-0.03f, -0.6f, 0.0f);
+                this.render.renderTileEntityAt(this.tile, 0.0, 0.0, 0.0, 0.0f);
+                GL11.glEnable(GL11.GL_CULL_FACE); // Re-enable face culling
+                GL11.glPopMatrix();
+                break;
+            }
+            case EQUIPPED: {
+                GL11.glPushMatrix();
+                GL11.glDisable(GL11.GL_CULL_FACE);
+                GL11.glRotatef(45.0f, 0.0f, 1.0f, 0.0f);
+                GL11.glScalef(0.5f, 0.5f, -0.5f);
+                GL11.glTranslatef(0.5f, 0.5f, -2.0f);
+                GL11.glRotatef(45.0f, 1.0f, 0.0f, 0.0f);
+                GL11.glRotatef(-180.0f, 0.0f, 1.0f, 0.0f);
+                this.render.renderTileEntityAt(this.tile, 0.0, 0.0, 0.0, 0.0f);
+                GL11.glEnable(GL11.GL_CULL_FACE);
+                GL11.glPopMatrix();
+                break;
+            }
+            case EQUIPPED_FIRST_PERSON: {
+                GL11.glPushMatrix();
+                GL11.glDisable(GL11.GL_CULL_FACE);
+                GL11.glScalef(1.5f, 1.5f, -1.5f);
+                GL11.glTranslatef(3.0f, -1.0f, 0.5f);
+                GL11.glRotatef(135.0f, 0.0f, 1.0f, 0.0f);
+                this.render.renderTileEntityAt(this.tile, 0.0, 0.0, 0.0, 0.0f);
+                GL11.glEnable(GL11.GL_CULL_FACE);
+                GL11.glPopMatrix();
+                break;
+            }
+            default: {
+                GL11.glPushMatrix();
+                GL11.glDisable(GL11.GL_CULL_FACE);
+                GL11.glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+                GL11.glScalef(0.85f, 0.85f, -0.85f);
+                GL11.glTranslatef(-0.5f, 0.4f, -0.5f);
+                this.render.renderTileEntityAt(this.tile, 0.0, 0.0, 0.0, 0.0f);
+                GL11.glEnable(GL11.GL_CULL_FACE);
+                GL11.glPopMatrix();
+            }
+        }
+        GL11.glPopMatrix();
+    }
+
+    @Override
+    public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper) {
+        return true; // Always use render helpers
+    }
+}

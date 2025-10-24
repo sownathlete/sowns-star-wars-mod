@@ -6,10 +6,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public abstract class RenderTileEntityBase extends TileEntitySpecialRenderer {
+public abstract class RenderBlockTileEntityBase extends TileEntitySpecialRenderer {
     private final ResourceLocation texture;
 
-    public RenderTileEntityBase(ResourceLocation texture) {
+    public RenderBlockTileEntityBase(ResourceLocation texture) {
         this.texture = texture;
     }
 

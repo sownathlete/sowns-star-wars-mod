@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderCoaxiumExtractorTESR extends TileEntitySpecialRenderer {
+public class RenderBlockCoaxiumPump extends TileEntitySpecialRenderer {
     private static final ResourceLocation TEX =
             new ResourceLocation("outerrim", "textures/models/blocks/coaxium_extractor.png");
 

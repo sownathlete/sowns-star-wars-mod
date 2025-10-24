@@ -74,12 +74,12 @@ implements WorldProviderHelper {
 
     @Override
     public String getWelcomeMessage() {
-        return "Entering " + this.getCelestialBody().getLocalizedName();
+        return "Entering " + this.getDimensionName();
     }
 
     @Override
     public String getDepartMessage() {
-        return "Leaving " + this.getCelestialBody().getLocalizedName();
+        return "Leaving " + this.getDimensionName();
     }
 
     @Override

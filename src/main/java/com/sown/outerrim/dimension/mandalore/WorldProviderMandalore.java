@@ -73,11 +73,6 @@ public class WorldProviderMandalore extends WorldProviderSpace implements WorldP
     public boolean isSurfaceWorld() {
         return true;
     }
-    
-    @Override
-    public String getWelcomeMessage() {
-        return "Entering Mandalore";
-    }
 
     @Override
     public double getHorizon() {

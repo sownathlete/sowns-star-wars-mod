@@ -34,7 +34,7 @@ public class WorldProviderDathomir extends WorldProviderSpace implements WorldPr
     public long getDayLength() {
         return 24000L;
     }
-    
+
     @Override
     public Class<? extends IChunkProvider> getChunkProviderClass() {
         return BiomeChunkProviderGeneric.class;
@@ -48,11 +48,6 @@ public class WorldProviderDathomir extends WorldProviderSpace implements WorldPr
     @Override
     public boolean isSurfaceWorld() {
         return true;
-    }
-
-    @Override
-    public String getWelcomeMessage() {
-        return "You have entered Dathomir";
     }
 
     @Override

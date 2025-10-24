@@ -107,12 +107,6 @@ implements WorldProviderHelper{
     public boolean isSurfaceWorld() {
         return true;
     }
-    
-    @Override
-    public String getWelcomeMessage()
-    {
-        return "Entering Tatooine";
-    }
 
     //    @Override
     //    @SideOnly(value=Side.CLIENT)

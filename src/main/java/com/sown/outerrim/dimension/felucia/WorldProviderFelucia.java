@@ -94,11 +94,6 @@ public class WorldProviderFelucia extends WorldProviderSpace implements WorldPro
     public boolean isSurfaceWorld() {
         return true;
     }
-    
-    @Override
-    public String getWelcomeMessage() {
-        return "Entering Felucia";
-    }
 
     @Override
     public double getHorizon() {

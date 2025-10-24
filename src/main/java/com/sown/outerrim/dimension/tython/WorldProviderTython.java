@@ -53,11 +53,6 @@ public class WorldProviderTython extends WorldProviderSpace implements WorldProv
     public boolean isSurfaceWorld() {
         return true;
     }
-    
-    @Override
-    public String getWelcomeMessage() {
-        return "Entering Tython";
-    }
 
     @Override
     public double getHorizon() {

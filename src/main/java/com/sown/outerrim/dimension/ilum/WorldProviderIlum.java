@@ -53,11 +53,6 @@ public class WorldProviderIlum extends WorldProviderSpace implements WorldProvid
     public boolean isSurfaceWorld() {
         return true;
     }
-    
-    @Override
-    public String getWelcomeMessage() {
-        return "Entering Ilum";
-    }
 
     @Override
     public double getHorizon() {

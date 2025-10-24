@@ -51,11 +51,6 @@ public class WorldProviderRyloth extends WorldProviderSpace implements WorldProv
     public boolean isSurfaceWorld() {
         return true;
     }
-    
-    @Override
-    public String getWelcomeMessage() {
-        return "Entering Ryloth";
-    }
 
     @Override
     public double getHorizon() {

@@ -55,11 +55,6 @@ public class WorldProviderKorriban extends WorldProviderSpace implements WorldPr
     public boolean isSurfaceWorld() {
         return true;
     }
-    
-    @Override
-    public String getWelcomeMessage() {
-        return "Entering Korriban";
-    }
 
     @Override
     public double getHorizon() {

@@ -20,3 +20,5 @@ layout.json
 options.txt
 .settings/org.eclipse.buildship.core.prefs
 .settings/org.eclipse.jdt.core.prefs
+.project
+.settings/org.eclipse.jdt.core.prefs

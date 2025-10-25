@@ -8,12 +8,35 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import scala.Int;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MultiblockUtil {
+    /**
+     * Creates a cubic footprint and the BoundingComponents from base to the footprint
+     * @param base An array of BoundingComponents to be added to the footprint
+     */
+    public static BoundingComponent[] createCubicFootprint(BoundingComponent[] base, int sizeX, int sizeY, int sizeZ, int corePosX, int corePosY, int corePosZ) {
+        ArrayList<BoundingComponent> footprintList = new ArrayList<>(Arrays.asList(base));
+
+        // Iterate through the bounding box defined by sizeX, sizeY, sizeZ
+        for (int x = 0; x < sizeX; x++) {
+            for (int y = 0; y < sizeY; y++) {
+                for (int z = 0; z < sizeZ; z++) {
+                    int dx = x - corePosX;
+                    int dy = y - corePosY;
+                    int dz = z - corePosZ;
+
+                    if (!(dx == 0 && dy == 0 && dz == 0)) {
+                        footprintList.add(new BoundingComponent(dx, dy, dz));
+                    }
+                }
+            }
+        }
+
+        // Convert the list back to an array
+        return footprintList.toArray(new BoundingComponent[0]);
+    }
+
     public static List<BoundingComponent> footprintFor(BoundingComponent[] footprint, int rot) {
         List<BoundingComponent> out = new ArrayList<>(footprint.length);
         for (BoundingComponent p : footprint) out.add(rotate(p, rot));
@@ -100,11 +123,10 @@ public class MultiblockUtil {
 
     public static int[] findCoreAround(World world, int x, int y, int z) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
-        if (tileEntity instanceof TileEntityCoaxiumPump) return new int[] { x, y, z};
-        else if (tileEntity instanceof BoundingBoxTile boundingBoxTile) {
+        if (tileEntity instanceof BoundingBoxTile boundingBoxTile) {
             return boundingBoxTile.getCorePos();
         } else {
-            return null;
+            return new int[] { x, y, z};
         }
     }
 

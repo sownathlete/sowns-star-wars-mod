@@ -3,6 +3,10 @@ package com.sown.outerrim.blocks;
 import com.sown.outerrim.OuterRim;
 import com.sown.outerrim.OuterRimResources;
 import com.sown.outerrim.tileentities.TileEntityCoaxiumPump;
+import com.sown.outerrim.tileentities.TileEntityCoaxiumRefinery;
+import com.sown.outerrim.utils.BoundingBoxTile;
+import com.sown.outerrim.utils.BoundingComponent;
+import com.sown.util.block.MultiblockUtil;
 import com.sown.util.block.ORBlockContainer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,14 +24,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Map;
 
 public class BlockCoaxiumPump extends ORBlockContainer {
 
     // Metadata layout
-    private static final int META_CORE = 0;   // has TileEntity + TESR
-    private static final int META_PART = 1;   // solid, invisible, forwards clicks
-    private static final int META_HEAD = 2;   // solid, invisible, forwards clicks (top 1x1x1)
-
+    private static final int META_CORE = 0;
     private static boolean BREAKING_CORE = false;
 
     public BlockCoaxiumPump(String name, Material material, float hardness, String toolType, int harvestLevel, Block.SoundType stepSound, boolean isMultiSided) {
@@ -53,21 +55,28 @@ public class BlockCoaxiumPump extends ORBlockContainer {
 
     // Face the core based on player yaw
     @Override
-    public void onBlockPlacedBy(World w, int x, int y, int z, EntityLivingBase pl, ItemStack st) {
-        w.setBlockMetadataWithNotify(x, y, z, META_CORE, 2);
-        TileEntity te = w.getTileEntity(x, y, z);
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase placer, ItemStack stack) {
+        super.onBlockPlacedBy(world, x, y, z, placer, stack);
+        world.setBlockMetadataWithNotify(x, y, z, META_CORE, 2);
+        TileEntity te = world.getTileEntity(x, y, z);
         if (te instanceof TileEntityCoaxiumPump) {
-            int rot = MathHelper.floor_double(pl.rotationYaw * 4F / 360F + 0.5D) & 3;
-            ((TileEntityCoaxiumPump) te).setFacing(rot);
-            ensureParts(w, x, y, z); // fill out the 3?3?5 + head
-        }
-    }
+            int rot = (placer != null) ? (MathHelper.floor_double(placer.rotationYaw * 4.0 / 360.0 + 0.5) & 3) : 0;
+            if (MultiblockUtil.canPlaceParts(world, x, y, z, rot, FOOTPRINT_SOUTH)) {
+                ((TileEntityCoaxiumPump) te).setFacing(rot);
+                MultiblockUtil.ensureParts(world, x, y, z, rot, this, FOOTPRINT_SOUTH, META_MAP);
+            } else {
+                world.setBlockToAir(x, y, z);
+                if (!world.isRemote && placer instanceof EntityPlayer player) {
+                    if (player.capabilities.isCreativeMode) return;
+                    ItemStack returned = new ItemStack(this);
 
-    @Override
-    public void onBlockAdded(World w, int x, int y, int z) {
-        super.onBlockAdded(w, x, y, z);
-        if (w.getBlockMetadata(x, y, z) == META_CORE) {
-            ensureParts(w, x, y, z);
+                    if (!player.inventory.addItemStackToInventory(returned)) {
+                        player.dropPlayerItemWithRandomChoice(returned, false);
+                    }
+
+                    player.inventoryContainer.detectAndSendChanges();
+                }
+            }
         }
     }
 
@@ -80,7 +89,7 @@ public class BlockCoaxiumPump extends ORBlockContainer {
             p.openGui(OuterRim.instance, OuterRimResources.ConfigOptions.GUI_COAXIUM_PUMP, w, x, y, z);
             return true;
         } else {
-            int[] c = findCoreAround(w, x, y, z);
+            int[] c = MultiblockUtil.findCoreAround(w, x, y, z);
             if (c != null) {
                 Block b = w.getBlock(c[0], c[1], c[2]);
                 return b != null && b.onBlockActivated(w, c[0], c[1], c[2], p, side, hx, hy, hz);
@@ -91,29 +100,25 @@ public class BlockCoaxiumPump extends ORBlockContainer {
 
     // Break behavior: breaking any part breaks the core (drop once)
     @Override
-    public void onBlockPreDestroy(World w, int x, int y, int z, int meta) {
-        if (meta == META_CORE) {
-            removeParts(w, x, y, z);
-        } else {
-            if (!BREAKING_CORE) {
-                int[] c = findCoreAround(w, x, y, z);
-                if (c != null) {
-                    try {
-                        BREAKING_CORE = true;
-                        w.func_147480_a(c[0], c[1], c[2], true); // drop from core once
-                    } finally {
-                        BREAKING_CORE = false;
-                    }
-                }
-            }
+    public void onBlockPreDestroy(World world, int x, int y, int z, int meta) {
+        if (BREAKING_CORE) return;
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+        TileEntityCoaxiumPump core = null;
+        boolean breakCore = false;
+        if (tileEntity instanceof TileEntityCoaxiumPump) {
+            core = (TileEntityCoaxiumPump) tileEntity;
+        } else if (tileEntity instanceof BoundingBoxTile boundingBoxTile) {
+            core = (TileEntityCoaxiumPump) boundingBoxTile.getCore();
+            breakCore = true;
         }
-        super.onBlockPreDestroy(w, x, y, z, meta);
-    }
 
-    @Override
-    public void breakBlock(World w, int x, int y, int z, Block b, int meta) {
-        if (meta == META_CORE) removeParts(w, x, y, z);
-        super.breakBlock(w, x, y, z, b, meta);
+        if (core != null) {
+            BREAKING_CORE = true;
+            MultiblockUtil.removeParts(world, core.xCoord, core.yCoord, core.zCoord, core.getFacing(), breakCore, FOOTPRINT_SOUTH);
+        }
+
+        BREAKING_CORE = false;
+        super.onBlockPreDestroy(world, x, y, z, meta);
     }
 
     // ---- COLLISION & SELECTION ----
@@ -122,8 +127,19 @@ public class BlockCoaxiumPump extends ORBlockContainer {
 
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
-        // every physical block is a full cube for collision/selection
-        setBlockBounds(0f, 0f, 0f, 1f, 1f, 1f);
+        int meta = world.getBlockMetadata(x, y, z);
+
+        BoundingComponent bounds = BOUNDS_MAP.get(meta);
+
+        if (bounds != null) {
+            this.setBlockBounds(
+                    bounds.minX, bounds.minY, bounds.minZ,
+                    bounds.maxX, bounds.maxY, bounds.maxZ
+            );
+        } else {
+            // Fallback for an unknown metadata value
+            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        }
     }
 
     @Override @SuppressWarnings({"rawtypes","unchecked"})
@@ -146,51 +162,9 @@ public class BlockCoaxiumPump extends ORBlockContainer {
     @Override @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister r) { /* no icon */ }
 
-    // ---- MULTIBLOCK SHAPE ----
-    // 3x3 area centered on core, from y...y+4; plus a single head at y+5
-    private void ensureParts(World w, int x, int y, int z) {
-        // fill 3x3x5 (skip the core itself at dy=0, (0,0))
-        for (int dy = 0; dy <= 4; dy++) {
-            for (int dx = -1; dx <= 1; dx++) {
-                for (int dz = -1; dz <= 1; dz++) {
-                    int px = x + dx, py = y + dy, pz = z + dz;
-                    if (dy == 0 && dx == 0 && dz == 0) continue; // core spot
-                    placeOrReplace(w, px, py, pz, META_PART);
-                }
-            }
-        }
-        // head at y+5, center
-        placeOrReplace(w, x, y + 5, z, META_HEAD);
-    }
+    private static final BoundingComponent[] FOOTPRINT = { new BoundingComponent(0, 5, 0) };
+    private static final BoundingComponent[] FOOTPRINT_SOUTH = MultiblockUtil.createCubicFootprint(FOOTPRINT, 3, 5, 3, 1, 0, 1);
 
-    private void placeOrReplace(World w, int x, int y, int z, int meta) {
-        Block existing = w.getBlock(x, y, z);
-        if (w.isAirBlock(x, y, z) || existing.isReplaceable(w, x, y, z) || existing == this) {
-            w.setBlock(x, y, z, this, meta, 3);
-        }
-    }
-
-    private void removeParts(World w, int x, int y, int z) {
-        // remove any non-core piece in a reasonable radius; no drops for parts
-        for (int dx = -2; dx <= 2; dx++)
-            for (int dy = 0; dy <= 5; dy++)
-                for (int dz = -2; dz <= 2; dz++) {
-                    int px = x + dx, py = y + dy, pz = z + dz;
-                    if (w.getBlock(px, py, pz) == this && w.getBlockMetadata(px, py, pz) != META_CORE) {
-                        w.setBlockToAir(px, py, pz);
-                    }
-                }
-    }
-
-    private int[] findCoreAround(World w, int x, int y, int z) {
-        for (int dx = -2; dx <= 2; dx++)
-            for (int dy = -1; dy <= 6; dy++)
-                for (int dz = -2; dz <= 2; dz++) {
-                    int px = x + dx, py = y + dy, pz = z + dz;
-                    if (w.getBlock(px, py, pz) == this && w.getBlockMetadata(px, py, pz) == META_CORE) {
-                        return new int[]{px, py, pz};
-                    }
-                }
-        return null;
-    }
+    private static final Map<Integer, BoundingComponent> BOUNDS_MAP = MultiblockUtil.createBoundsMap(FOOTPRINT_SOUTH);
+    private static final Map<Integer, Integer> META_MAP = MultiblockUtil.createMetaMap(FOOTPRINT_SOUTH);
 }

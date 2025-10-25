@@ -22,11 +22,11 @@ public class TabUtil extends CreativeTabs {
 
     @Override
     public void displayAllReleventItems(List items) {
+        items.addAll(getAllUtilBlocks());
         items.addAll(getAllPressurePlates());        
         items.addAll(getAllButtons());       
         items.addAll(getAllTrapdoors());        
         items.addAll(getAllOtherRedstoneComponents());
-        items.addAll(getAllUtilBlocks());
     }
 
     private List<ItemStack> getAllPressurePlates() {

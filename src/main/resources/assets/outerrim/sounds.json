@@ -1355,9 +1355,6 @@
             },            {
                 "name": "ambient/planet/coruscant/coruscant_ambient_2",
                 "stream": true
-            },            {
-                "name": "ambient/planet/coruscant/coruscant_ambient_3",
-                "stream": true
             }
         ],
         "category": "music"

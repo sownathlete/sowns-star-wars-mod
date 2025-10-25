@@ -265,7 +265,7 @@ public class BlockRegister {
 				BlockConstants.HARVEST_STONE, BlockConstants.SOUND_STONE, BlockConstants.LIGHT_NONE,
 				BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
 				BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
-				decorationBlocks);
+				utilBlocks);
 		/*registerBlockWithTileEntity(BlockCoaxiumContainer.class, TileEntityCoaxiumContainer.class, "coaxium_rack",
 				BlockConstants.MATERIAL_ROCK, BlockConstants.HARDNESS_WOOD, BlockConstants.TOOL_PICKAXE,
 				BlockConstants.HARVEST_STONE, BlockConstants.SOUND_STONE, BlockConstants.LIGHT_NONE,
@@ -276,23 +276,23 @@ public class BlockRegister {
 				BlockConstants.MATERIAL_IRON, 4.0F, BlockConstants.TOOL_PICKAXE, 1, BlockConstants.SOUND_METAL, BlockConstants.LIGHT_NONE,
 				BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
 				BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
-				decorationBlocks);
+				utilBlocks);
 		registerBlockWithTileEntity(BlockMediumCoaxiumPump.class, TileEntityMediumCoaxiumPump.class, "medium_coaxium_pump",
 				BlockConstants.MATERIAL_IRON, 4.0F, BlockConstants.TOOL_PICKAXE, 1, BlockConstants.SOUND_METAL, BlockConstants.LIGHT_NONE,
 				BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
 				BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
-				decorationBlocks);
+				utilBlocks);
 		registerBlockWithTileEntity(BlockPortableCoaxiumPump.class, TileEntityPortableCoaxiumPump.class, "portable_coaxium_pump",
 			    BlockConstants.MATERIAL_IRON, 4.0F, BlockConstants.TOOL_PICKAXE, 1, BlockConstants.SOUND_METAL, BlockConstants.LIGHT_NONE,
 			    BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
 			    BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
-			    decorationBlocks);
+			    utilBlocks);
 		registerBlockWithTileEntity(BlockCoaxiumRefinery.class, TileEntityCoaxiumRefinery.class, "coaxium_refinery",
 				BlockConstants.MATERIAL_ROCK, BlockConstants.HARDNESS_WOOD, BlockConstants.TOOL_PICKAXE,
 				BlockConstants.HARVEST_STONE, BlockConstants.SOUND_STONE, BlockConstants.LIGHT_NONE,
 				BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
 				BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
-				decorationBlocks);
+				utilBlocks);
 		// registerBlock(BlockCustomSolid.class, "christophsisRoad",
 		// BlockConstants.MATERIAL_ROCK, BlockConstants.HARDNESS_STONE,
 		// BlockConstants.TOOL_PICKAXE, BlockConstants.HARVEST_NONE,

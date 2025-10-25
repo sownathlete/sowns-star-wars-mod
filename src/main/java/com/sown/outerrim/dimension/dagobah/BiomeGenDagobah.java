@@ -6,9 +6,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.passive.EntityBat;
-import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -52,6 +50,8 @@ public class BiomeGenDagobah extends BiomeGenBase {
 
 		this.spawnableCreatureList.add(new SpawnListEntry(EntitySpider.class, 120, 3, 6));
 		this.spawnableCreatureList.add(new SpawnListEntry(EntityBat.class, 15, 1, 4));
+		this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityBat.class, 15, 1, 4));
+		this.spawnableMonsterList.add(new SpawnListEntry(EntityBat.class, 15, 1, 4));
 		this.setBiomeName("Dagobah");
 	}
 

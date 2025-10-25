@@ -1,41 +1,33 @@
 package com.sown.outerrim.dimension.kashyyyk;
 
-import org.lwjgl.opengl.GL11;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.sown.outerrim.OuterRimResources;
-import com.sown.outerrim.dimension.kessel.ChunkProviderKessel;
-import com.sown.outerrim.dimension.kessel.WorldChunkManagerKessel;
-import com.sown.outerrim.dimension.tatooine.WorldChunkManagerTatooine;
 import com.sown.util.world.creation.GlobalPreset;
-import com.sown.util.world.creation.Vector3;
-import com.sown.util.world.creation.WorldProviderHelper;
 import com.sown.util.world.creation.WorldProviderSpace;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.client.IRenderHandler;
 
 public class KashyyykProvider
-extends WorldProviderSpace
-implements WorldProviderHelper {
+extends WorldProviderSpace{
+    public static final List<BiomeGenBase> biomes = new ArrayList<>();
     public static final BiomeGenBase kashyyyk = new BiomeGenKashyyyk(OuterRimResources.ConfigOptions.biomeKashyyykId).setColor(112).setBiomeName("Kashyyyk");
-    
-    public boolean canRainOrSnow() {
-        return true;
-    }
+    @SideOnly(value=Side.CLIENT)
+    private IRenderHandler skyRenderer;
 
+    static {
+    	biomes.add(kashyyyk);
+    }
+    
     @Override
-    public void registerWorldChunkManager() {
-        this.worldChunkMgr = new WorldChunkManagerKashyyyk();
-        this.dimensionId = OuterRimResources.ConfigOptions.dimKashyyykId;
+    public boolean canRainOrSnow() {
+        return false;
     }
 
     @Override
@@ -53,10 +45,13 @@ implements WorldProviderHelper {
         return 24000L;
     }
 
+    @Override
     public void updateWeather() {
-        if (this.worldObj.isRemote) {
-            return; // Do not process on the client side
+            this.worldObj.getWorldInfo().setRaining(false);
         }
+    
+    public boolean isRaining() {
+        return false;
     }
 
     public boolean shouldForceRespawn() {
@@ -75,6 +70,11 @@ implements WorldProviderHelper {
 
     public double getHorizon() {
         return 44.0;
+    }
+
+    @SideOnly(value=Side.CLIENT)
+    public IRenderHandler getSkyRenderer() {
+        return null;
     }
 
     public int getAverageGroundLevel() {
@@ -142,5 +142,14 @@ implements WorldProviderHelper {
     public String getDimensionName() {
         return null;
     }
+    
+    @Override
+    public float getCloudHeight() {
+        return 256.0F;
+    }
+    
+    @Override
+    public boolean doesXZShowFog(int x, int z) {
+        return true;
+    }
 }
-

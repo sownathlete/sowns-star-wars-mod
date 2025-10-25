@@ -29,7 +29,7 @@ public class DimensionEntrySoundHandler {
 
     static {
         String[] planets = {
-            "AjanKloss", "AhchTo", "Alderaan", "Bespin", "Bogano", "Bracca", "Byss",
+            "AjanKloss", "AhchTo", "Alderaan", "Athulla", "Bespin", "Bogano", "Bracca", "Byss",
             "Corellia", "Coruscant", "Crait", "Dagobah", "Dantooine", "Dathomir", "DeathStar",
             "DQar", "Endor", "Felucia", "Fondor", "Geonosis", "Hoth", "Ilum",
             "Jakku", "Kamino", "Kashyyyk", "Kessel", "Korriban", "Manaan", "Mimban", "Mustafar", "Naboo", "Niamos", "Savareen",

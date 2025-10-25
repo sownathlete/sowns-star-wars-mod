@@ -1029,6 +1029,15 @@
         ],
         "category": "music"
     },
+    "planet.athulla.ambient": {
+        "sounds": [
+            {
+                "name": "ambient/planet/ajan_kloss/ajan_kloss_ambient_1",
+                "stream": true
+            }
+        ],
+        "category": "music"
+    },
     "planet.ahch_to.ambient": {
         "sounds": [
             {

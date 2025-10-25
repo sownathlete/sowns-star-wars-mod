@@ -42,6 +42,8 @@ public class ModelCoaxiumRack extends ModelBase {
         // Main pivot (equivalent to PartPose.offset(0, 24, 0))
         this.Main = new ModelRenderer(this);
         this.Main.setRotationPoint(0.0F, 24.0F, 0.0F);
+        this.Lid = new ModelRenderer(this);
+        this.Lid.setRotationPoint(0.0F, 24.0F, 0.0F);
 
         // element_0
         this.Main.setTextureOffset(0, 0).addBox(7.000F, 5.000F, -8.000F, 1, 18, 16, 0.0F);
@@ -113,72 +115,72 @@ public class ModelCoaxiumRack extends ModelBase {
         this.Main.setTextureOffset(192, 52).addBox(-1.000F, 6.000F, 8.000F, 2, 2, 1, 0.0F);
 
         // element_19
-        this.Main.setTextureOffset(200, 52).addBox(-7.000F, 7.500F, -7.000F, 14, 1, 14, 0.0F);
+        this.Lid.setTextureOffset(200, 52).addBox(-7.000F, 7.500F, -7.000F, 14, 1, 14, 0.0F);
 
         // element_20
-        this.Main.setTextureOffset(0, 92).addBox(-2.000F, 7.250F, -7.000F, 4, 1, 3, 0.0F);
+        this.Lid.setTextureOffset(0, 92).addBox(-2.000F, 7.250F, -7.000F, 4, 1, 3, 0.0F);
 
         // element_21
-        this.Main.setTextureOffset(16, 92).addBox(-2.000F, 7.250F, 4.000F, 4, 1, 3, 0.0F);
+        this.Lid.setTextureOffset(16, 92).addBox(-2.000F, 7.250F, 4.000F, 4, 1, 3, 0.0F);
 
         // element_22
-        this.Main.setTextureOffset(32, 92).addBox(-0.541F, 4.975F, -0.541F, 1, 2, 1, 0.0F);
+        this.Lid.setTextureOffset(32, 92).addBox(-0.541F, 4.975F, -0.541F, 1, 2, 1, 0.0F);
 
         // element_23
         ModelRenderer cube_23 = new ModelRenderer(this);
         cube_23.setRotationPoint(-0.041F, 6.725F, -0.041F);
         setRotateAngle(cube_23, 0.000F, 0.000F, 0.3491F);
         cube_23.setTextureOffset(38, 92).addBox(0.500F, -1.000F, -0.475F, 2, 1, 1, 0.0F);
-        this.Main.addChild(cube_23);
+        this.Lid.addChild(cube_23);
 
         // element_24
         ModelRenderer cube_24 = new ModelRenderer(this);
         cube_24.setRotationPoint(0.041F, 6.725F, -0.041F);
         setRotateAngle(cube_24, 0.000F, 0.000F, -0.3491F);
         cube_24.setTextureOffset(46, 92).addBox(-2.500F, -1.000F, -0.475F, 2, 1, 1, 0.0F);
-        this.Main.addChild(cube_24);
+        this.Lid.addChild(cube_24);
 
         // element_25
         ModelRenderer cube_25 = new ModelRenderer(this);
         cube_25.setRotationPoint(6.500F, 7.000F, 6.500F);
         setRotateAngle(cube_25, 0.000F, -0.7854F, 0.000F);
         cube_25.setTextureOffset(54, 92).addBox(-3.750F, -1.000F, -1.000F, 1, 1, 2, 0.0F);
-        this.Main.addChild(cube_25);
-        
+        this.Lid.addChild(cube_25);
+
         // element_26
         ModelRenderer cube_26 = new ModelRenderer(this);
         cube_26.setRotationPoint(6.500F, 7.000F, 6.500F);
         setRotateAngle(cube_26, 0.000F, -0.7854F, 0.000F);
         cube_26.setTextureOffset(62, 92).addBox(-16.750F, -1.000F, -1.000F, 1, 1, 2, 0.0F);
-        this.Main.addChild(cube_26);
+        this.Lid.addChild(cube_26);
 
         // element_27
         ModelRenderer cube_27 = new ModelRenderer(this);
         cube_27.setRotationPoint(-0.394F, 6.500F, -0.394F);
         setRotateAngle(cube_27, 0.000F, -0.7854F, 0.000F);
         cube_27.setTextureOffset(70, 92).addBox(-7.000F, -0.500F, -1.400F, 1, 1, 2, 0.0F);
-        this.Main.addChild(cube_27);
+        this.Lid.addChild(cube_27);
 
         // element_28
         ModelRenderer cube_28 = new ModelRenderer(this);
         cube_28.setRotationPoint(-0.394F, 6.500F, -0.394F);
         setRotateAngle(cube_28, 0.000F, -0.7854F, 0.000F);
         cube_28.setTextureOffset(78, 92).addBox(6.000F, -0.500F, -1.400F, 1, 1, 2, 0.0F);
-        this.Main.addChild(cube_28);
+        this.Lid.addChild(cube_28);
 
         // element_29
         ModelRenderer cube_29 = new ModelRenderer(this);
         cube_29.setRotationPoint(-0.041F, 7.500F, -0.041F);
         setRotateAngle(cube_29, 0.000F, -0.7854F, 0.000F);
         cube_29.setTextureOffset(86, 92).addBox(-9.500F, -0.500F, -0.500F, 19, 1, 1, 0.0F);
-        this.Main.addChild(cube_29);
+        this.Lid.addChild(cube_29);
 
         // element_30
         ModelRenderer cube_30 = new ModelRenderer(this);
         cube_30.setRotationPoint(-0.041F, 7.500F, -0.041F);
         setRotateAngle(cube_30, 0.000F, -0.7854F, 0.000F);
         cube_30.setTextureOffset(128, 92).addBox(-9.500F, -0.500F, -0.500F, 19, 1, 1, 0.0F);
-        this.Main.addChild(cube_30);
+        this.Lid.addChild(cube_30);
 
         // element_31
         this.Main.setTextureOffset(170, 92).addBox(-6.750F, 12.000F, -5.975F, 3, 1, 12, 0.0F);
@@ -424,6 +426,7 @@ public class ModelCoaxiumRack extends ModelBase {
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         this.Main.render(scale);
+        this.Lid.render(scale);
     }
 
     // No animation on this static container model for 1.7.10

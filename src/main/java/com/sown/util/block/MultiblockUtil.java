@@ -6,8 +6,10 @@ import com.sown.outerrim.utils.BoundingComponent;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import scala.Int;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -104,5 +106,64 @@ public class MultiblockUtil {
         } else {
             return null;
         }
+    }
+
+    public static Map<Integer, BoundingComponent> createBoundsMap(BoundingComponent[] footprint) {
+        Map<Integer, BoundingComponent> boundsMap = new HashMap<>();
+        Map<BoundingComponent, Integer> sizeToMetaMap = new HashMap<>();
+        int nextUniqueMeta = 1; // Start assignment for unique non-core sizes from 1.
+
+        for (BoundingComponent comp : footprint) {
+            int metaToAssign;
+
+            Integer assignedMeta = sizeToMetaMap.get(comp);
+
+            if (assignedMeta == null) {
+                if (nextUniqueMeta > 15) {
+                    System.err.println("MultiBlock structure exceeded 16 unique bounding box sizes!");
+                    metaToAssign = 15;
+                } else {
+                    metaToAssign = nextUniqueMeta++;
+                }
+
+                sizeToMetaMap.put(comp, metaToAssign);
+            } else {
+                metaToAssign = assignedMeta;
+            }
+
+            boundsMap.put(metaToAssign, comp);
+        }
+
+        return boundsMap;
+    }
+
+    public static Map<Integer, Integer> createMetaMap(BoundingComponent[] footprint) {
+        Map<Integer, Integer> metaMap = new HashMap<>();
+        Map<BoundingComponent, Integer> sizeToMetaMap = new HashMap<>();
+        int nextUniqueMeta = 1;
+
+        for (int partIndex = 0; partIndex < footprint.length; partIndex++) {
+            BoundingComponent comp = footprint[partIndex];
+            int metaToAssign;
+
+            Integer assignedMeta = sizeToMetaMap.get(comp);
+
+            if (assignedMeta == null) {
+                if (nextUniqueMeta > 15) {
+                    System.err.println("MultiBlock structure exceeded 16 unique bounding box sizes!");
+                    metaToAssign = 15;
+                } else {
+                    metaToAssign = nextUniqueMeta++;
+                }
+
+                sizeToMetaMap.put(comp, metaToAssign);
+            } else {
+                metaToAssign = assignedMeta;
+            }
+
+            metaMap.put(partIndex, metaToAssign);
+        }
+
+        return metaMap;
     }
 }

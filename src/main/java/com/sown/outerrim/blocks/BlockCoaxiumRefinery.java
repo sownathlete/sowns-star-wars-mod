@@ -179,38 +179,6 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
             new BoundingComponent( 2, 0, 1),
     };
 
-    private static final Map<Integer, BoundingComponent> BOUNDS_MAP = new HashMap<>();
-    private static final Map<Integer, Integer> META_MAP = new HashMap<>();
-
-    private static final Map<String, BoundingComponent> FOOTPRINT_MAP_SOUTH = new HashMap<>();
-
-    // Static initializer to populate the maps based on unique bounding box sizes
-    static {
-        // Map to track unique sizes encountered and the metadata assigned to them
-        Map<BoundingComponent, Integer> sizeToMetaMap = new HashMap<>();
-        int nextUniqueMeta = 1; // Start assignment for unique non-core sizes from 1.
-
-        for (int partIndex = 0; partIndex < FOOTPRINT_SOUTH.length; partIndex++) {
-            BoundingComponent comp = FOOTPRINT_SOUTH[partIndex];
-            int metaToAssign;
-
-            Integer assignedMeta = sizeToMetaMap.get(comp);
-
-            if (assignedMeta == null) {
-                if (nextUniqueMeta > 15) {
-                    System.err.println("MultiBlock structure exceeded 16 unique bounding box sizes!");
-                    metaToAssign = 15;
-                } else {
-                    metaToAssign = nextUniqueMeta++;
-                }
-
-                sizeToMetaMap.put(comp, metaToAssign);
-            } else {
-                metaToAssign = assignedMeta;
-            }
-
-            META_MAP.put(partIndex, metaToAssign);
-            BOUNDS_MAP.put(metaToAssign, comp);
-        }
-    }
+    private static final Map<Integer, BoundingComponent> BOUNDS_MAP = MultiblockUtil.createBoundsMap(FOOTPRINT_SOUTH);
+    private static final Map<Integer, Integer> META_MAP = MultiblockUtil.createMetaMap(FOOTPRINT_SOUTH);
 }

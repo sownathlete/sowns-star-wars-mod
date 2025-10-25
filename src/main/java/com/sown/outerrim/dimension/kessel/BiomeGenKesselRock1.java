@@ -41,9 +41,9 @@ public class BiomeGenKesselRock1 extends OROverworldBiome {
         ((OverworldBiomeFeatures)((OROverworldBiomeDecorator)this.theBiomeDecorator).orFeatures).generateKesselRock1 = true;
         ((OverworldBiomeFeatures)((OROverworldBiomeDecorator)this.theBiomeDecorator).orFeatures).generateAcidicRock1 = true;
         ((OverworldBiomeFeatures)((OROverworldBiomeDecorator)this.theBiomeDecorator).orFeatures).kesselMudLakesPerChunk = 5;
-        ((OverworldBiomeFeatures)((OROverworldBiomeDecorator)this.theBiomeDecorator).orFeatures).acidLakesPerChunk = 15;
-        ((OverworldBiomeFeatures)((OROverworldBiomeDecorator)this.theBiomeDecorator).orFeatures).kesselAcidSpoutsPerChunk = 15;
-        ((OverworldBiomeFeatures)((OROverworldBiomeDecorator)this.theBiomeDecorator).orFeatures).acidSpringsPerChunk = 15;
+        ((OverworldBiomeFeatures)((OROverworldBiomeDecorator)this.theBiomeDecorator).orFeatures).acidLakesPerChunk = 1;
+        ((OverworldBiomeFeatures)((OROverworldBiomeDecorator)this.theBiomeDecorator).orFeatures).kesselAcidSpoutsPerChunk = 1;
+        ((OverworldBiomeFeatures)((OROverworldBiomeDecorator)this.theBiomeDecorator).orFeatures).acidSpringsPerChunk = 1;
         ((OverworldBiomeFeatures)((OROverworldBiomeDecorator)this.theBiomeDecorator).orFeatures).kesselMudSpringsPerChunk = 1;
     }
 

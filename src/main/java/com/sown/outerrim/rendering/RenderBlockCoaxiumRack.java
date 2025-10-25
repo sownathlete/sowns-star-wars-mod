@@ -28,7 +28,7 @@ import com.sown.outerrim.tileentities.TileEntityCoaxiumContainer;
 import com.sown.util.ui.P3D;
 
 public class RenderBlockCoaxiumRack extends TileEntitySpecialRenderer {
-    public static ResourceLocation texture = new ResourceLocation("outerrim:textures/models/blocks/coaxiumRack.png");
+    public static ResourceLocation texture = new ResourceLocation("outerrim:textures/models/blocks/coaxium_container.png");
     private final ModelCoaxiumRack model = new ModelCoaxiumRack();
 
     private void adjustRotatePivotViaMeta(World world, int x, int y, int z) {

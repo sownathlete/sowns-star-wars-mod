@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderBlockCoaxiumContainer extends TileEntitySpecialRenderer {
-    private static final ResourceLocation TEX = new ResourceLocation("outerrim:textures/models/blocks/coaxiumRack.png");
+    private static final ResourceLocation TEX = new ResourceLocation("outerrim:textures/models/blocks/coaxium_container.png");
     private final ModelCoaxiumRack model = new ModelCoaxiumRack();
 
     @Override

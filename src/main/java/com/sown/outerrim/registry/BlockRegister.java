@@ -61,6 +61,7 @@ import com.sown.outerrim.blocks.BlockHoloProjector;
 import com.sown.outerrim.blocks.BlockKaminoDoorLarge;
 import com.sown.outerrim.blocks.BlockKaminoDoorSmall;
 import com.sown.outerrim.blocks.BlockKaminoRailing;
+import com.sown.outerrim.blocks.BlockMediumCoaxiumPump;
 import com.sown.outerrim.fluids.BlockFluidCustom;
 import com.sown.outerrim.items.ItemBlockCustomSlab;
 import com.sown.outerrim.items.ItemBlockCustomSlabDouble;
@@ -74,6 +75,7 @@ import com.sown.outerrim.tileentities.TileEntityHoloProjector;
 import com.sown.outerrim.tileentities.TileEntityKaminoDoorLarge;
 import com.sown.outerrim.tileentities.TileEntityKaminoDoorSmall;
 import com.sown.outerrim.tileentities.TileEntityKaminoRailing;
+import com.sown.outerrim.tileentities.TileEntityMediumCoaxiumPump;
 import com.sown.outerrim.tileentities.TileEntityMoistureVaporator;
 import com.sown.outerrim.tileentities.TileEntityPortableCoaxiumPump;
 import com.sown.outerrim.tileentities.TileEntityVenatorBridgeChair;
@@ -271,6 +273,11 @@ public class BlockRegister {
 				BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
 				decorationBlocks);*/
 		registerBlockWithTileEntity(BlockCoaxiumPump.class, TileEntityCoaxiumPump.class, "coaxium_pump",
+				BlockConstants.MATERIAL_IRON, 4.0F, BlockConstants.TOOL_PICKAXE, 1, BlockConstants.SOUND_METAL, BlockConstants.LIGHT_NONE,
+				BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
+				BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
+				decorationBlocks);
+		registerBlockWithTileEntity(BlockMediumCoaxiumPump.class, TileEntityMediumCoaxiumPump.class, "medium_coaxium_pump",
 				BlockConstants.MATERIAL_IRON, 4.0F, BlockConstants.TOOL_PICKAXE, 1, BlockConstants.SOUND_METAL, BlockConstants.LIGHT_NONE,
 				BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
 				BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,

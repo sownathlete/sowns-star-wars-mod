@@ -11,6 +11,7 @@ import com.sown.outerrim.rendering.RenderItemCoaxiumPump;
 import com.sown.outerrim.rendering.RenderItemCoaxiumRefinery;
 import com.sown.outerrim.rendering.RenderItemFeluciaFlowerTallTurquoise;
 import com.sown.outerrim.rendering.RenderItemHoloProjector;
+import com.sown.outerrim.rendering.RenderItemMediumCoaxiumPump;
 import com.sown.outerrim.rendering.RenderItemMoistureVaporator;
 import com.sown.outerrim.rendering.RenderItemVenatorScreen;
 import com.sown.outerrim.rendering.RenderPortableCoaxiumExtractorTESR;
@@ -24,6 +25,7 @@ import com.sown.outerrim.rendering.RenderBlockCoaxiumRack;
 import com.sown.outerrim.rendering.RenderBlockCoaxiumRefinery;
 import com.sown.outerrim.rendering.RenderBlockFeluciaFlowerTallTurquoise;
 import com.sown.outerrim.rendering.RenderBlockHoloProjector;
+import com.sown.outerrim.rendering.RenderBlockMediumCoaxiumPump;
 import com.sown.outerrim.rendering.RenderBlockMoistureVaporator;
 import com.sown.outerrim.rendering.RenderBlockVenatorScreen;
 import com.sown.outerrim.tileentities.TileEntityCarbonite;
@@ -32,6 +34,7 @@ import com.sown.outerrim.tileentities.TileEntityCoaxiumPump;
 import com.sown.outerrim.tileentities.TileEntityCoaxiumRefinery;
 import com.sown.outerrim.tileentities.TileEntityFeluciaFlowerTurquoise;
 import com.sown.outerrim.tileentities.TileEntityHoloProjector;
+import com.sown.outerrim.tileentities.TileEntityMediumCoaxiumPump;
 import com.sown.outerrim.tileentities.TileEntityMoistureVaporator;
 import com.sown.outerrim.tileentities.TileEntityPortableCoaxiumPump;
 import com.sown.outerrim.tileentities.TileEntityVenatorScreen;
@@ -159,14 +162,15 @@ public class OuterRimClientProxy extends OuterRimCommonProxy {
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("coaxium_refinery")), new RenderItemCoaxiumRefinery());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCoaxiumRefinery.class, new RenderBlockCoaxiumRefinery());
 
-        System.out.println("Found: "+BlockRegister.getRegisteredBlock("coaxium_pump"));
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("coaxium_pump")), new RenderItemCoaxiumPump());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCoaxiumPump.class, new RenderBlockCoaxiumPump());
+
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("medium_coaxium_pump")), new RenderItemMediumCoaxiumPump());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMediumCoaxiumPump.class, new RenderBlockMediumCoaxiumPump());
 
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("felucia_flower_tall_turquoise")), new RenderItemFeluciaFlowerTallTurquoise());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFeluciaFlowerTurquoise.class, new RenderBlockFeluciaFlowerTallTurquoise());
 
-        System.out.println("Found: "+BlockRegister.getRegisteredBlock("portable_coaxium_pump"));
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegister.getRegisteredBlock("portable_coaxium_pump")), new ItemRendererPortableCoaxiumExtractor());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPortableCoaxiumPump.class, new RenderPortableCoaxiumExtractorTESR());
 

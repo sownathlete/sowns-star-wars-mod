@@ -20,7 +20,7 @@ public class TabMaterials extends CreativeTabs {
 
     @Override
     public Item getTabIconItem() {
-        return ItemRegister.getRegisteredItem("alazhi");
+        return ItemRegister.getRegisteredItem("karniteIngot");
     }
 
     @Override

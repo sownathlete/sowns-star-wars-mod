@@ -82,20 +82,11 @@ public class BlockCoaxiumPump extends ORBlockContainer {
 
     // Open GUI from the core; parts forward to core
     @Override
-    public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int side, float hx, float hy, float hz) {
-        int meta = w.getBlockMetadata(x, y, z);
-        if (meta == META_CORE) {
-            if (w.isRemote) return true;
-            p.openGui(OuterRim.instance, OuterRimResources.ConfigOptions.GUI_COAXIUM_PUMP, w, x, y, z);
-            return true;
-        } else {
-            int[] c = MultiblockUtil.findCoreAround(w, x, y, z);
-            if (c != null) {
-                Block b = w.getBlock(c[0], c[1], c[2]);
-                return b != null && b.onBlockActivated(w, c[0], c[1], c[2], p, side, hx, hy, hz);
-            }
-            return false;
-        }
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p, int side, float hx, float hy, float hz) {
+        if (world.isRemote) return true;
+        int[] coreLoc = MultiblockUtil.findCoreAround(world, x, y, z);
+        p.openGui(OuterRim.instance, OuterRimResources.ConfigOptions.GUI_COAXIUM_PUMP, world, coreLoc[0], coreLoc[1], coreLoc[2]);
+        return true;
     }
 
     // Break behavior: breaking any part breaks the core (drop once)

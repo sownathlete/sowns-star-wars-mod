@@ -17,20 +17,26 @@ public class ContainerCoaxiumPump extends Container {
     public ContainerCoaxiumPump(InventoryPlayer inv, TileEntityCoaxiumPump te) {
         tile = te;
         lastProg = new int[SLOTS];
+        int inputY = 20;
         for (int i = 0; i < SLOTS; i++) {
-            addSlotToContainer(new Slot(te, i, 8 + i*18, 18) {
-                @Override public boolean isItemValid(ItemStack s) {
+            addSlotToContainer(new Slot(te, i, 8 + i*18, 20) {
+                @Override
+                public boolean isItemValid(ItemStack s) {
                     return s != null && s.getItem() == ItemRegister.getRegisteredItem("vialEmpty");
                 }
                 @Override public int getSlotStackLimit() { return 1; }
             });
         }
-        int top = 60;
-        for (int r = 0; r < 3; r++)
-            for (int c = 0; c < 9; c++)
-                addSlotToContainer(new Slot(inv, c + r*9 + 9, 8 + c*18, top + r*18));
-        for (int c = 0; c < 9; c++)
-            addSlotToContainer(new Slot(inv, c, 8 + c*18, top + 58));
+
+        int invY = 136;
+        for (int r = 0; r < 3; r++) {
+            for (int c = 0; c < 9; c++) {
+                addSlotToContainer(new Slot(inv, c + r * 9 + 9, 8 + c * 18, invY + r * 18));
+            }
+        }
+        for (int c = 0; c < 9; c++) {
+            addSlotToContainer(new Slot(inv, c, 8 + c * 18, invY + 58));
+        }
     }
     @Override public boolean canInteractWith(EntityPlayer p) { return tile.isUseableByPlayer(p); }
     @Override

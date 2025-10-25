@@ -77,19 +77,11 @@ public class BlockCoaxiumRefinery extends ORBlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int side, float hx, float hy, float hz) {
-        int meta = w.getBlockMetadata(x,y,z);
-        if (meta == META_CORE) {
-            if (w.isRemote) return false;
-            p.openGui(OuterRim.instance, OuterRimResources.ConfigOptions.GUI_REFINERY, w, x, y, z);
-            return true;
-        }
-        int[] c = MultiblockUtil.findCoreAround(w, x, y, z);
-        if (c != null) {
-            Block b = w.getBlock(c[0], c[1], c[2]);
-            return b != null && b.onBlockActivated(w, c[0], c[1], c[2], p, side, hx, hy, hz);
-        }
-        return false;
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p, int side, float hx, float hy, float hz) {
+        if (world.isRemote) return true;
+        int[] coreLoc = MultiblockUtil.findCoreAround(world, x, y, z);
+        p.openGui(OuterRim.instance, OuterRimResources.ConfigOptions.GUI_REFINERY, world, coreLoc[0], coreLoc[1], coreLoc[2]);
+        return true;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class GuiCoaxiumPump extends GuiContainer {
         super(new ContainerCoaxiumPump(inv, te));
         tile = te;
         xSize = 176;
-        ySize = 131;
+        ySize = 256;
     }
 
     @Override
@@ -51,6 +51,6 @@ public class GuiCoaxiumPump extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int mx, int my) {
         fontRendererObj.drawString("Coaxium Pump", 8, 6, 0x404040);
-        fontRendererObj.drawString("Inventory", 8, ySize - 96 + 3, 0x404040);
+        fontRendererObj.drawString("Inventory", 8, 125, 0x404040);
     }
 }

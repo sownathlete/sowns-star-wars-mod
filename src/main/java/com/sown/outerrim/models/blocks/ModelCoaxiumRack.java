@@ -89,21 +89,21 @@ public class ModelCoaxiumRack extends ModelBase {
         ModelRenderer cube_14 = new ModelRenderer(this);
         cube_14.setRotationPoint(0.000F, 7.000F, 9.000F);
         setRotateAngle(cube_14, 0.000F, 0.000F, -0.3054F);
-        cube_14.setTextureOffset(96, 52).addBox(-1.000F, -1.000F, 0.025F, 10, 2, 1, 0.0F);
+        cube_14.setTextureOffset(96, 52).addBox(-1.000F, -1.000F, 0.025F, 10, 2, 0, 0.0F);
         this.Main.addChild(cube_14);
 
         // element_15
         ModelRenderer cube_15 = new ModelRenderer(this);
         cube_15.setRotationPoint(0.000F, 7.000F, -9.000F);
         setRotateAngle(cube_15, 0.000F, 0.000F, -0.3054F);
-        cube_15.setTextureOffset(120, 52).addBox(-1.000F, -1.000F, -0.025F, 10, 2, 1, 0.0F);
+        cube_15.setTextureOffset(120, 52).addBox(-1.000F, -1.000F, -0.025F, 10, 2, 0, 0.0F);
         this.Main.addChild(cube_15);
 
         // element_16
         ModelRenderer cube_16 = new ModelRenderer(this);
         cube_16.setRotationPoint(0.000F, 7.000F, 9.000F);
         setRotateAngle(cube_16, 0.000F, 0.000F, -0.3054F);
-        cube_16.setTextureOffset(144, 52).addBox(9.000F, -1.000F, -18.000F, 1, 2, 18, 0.0F);
+        cube_16.setTextureOffset(144, 52).addBox(9.000F, -1.000F, -18.000F, 0, 2, 18, 0.0F);
         this.Main.addChild(cube_16);
 
         // element_17

@@ -46,6 +46,11 @@ public class UtapauProvider extends WorldProviderSpace {
     public double getHorizon() {
         return 40.0;
     }
+    
+    @Override
+    public float getCloudHeight() {
+        return 384.0F;
+    }
 
     @Override
     public int getAverageGroundLevel() {

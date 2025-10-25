@@ -161,12 +161,12 @@ public class DagobahProvider extends WorldProviderSpace {
 	public String getDimensionName() {
 		return null;
 	}
-
-	@Override
-	public float getCloudHeight() {
-		return 100.0F;
-	}
-
+    
+    @Override
+    public float getCloudHeight() {
+        return 256.0F;
+    }
+    
 	@Override
 	public boolean doesXZShowFog(int x, int z) {
 		return true;

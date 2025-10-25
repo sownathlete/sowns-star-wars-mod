@@ -121,6 +121,11 @@ public class WorldProviderRyloth extends WorldProviderSpace implements WorldProv
     public GlobalPreset getCelestialBody() {
         return null;
     }
+    
+    @Override
+    public float getCloudHeight() {
+        return 256.0F;
+    }
 
     @Override
     public String getDimensionName() {

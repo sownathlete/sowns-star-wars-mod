@@ -53,12 +53,11 @@ public class WBWProvider extends WorldProviderSpace {
     @Override
     public IRenderHandler getSkyRenderer() {
         if (this.skyRenderer == null) {
-            this.skyRenderer = new DrawWBWSky(); // your custom sky renderer
+            this.skyRenderer = new DrawWBWSky();
         }
         return this.skyRenderer;
     }
 
-    // Disable clouds entirely
     @SideOnly(Side.CLIENT)
     @Override
     public IRenderHandler getCloudRenderer() {

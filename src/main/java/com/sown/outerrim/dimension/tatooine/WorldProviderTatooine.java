@@ -57,6 +57,11 @@ implements WorldProviderHelper{
     public boolean hasSunset() {
         return true;
     }
+    
+    @Override
+    public float getCloudHeight() {
+        return 256.0F;
+    }
 
     @Override
     public boolean canBlockFreeze(int x, int y, int z, boolean byWater) {

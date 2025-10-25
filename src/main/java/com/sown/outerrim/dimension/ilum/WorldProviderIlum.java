@@ -53,6 +53,11 @@ public class WorldProviderIlum extends WorldProviderSpace implements WorldProvid
     public boolean isSurfaceWorld() {
         return true;
     }
+    
+    @Override
+    public float getCloudHeight() {
+        return 256.0F;
+    }
 
     @Override
     public double getHorizon() {

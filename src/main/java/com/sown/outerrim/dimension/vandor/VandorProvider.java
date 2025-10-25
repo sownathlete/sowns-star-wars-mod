@@ -58,6 +58,11 @@ extends WorldProviderSpace{
     public Class<? extends IChunkProvider> getChunkProviderClass() {
         return BiomeChunkProviderGeneric.class;
     }
+    
+    @Override
+    public float getCloudHeight() {
+        return 256.0F;
+    }
 
     @Override
     public Class<? extends WorldChunkManager> getWorldChunkManagerClass() {

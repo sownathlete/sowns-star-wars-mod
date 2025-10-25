@@ -155,14 +155,14 @@ extends WorldProviderSpace{
     public String getDimensionName() {
         return null;
     }
-
+    
     @Override
     public float getCloudHeight() {
-        return 128.0F;  // This is the typical cloud height for the Overworld in Minecraft. Adjust as necessary.
+        return 256.0F;
     }
-
+    
     @Override
     public boolean doesXZShowFog(int x, int z) {
-        return true;  // This ensures that the (x, z) coordinates won't show fog, which can obscure clouds.
+        return true;
     }
 }

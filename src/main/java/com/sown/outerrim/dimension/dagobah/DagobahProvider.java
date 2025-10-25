@@ -164,7 +164,7 @@ public class DagobahProvider extends WorldProviderSpace {
     
     @Override
     public float getCloudHeight() {
-        return 256.0F;
+        return 128.0F;
     }
     
 	@Override

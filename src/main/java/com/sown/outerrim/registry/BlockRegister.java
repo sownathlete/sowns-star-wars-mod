@@ -32,6 +32,7 @@ import com.sown.outerrim.blocks.BlockCoaxiumRefinery;
 import com.sown.outerrim.blocks.BlockCustomBush;
 import com.sown.outerrim.blocks.BlockCustomSolid;
 import com.sown.outerrim.blocks.BlockMoistureVaporator;
+import com.sown.outerrim.blocks.BlockMovingLight;
 import com.sown.outerrim.blocks.BlockPortableCoaxiumPump;
 import com.sown.outerrim.blocks.BlockVenatorBridgeChair;
 import com.sown.outerrim.blocks.BlockVenatorBridgeDoor;
@@ -127,12 +128,14 @@ public class BlockRegister {
 	public static List<Block> leavesBlocks = new ArrayList<Block>();
 	public static List<Block> utilBlocks = new ArrayList<Block>();
 	public static List<Block> redstoneComponentsList = new ArrayList<Block>();
+	public static Block MOVING_LIGHT;
 
 	public static void registerAll() {
 
 		coaxiumDepositVolatile = new BlockCoaxiumDepositVolatile();
 		coaxiumDepositFull  = new BlockCoaxiumDeposit();
 		coaxiumDepositEmpty = new BlockCoaxiumDepositEmpty();
+	    MOVING_LIGHT = new BlockMovingLight();
 
 		GameRegistry.registerBlock(coaxiumDepositVolatile, "coaxiumDepositVolatile");
 		GameRegistry.registerBlock(coaxiumDepositFull,  "coaxiumDeposit");
@@ -140,6 +143,7 @@ public class BlockRegister {
 
 		// This is a dummy tile used for collisions, it doesn't have a real block associated with it.
 		GameRegistry.registerTileEntity(BoundingBoxTile.class, "OuterRimBoundingBoxTile");
+	    GameRegistry.registerBlock(MOVING_LIGHT, "moving_light");
 
 		//coaxiumContainer = new BlockCoaxiumContainer();
 		//coaxiumRefinery  = new BlockCoaxiumRefinery();

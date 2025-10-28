@@ -63,6 +63,7 @@ public class OuterRimCommonProxy {
 
         FMLCommonHandler.instance().bus().register(new TimeSyncHandler());
         FMLCommonHandler.instance().bus().register(new CoaxiumWorldTicker());
+        MinecraftForge.EVENT_BUS.register(new LightsaberLightHandler());
 
         EntityRegister.registerAll();
         ItemRegister.registerAll();

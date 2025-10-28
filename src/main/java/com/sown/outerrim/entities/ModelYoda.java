@@ -130,29 +130,65 @@ public class ModelYoda extends ModelBase {
     }
 
     @Override
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
-        // Head rotation
-        setRotateAngle(this.head, headPitch * 0.017453292F, netHeadYaw * 0.017453292F, 0.0F);
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks,
+                                  float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
+        final float RAD = (float)Math.PI / 180F;
 
-        // Arm swinging while walking
-        setRotateAngle(this.rightArm, MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F, 0.0F, 0.0F);
-        setRotateAngle(this.leftArm, MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F, 0.0F, 0.0F);
+        // Head aim
+        this.head.rotateAngleX = headPitch * RAD;
+        this.head.rotateAngleY = netHeadYaw * RAD;
+        this.head.rotateAngleZ = 0F;
 
-        // Idle arm movement
-        setRotateAngle(this.rightArm, this.rightArm.rotateAngleX + MathHelper.sin(ageInTicks * 0.067F) * 0.05F, 0.0F, MathHelper.cos(ageInTicks * 0.09F) * 0.05F);
-        setRotateAngle(this.leftArm, this.leftArm.rotateAngleX - MathHelper.sin(ageInTicks * 0.067F) * 0.05F, 0.0F, -MathHelper.cos(ageInTicks * 0.09F) * 0.05F);
+        // Clamp wild spikes (hurt/knockback sometimes feeds huge limbSwingAmount)
+        float swingAmt = MathHelper.clamp_float(limbSwingAmount, 0.0F, 1.2F);
 
-        // Make sleeves follow arms
-        setRotateAngle(this.rightSleeve, this.rightArm.rotateAngleX, this.rightArm.rotateAngleY, this.rightArm.rotateAngleZ);
-        setRotateAngle(this.leftSleeve, this.leftArm.rotateAngleX, this.leftArm.rotateAngleY, this.leftArm.rotateAngleZ);
+        // Keep idle micro-motion but tone it down slightly if hurt/airborne (no hard freeze)
+        float idleMul = 1.0F;
+        if (entity instanceof EntityLivingBase) {
+            EntityLivingBase elb = (EntityLivingBase) entity;
+            if (elb.hurtTime > 0 || !elb.onGround) idleMul = 0.6F; // softer, not frozen
+        }
 
-        // Leg movement
-        setRotateAngle(this.rightLeg, MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount, 0.0F, 0.0F);
-        setRotateAngle(this.leftLeg, MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount, 0.0F, 0.0F);
+        final float w = limbSwing * 0.6662F;
 
-        // Calculate smooth robe tilt
-        float targetRobeTilt = limbSwingAmount > 0.1F ? 0.295F : 0.0F; // ~16.91 degrees when walking
-        currentRobeTilt += (targetRobeTilt - currentRobeTilt) * 0.1F; // Smooth transition
-        setRotateAngle(this.robe, currentRobeTilt, 0.0F, 0.0F);
+        // Arms walk + idle
+        float armXR = (float)Math.cos(w + Math.PI) * swingAmt * 0.8F;
+        float armXL = (float)Math.cos(w)           * swingAmt * 0.8F;
+
+        float idleX = MathHelper.sin(ageInTicks * 0.067F) * 0.05F * idleMul;
+        float idleZ = MathHelper.cos(ageInTicks * 0.09F)  * 0.05F * idleMul;
+
+        this.rightArm.rotateAngleX = armXR + idleX;
+        this.rightArm.rotateAngleY = 0F;
+        this.rightArm.rotateAngleZ =  idleZ;
+
+        this.leftArm.rotateAngleX  = armXL - idleX;
+        this.leftArm.rotateAngleY  = 0F;
+        this.leftArm.rotateAngleZ  = -idleZ;
+
+        // Sleeves follow arms
+        this.rightSleeve.rotateAngleX = this.rightArm.rotateAngleX;
+        this.rightSleeve.rotateAngleY = this.rightArm.rotateAngleY;
+        this.rightSleeve.rotateAngleZ = this.rightArm.rotateAngleZ;
+
+        this.leftSleeve.rotateAngleX  = this.leftArm.rotateAngleX;
+        this.leftSleeve.rotateAngleY  = this.leftArm.rotateAngleY;
+        this.leftSleeve.rotateAngleZ  = this.leftArm.rotateAngleZ;
+
+        // Legs walk
+        this.rightLeg.rotateAngleX = (float)Math.cos(w)           * swingAmt * 1.2F;
+        this.rightLeg.rotateAngleY = 0F;
+        this.rightLeg.rotateAngleZ = 0F;
+
+        this.leftLeg.rotateAngleX  = (float)Math.cos(w + Math.PI) * swingAmt * 1.2F;
+        this.leftLeg.rotateAngleY  = 0F;
+        this.leftLeg.rotateAngleZ  = 0F;
+
+        // Per-entity robe tilt (no cross-bleed between Yodas)
+        float robeTilt = 0.0F;
+        if (entity instanceof MobYoda) robeTilt = ((MobYoda)entity).getCurrentRobeTilt();
+        this.robe.rotateAngleX = robeTilt;
+        this.robe.rotateAngleY = 0F;
+        this.robe.rotateAngleZ = 0F;
     }
 }

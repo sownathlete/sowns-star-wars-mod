@@ -49,7 +49,6 @@ public class MobBogRat extends EntityTameable
     /** This time increases while wolf is shaking and emitting water particles. */
     private float timeWolfIsShaking;
     private float prevTimeWolfIsShaking;
-    private static final String __OBFID = "CL_00001654";
 
     public MobBogRat(World p_i1696_1_) {
         super(p_i1696_1_);

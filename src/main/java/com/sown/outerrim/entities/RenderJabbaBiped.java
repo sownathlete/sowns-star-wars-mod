@@ -41,7 +41,6 @@ extends RenderLiving {
     protected ModelJabba field_82425_h;
     private static final Map field_110859_k = Maps.newHashMap();
     public static String[] bipedArmorFilenamePrefix = new String[]{"leather", "chainmail", "iron", "diamond", "gold"};
-    private static final String __OBFID = "CL_00001001";
 
     public RenderJabbaBiped(ModelJabba par1ModelBiped, float par2) {
         this(par1ModelBiped, par2, 1.0f);

@@ -442,9 +442,9 @@ public class OuterRimResources {
 	        biomeCraitMountainsId = config.get(CAT_BIOMES, "Crait Mountains", 109).setRequiresMcRestart(true).getInt();
 	        biomeCsillaId = config.get(CAT_BIOMES, "Csilla", 110).setRequiresMcRestart(true).getInt();
 	        biomeDagobahId = config.get(CAT_BIOMES, "Dagobah", 111).setRequiresMcRestart(true).getInt();
-	        biomeDathomirForestId = config.get(CAT_BIOMES, "Dathomir Forest", 159).setRequiresMcRestart(true).getInt();
+	        biomeDathomirForestId = config.get(CAT_BIOMES, "Dathomir Forest", 189).setRequiresMcRestart(true).getInt();
 	        biomeDathomirSwampId = config.get(CAT_BIOMES, "Dathomir Swamp", 181).setRequiresMcRestart(true).getInt();
-	        biomeDathomirCliffsId = config.get(CAT_BIOMES, "Dathomir Cliffs", 161).setRequiresMcRestart(true).getInt();
+	        biomeDathomirCliffsId = config.get(CAT_BIOMES, "Dathomir Cliffs", 190).setRequiresMcRestart(true).getInt();
 	        biomeDeathStarId = config.get(CAT_BIOMES, "Death Star", 112).setRequiresMcRestart(true).getInt();
 	        biomeEndorTaigaId = config.get(CAT_BIOMES, "Endor Taiga", 183).setRequiresMcRestart(true).getInt();
 	        biomeEndorMegaTaigaId = config.get(CAT_BIOMES, "Endor Mega Taiga", 184).setRequiresMcRestart(true).getInt();
@@ -461,12 +461,12 @@ public class OuterRimResources {
 	        biomeIlumPlainsId = config.get(CAT_BIOMES, "Ilum Plains", 121).setRequiresMcRestart(true).getInt();
 	        biomeJakkuId = config.get(CAT_BIOMES, "Jakku", 122).setRequiresMcRestart(true).getInt();
 	        biomeKaminoId = config.get(CAT_BIOMES, "Kamino", 123).setRequiresMcRestart(true).getInt();
-	        biomeKashyyykId = config.get(CAT_BIOMES, "Kashyyyk", 152).setRequiresMcRestart(true).getInt();
+	        biomeKashyyykId = config.get(CAT_BIOMES, "Kashyyyk", 191).setRequiresMcRestart(true).getInt();
 	        biomeKesselDirt1Id = config.get(CAT_BIOMES, "Kessel Dusty Flats", 124).setRequiresMcRestart(true).getInt();
 	        biomeKesselDirt2Id = config.get(CAT_BIOMES, "Kessel Arid Hills", 125).setRequiresMcRestart(true).getInt();
 	        biomeKesselMudId = config.get(CAT_BIOMES, "Kessel Mudlands", 126).setRequiresMcRestart(true).getInt();
 	        biomeKesselMountainsId = config.get(CAT_BIOMES, "Kessel Mountains", 127).setRequiresMcRestart(true).getInt();
-	        biomeKesselRock1Id = config.get(CAT_BIOMES, "Kessel Stone Cliffs", 128).setRequiresMcRestart(true).getInt();
+	        biomeKesselRock1Id = config.get(CAT_BIOMES, "Kessel Stone Cliffs", 192).setRequiresMcRestart(true).getInt();
 	        biomeKesselRock2Id = config.get(CAT_BIOMES, "Kessel Rocky Hills", 169).setRequiresMcRestart(true).getInt();
 	        biomeKorribanDesertId = config.get(CAT_BIOMES, "Korriban Desert", 170).setRequiresMcRestart(true).getInt();
 	        biomeKorribanMountainsId = config.get(CAT_BIOMES, "Korriban Mountains", 171).setRequiresMcRestart(true).getInt();
@@ -474,28 +474,28 @@ public class OuterRimResources {
 	        biomeMandaloreId = config.get(CAT_BIOMES, "Mandalore", 173).setRequiresMcRestart(true).getInt();
 	        biomeMimbanId = config.get(CAT_BIOMES, "Mimban Rainforest", 187).setRequiresMcRestart(true).getInt();
 	        biomeMustafarLavaLakesId = config.get(CAT_BIOMES, "Mustafar Lava Lakes", 174).setRequiresMcRestart(true).getInt();
-	        biomeMustafarPlateauId = config.get(CAT_BIOMES, "Mustafar Mountains", 135).setRequiresMcRestart(true).getInt();
+	        biomeMustafarPlateauId = config.get(CAT_BIOMES, "Mustafar Mountains", 195).setRequiresMcRestart(true).getInt();
 	        biomeNabooGreatPlainsId = config.get(CAT_BIOMES, "Naboo Great Plains", 136).setRequiresMcRestart(true).getInt();
 	        biomeNabooMountainsId = config.get(CAT_BIOMES, "Naboo Mountains", 137).setRequiresMcRestart(true).getInt();
-	        biomeNabooPlainsId = config.get(CAT_BIOMES, "Naboo Hills", 138).setRequiresMcRestart(true).getInt();
+	        biomeNabooPlainsId = config.get(CAT_BIOMES, "Naboo Hills", 196).setRequiresMcRestart(true).getInt();
 	        biomeNiamosId = config.get(CAT_BIOMES, "Niamos", 168).setRequiresMcRestart(true).getInt();
-	        biomeNurId = config.get(CAT_BIOMES, "Nur", 139).setRequiresMcRestart(true).getInt();
-	        biomeRakataPrimeId = config.get(CAT_BIOMES, "Rakata Prime", 153).setRequiresMcRestart(true).getInt();
+	        biomeNurId = config.get(CAT_BIOMES, "Nur", 197).setRequiresMcRestart(true).getInt();
+	        biomeRakataPrimeId = config.get(CAT_BIOMES, "Rakata Prime", 198).setRequiresMcRestart(true).getInt();
 	        biomeRylothId = config.get(CAT_BIOMES, "Ryloth Dusty Flats", 175).setRequiresMcRestart(true).getInt();
-	        biomeRylothPlateauId = config.get(CAT_BIOMES, "Ryloth Plateau", 141).setRequiresMcRestart(true).getInt();
-	        biomeScarifId = config.get(CAT_BIOMES, "Scarif", 142).setRequiresMcRestart(true).getInt();
-	        biomeTarisId = config.get(CAT_BIOMES, "Taris", 150).setRequiresMcRestart(true).getInt();
-	        biomeTatooineDesertId = config.get(CAT_BIOMES, "Tatooine Dune Sea", 143).setRequiresMcRestart(true).getInt();
-	        biomeTatooineMountainsId = config.get(CAT_BIOMES, "Tatooine Mountains", 144).setRequiresMcRestart(true).getInt();
-	        biomeTythonForestId = config.get(CAT_BIOMES, "Tython Forest", 145).setRequiresMcRestart(true).getInt();
-	        biomeTythonMountainsId = config.get(CAT_BIOMES, "Tython Mountains", 146).setRequiresMcRestart(true).getInt();
+	        biomeRylothPlateauId = config.get(CAT_BIOMES, "Ryloth Plateau", 199).setRequiresMcRestart(true).getInt();
+	        biomeScarifId = config.get(CAT_BIOMES, "Scarif", 200).setRequiresMcRestart(true).getInt();
+	        biomeTarisId = config.get(CAT_BIOMES, "Taris", 201).setRequiresMcRestart(true).getInt();
+	        biomeTatooineDesertId = config.get(CAT_BIOMES, "Tatooine Dune Sea", 202).setRequiresMcRestart(true).getInt();
+	        biomeTatooineMountainsId = config.get(CAT_BIOMES, "Tatooine Mountains", 203).setRequiresMcRestart(true).getInt();
+	        biomeTythonForestId = config.get(CAT_BIOMES, "Tython Forest", 204).setRequiresMcRestart(true).getInt();
+	        biomeTythonMountainsId = config.get(CAT_BIOMES, "Tython Mountains", 205).setRequiresMcRestart(true).getInt();
 	        biomeUtapauId = config.get(CAT_BIOMES, "Utapau", 182).setRequiresMcRestart(true).getInt();
-	        biomeVandorId = config.get(CAT_BIOMES, "Vandor", 147).setRequiresMcRestart(true).getInt();
-	        biomeVjunId = config.get(CAT_BIOMES, "Vjun", 148).setRequiresMcRestart(true).getInt();
+	        biomeVandorId = config.get(CAT_BIOMES, "Vandor", 206).setRequiresMcRestart(true).getInt();
+	        biomeVjunId = config.get(CAT_BIOMES, "Vjun", 207).setRequiresMcRestart(true).getInt();
 	        biomeWorldBetweenWorldsId = config.get(CAT_BIOMES, "World Between Worlds", 188).setRequiresMcRestart(true).getInt();
-	        biomeYavin4Id = config.get(CAT_BIOMES, "Yavin 4", 154).setRequiresMcRestart(true).getInt();
+	        biomeYavin4Id = config.get(CAT_BIOMES, "Yavin 4", 208).setRequiresMcRestart(true).getInt();
 	        
-	        //next ID: 189
+	        //next ID: 209
 	        
 			ConfigOptions.getCategory(CAT_COMPAT).setComment("Compatibility");
 			ConfigOptions.getCategory(CAT_DIM).setComment("Dimension IDs");

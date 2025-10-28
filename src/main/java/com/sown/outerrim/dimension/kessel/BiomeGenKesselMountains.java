@@ -51,7 +51,6 @@ extends OROverworldBiome {
     private NoiseGeneratorPerlin field_150625_aG;
     private boolean field_150626_aH;
     private boolean field_150620_aI;
-    private static final String __OBFID = "CL_00000176";
     protected Block stoneBlock;
     protected byte topMeta;
     protected byte fillerMeta;

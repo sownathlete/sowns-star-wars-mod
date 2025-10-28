@@ -85,7 +85,6 @@ import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
 public class ChunkProviderTython extends ChunkProviderDryPreset {
-	private static final String __OBFID = "CL_00000396";
 	private Random rand;
 	private NoiseGeneratorOctaves noiseGen1;
 	private NoiseGeneratorOctaves nouseGen2;

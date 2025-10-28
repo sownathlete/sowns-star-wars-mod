@@ -13,7 +13,6 @@ import net.minecraft.world.biome.BiomeGenBase;
 public class BiomeGenNabooPlains extends BiomeGenBase {
 
     protected boolean field_150628_aC;
-    private static final String __OBFID = "CL_00000180";
 
     public BiomeGenNabooPlains(int p_i1986_1_) {
         super(p_i1986_1_);

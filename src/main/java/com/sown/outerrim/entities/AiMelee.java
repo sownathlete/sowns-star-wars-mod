@@ -51,7 +51,6 @@ extends EntityAIBase {
     private double targetX;
     private double targetY;
     private double targetZ;
-    private static final String __OBFID = "CL_00001595";
     float damage;
     private int failedPathFindingPenalty;
 

@@ -1,8 +1,6 @@
 package com.sown.outerrim.entities;
 
-import com.sown.outerrim.registry.ItemRegister;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
+import com.sown.outerrim.registry.ItemRegister; // safe to keep even if unused
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,28 +22,38 @@ import net.minecraft.world.World;
 
 public class EntityBattleDroid extends EntityTameable implements IRangedAttackMob {
 
+	// ===== Tunables (doubled ranges) =====
+	private static final double AGGRO_RANGE = 256.0D;
+	private static final float SHOOT_RANGE = 112.0F;
+
+	// Keep clones locked in as primary targets
+	private static final int RETARGET_COOLDOWN_TICKS = 10; // sweep every 0.5s
+	private int retargetCooldown = RETARGET_COOLDOWN_TICKS;
+
 	public EntityBattleDroid(World worldIn) {
 		super(worldIn);
 		this.setSize(1.0f, 2.0f);
 		this.getNavigator().setCanSwim(false);
+
 		this.tasks.addTask(1, new EntityAISwimming(this));
 		this.tasks.addTask(2, this.aiSit);
-		this.tasks.addTask(3, new EntityAIAttackWithBow(this, 1.0D, 20, 15.0F));
+		this.tasks.addTask(3, new EntityAIAttackWithBow(this, 1.0D, 20, SHOOT_RANGE)); // use 100f shoot range
 		this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 2.0F));
 		this.tasks.addTask(6, new EntityAIMoveTowardsRestriction(this, 1.0D));
 		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(9, new EntityAILookIdle(this));
+
 		this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
 		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
 		this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
 
-		// High priority: Target MobCloneTrooperBase and EntityReconTrooper first
-		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityCloneTrooperBase.class, 0, true));
-		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityReconTrooperBase.class, 0, true));
+		// Highest-priority: clones; don't require LOS so we don't randomly drop target
+		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityCloneTrooperBase.class, 0, false));
+		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityReconTrooperBase.class, 0, false));
 
-		// Other targets (players, zombies, skeletons, etc.)
+		// Other targets (keep LOS true for these)
 		this.targetTasks.addTask(7, new EntityAINearestAttackableTarget(this, EntityZombie.class, 0, true));
 		this.targetTasks.addTask(8, new EntityAINearestAttackableTarget(this, EntitySkeleton.class, 0, true));
 		this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityCreeper.class, 0, true));
@@ -59,21 +67,22 @@ public class EntityBattleDroid extends EntityTameable implements IRangedAttackMo
 		this.getDataWatcher().updateObject(25, textureIndex);
 	}
 
-    @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0); // Decent range
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0);  // Logical health
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3); // Reasonable speed
-    }
+	@Override
+	protected void applyEntityAttributes() {
+		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(AGGRO_RANGE);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3);
+	}
 
+	@Override
 	public boolean isAIEnabled() {
 		return true;
 	}
 
+	@Override
 	public void setAttackTarget(EntityLivingBase target) {
 		super.setAttackTarget(target);
-
 		if (target == null) {
 			this.setAngry(false);
 		} else if (!this.isTamed()) {
@@ -87,12 +96,10 @@ public class EntityBattleDroid extends EntityTameable implements IRangedAttackMo
 
 	public void setAngry(boolean angry) {
 		byte b0 = this.dataWatcher.getWatchableObjectByte(16);
-
-		if (angry) {
+		if (angry)
 			this.dataWatcher.updateObject(16, Byte.valueOf((byte) (b0 | 2)));
-		} else {
+		else
 			this.dataWatcher.updateObject(16, Byte.valueOf((byte) (b0 & -3)));
-		}
 	}
 
 	@Override
@@ -103,63 +110,51 @@ public class EntityBattleDroid extends EntityTameable implements IRangedAttackMo
 		this.getDataWatcher().addObject(27, 0);
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity entity) {
 		int i = this.isTamed() ? 4 : 2;
 		return entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) i);
 	}
 
+	@Override
 	public void setTamed(boolean tamed) {
 		super.setTamed(tamed);
-
-		if (tamed) {
-			this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0D);
-		} else {
-			this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
-		}
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(tamed ? 30.0D : 20.0D);
 	}
 
 	@Override
 	public boolean interact(EntityPlayer player) {
 		ItemStack itemstack = player.getCurrentEquippedItem();
 
-		// Taming logic using a different item, e.g., a circuit board
-		if (!this.isTamed() && itemstack != null
-				&& itemstack.getItem() == Items.iron_ingot) {
+		// Tame with iron ingot
+		if (!this.isTamed() && itemstack != null && itemstack.getItem() == Items.iron_ingot) {
 			if (!this.worldObj.isRemote) {
 				this.setTamed(true);
 				this.func_152115_b(player.getUniqueID().toString());
 				this.playTameEffect(true);
 				this.worldObj.setEntityState(this, (byte) 7);
 			}
-			if (!player.capabilities.isCreativeMode) {
+			if (!player.capabilities.isCreativeMode)
 				--itemstack.stackSize;
-			}
 			return true;
 		}
 
-		// Armor and equipment handling remains the same
+		// Armor/equipment handling
 		if (this.isTamed() && this.func_152114_e(player)) {
 			if (player.isSneaking() && itemstack != null) {
-				// Handle armor and equipment as before
 				if (itemstack.getItem() instanceof ItemArmor) {
 					ItemArmor armor = (ItemArmor) itemstack.getItem();
 					int armorSlot = 3 - armor.armorType;
 					ItemStack currentArmor = this.getCurrentArmor(armorSlot);
-
-					if (currentArmor != null && !this.worldObj.isRemote) {
+					if (currentArmor != null && !this.worldObj.isRemote)
 						this.entityDropItem(currentArmor, 0.5F);
-					}
-
 					this.setCurrentItemOrArmor(armorSlot + 1, itemstack);
 				} else {
 					ItemStack currentItem = this.getHeldItem();
-					if (currentItem != null && !this.worldObj.isRemote) {
+					if (currentItem != null && !this.worldObj.isRemote)
 						this.entityDropItem(currentItem, 0.5F);
-					}
-
 					this.setCurrentItemOrArmor(0, itemstack);
 				}
-
 				if (!player.capabilities.isCreativeMode) {
 					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 				}
@@ -198,78 +193,126 @@ public class EntityBattleDroid extends EntityTameable implements IRangedAttackMo
 
 	@Override
 	public void onDeath(DamageSource cause) {
-		if (this.isTamed() && this.getOwner() != null && this.getOwner() instanceof EntityPlayer) {
+		if (this.isTamed() && this.getOwner() instanceof EntityPlayer) {
 			((EntityPlayer) this.getOwner())
 					.addChatMessage(new ChatComponentText(this.getCommandSenderName() + " has been destroyed."));
 		}
 	}
 
-    @Override
-    public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
-        // Create a new laser projectile entity
-        EntityLaserProjectileRed entityLaser = new EntityLaserProjectileRed(this.worldObj, this, distanceFactor);
+	// ====== Ranged attack (simple single bolt, same as your original) ======
+	@Override
+	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
+		EntityLaserProjectileRed bolt = new EntityLaserProjectileRed(this.worldObj, this, distanceFactor);
 
-        // Get the direction vectors from this entity to the target
-        double dX = target.posX - this.posX;
-        double dY = (target.posY + target.getEyeHeight()) - (this.posY + this.getEyeHeight());
-        double dZ = target.posZ - this.posZ;
-        double distance = MathHelper.sqrt_double(dX * dX + dZ * dZ);
+		double dX = target.posX - this.posX;
+		double dY = (target.posY + target.getEyeHeight()) - (this.posY + this.getEyeHeight());
+		double dZ = target.posZ - this.posZ;
 
-        // Set the heading of the laser (including X, Y, Z motion vectors and velocity)
-        entityLaser.setThrowableHeading(dX, dY, dZ, 1.6F, 0.0F);  // Remove the unnecessary vertical adjustment
+		bolt.setThrowableHeading(dX, dY, dZ, 1.6F, 0.0F);
+		bolt.setDamage((double) (distanceFactor * 2.0F));
+		bolt.setPosition(this.posX, this.posY + this.getEyeHeight(), this.posZ);
 
-        // Set the damage based on the distance factor
-        entityLaser.setDamage((double) (distanceFactor * 2.0F));
+		this.worldObj.spawnEntityInWorld(bolt);
+		this.playShootSound();
+	}
 
-        // Adjust the position to make sure the projectile originates from the entity's eye level
-        entityLaser.setPosition(this.posX, this.posY + this.getEyeHeight(), this.posZ);
+	// Laser immunity (to red bolts)
+	@Override
+	public boolean attackEntityFrom(DamageSource source, float amount) {
+		if (source.getSourceOfDamage() instanceof EntityLaserProjectileRed)
+			return false;
+		return super.attackEntityFrom(source, amount);
+	}
 
-        // Spawn the projectile in the world
-        this.worldObj.spawnEntityInWorld(entityLaser);
+	// ===== “Never forget clones” sweep =====
+	@Override
+	public void onUpdate() {
+		super.onUpdate();
 
-        // Play the blaster sound when firing
-        this.playShootSound();
-    }
+		if (!this.worldObj.isRemote) {
+			if (--retargetCooldown <= 0) {
+				retargetCooldown = RETARGET_COOLDOWN_TICKS;
+				ensurePrimaryCloneTarget();
+			}
+		}
+	}
 
-    // Override to prevent laser projectile damage
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float amount) {
-        if (source.getSourceOfDamage() instanceof EntityLaserProjectileRed) {
-            return false;  // Invulnerable to lasers
-        }
-        return super.attackEntityFrom(source, amount);
-    }
+	/**
+	 * If no valid target (or target too far), force-pick the nearest clone/recon
+	 * within AGGRO_RANGE.
+	 */
+	private void ensurePrimaryCloneTarget() {
+		EntityLivingBase curr = this.getAttackTarget();
+		boolean needsTarget = (curr == null) || curr.isDead
+				|| this.getDistanceSqToEntity(curr) > (AGGRO_RANGE * AGGRO_RANGE);
+
+		if (!needsTarget)
+			return;
+
+		EntityLivingBase best = null;
+		double bestDistSq = Double.MAX_VALUE;
+
+		// Scan normal clones
+		for (Object o : this.worldObj.getEntitiesWithinAABB(EntityCloneTrooperBase.class,
+				this.boundingBox.expand(AGGRO_RANGE, AGGRO_RANGE, AGGRO_RANGE))) {
+			EntityCloneTrooperBase e = (EntityCloneTrooperBase) o;
+			if (e.isDead)
+				continue;
+			double d = this.getDistanceSqToEntity(e);
+			if (d < bestDistSq) {
+				bestDistSq = d;
+				best = e;
+			}
+		}
+		// Scan recon clones
+		for (Object o : this.worldObj.getEntitiesWithinAABB(EntityReconTrooperBase.class,
+				this.boundingBox.expand(AGGRO_RANGE, AGGRO_RANGE, AGGRO_RANGE))) {
+			EntityReconTrooperBase e = (EntityReconTrooperBase) o;
+			if (e.isDead)
+				continue;
+			double d = this.getDistanceSqToEntity(e);
+			if (d < bestDistSq) {
+				bestDistSq = d;
+				best = e;
+			}
+		}
+
+		if (best != null) {
+			this.setAttackTarget(best);
+			this.setAngry(true);
+		}
+	}
 
 	@Override
 	protected String getLivingSound() {
-		return "outerrim:entity.b1.ambient"; // Use ambient sound pool for when the droid is alive
+		return "outerrim:entity.b1.ambient";
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "outerrim:entity.b1.hurt"; // Use hurt sound pool for when the droid gets hurt
+		return "outerrim:entity.b1.hurt";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return "outerrim:entity.b1.death"; // Use death sound pool for when the droid dies
+		return "outerrim:entity.b1.death";
 	}
 
 	public void playMeleeSound() {
-		this.playSound("outerrim:entity.b1.melee", 1.0F, 1.0F); // Play melee attack sound pool
+		this.playSound("outerrim:entity.b1.melee", 1.0F, 1.0F);
 	}
 
-    public void playShootSound() {
-        this.playSound("outerrim:entity.b1.droid_shoot", 1.0F, 1.0F);  // Sound event when the clone trooper shoots
-    }
+	public void playShootSound() {
+		this.playSound("outerrim:entity.b1.droid_shoot", 1.0F, 1.0F);
+	}
 
 	public void playPanicSound() {
-		this.playSound("outerrim:entity.b1.panic", 1.0F, 1.0F); // Play panic sound pool
+		this.playSound("outerrim:entity.b1.panic", 1.0F, 1.0F);
 	}
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		this.playSound("outerrim:entity.b1.spawn", 1.0F, 1.0F); // Play spawn sound pool
+		this.playSound("outerrim:entity.b1.spawn", 1.0F, 1.0F);
 		return super.onSpawnWithEgg(data);
 	}
 }

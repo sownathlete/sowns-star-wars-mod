@@ -3,7 +3,6 @@ package com.sown.outerrim.entities;
 import com.sown.outerrim.registry.ItemRegister;
 
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -18,171 +17,234 @@ import net.minecraft.world.World;
 
 public abstract class EntityCloneTrooperBase extends EntityTameable implements IRangedAttackMob {
 
-    public EntityCloneTrooperBase(World worldIn) {
-        super(worldIn);
-        this.setSize(1.0f, 2.0f);
-        this.getNavigator().setCanSwim(true);
-        this.getNavigator().setEnterDoors(true);
+	// ===== Tunables (match the droid side) =====
+	protected static final double AGGRO_RANGE = 256.0D;
+	protected static final float SHOOT_RANGE = 112.0F;
 
-        // Adding AI tasks with corrected priorities and settings
-        this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIAttackWithBow(this, 1.0D, 20, 15.0F));  // Only ranged attacks for now
-        this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
-        
-        // Prioritize protecting the owner
-        this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));  // Attack entities that attack the owner
-        this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));    // Attack entities that the owner attacks
+	// “Never forget droids” sweep
+	private static final int RETARGET_COOLDOWN_TICKS = 10; // every 0.5s
+	private int retargetCooldown = RETARGET_COOLDOWN_TICKS;
 
-        // General retaliation behavior
-        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));  // Retaliate against attackers
+	public EntityCloneTrooperBase(World worldIn) {
+		super(worldIn);
+		this.setSize(1.0f, 2.0f);
+		this.getNavigator().setCanSwim(true);
+		this.getNavigator().setEnterDoors(true);
 
-        // Target droids
-        this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityBattleDroid.class, 0, true));
-        this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityB2BattleDroid.class, 1, true));
-        this.targetTasks.addTask(6, new EntityAINearestAttackableTarget(this, EntityRustyB2BattleDroid.class, 2, true));
-        this.targetTasks.addTask(7, new EntityAINearestAttackableTarget(this, EntityDroideka.class, 3, true));
+		// Tasks
+		this.tasks.addTask(1, new EntityAISwimming(this));
+		this.tasks.addTask(2, new EntityAIAttackWithBow(this, 1.0D, 20, SHOOT_RANGE)); // 100f shoot range
+		this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
 
-        // Target EntityTuskenRaider
-        this.targetTasks.addTask(8, new EntityAINearestAttackableTarget(this, EntityTuskenRaider.class, 4, true));
+		// Prioritize protecting the owner
+		this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
+		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
 
-        // Target vanilla hostile mobs (IMob covers zombies, skeletons, creepers, etc.)
-        // this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, IMob.class, 5, true));
-    }
+		// General retaliation
+		this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
 
-    @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(200.0);  // Increased follow range
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0);  // Standard health
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3);  // Decent movement speed
-    }
+		// High priority: droids (no LOS requirement so we don’t drop them)
+		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityBattleDroid.class, 0, false));
+		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityB2BattleDroid.class, 0, false));
+		this.targetTasks.addTask(6,
+				new EntityAINearestAttackableTarget(this, EntityRustyB2BattleDroid.class, 0, false));
+		this.targetTasks.addTask(7, new EntityAINearestAttackableTarget(this, EntityDroideka.class, 0, false));
 
-    @Override
-    public boolean isAIEnabled() {
-        return true;
-    }
-    
-    @Override
-    public boolean interact(EntityPlayer player) {
-        ItemStack itemstack = player.getCurrentEquippedItem();
+		// Other hostiles you already had
+		this.targetTasks.addTask(8, new EntityAINearestAttackableTarget(this, EntityTuskenRaider.class, 0, true));
+		// Example for vanilla hostiles if you decide to enable:
+		// this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this,
+		// IMob.class, 0, true));
+	}
 
-        // Taming logic using credit_chit
-        if (!this.isTamed() && itemstack != null && itemstack.getItem() == ItemRegister.getRegisteredItem("galactic_credit_100")) {
-            if (!this.worldObj.isRemote) {
-                this.setTamed(true);
-                this.func_152115_b(player.getUniqueID().toString()); // Bind the tamed entity to the player
-                this.playTameEffect(true);
-                this.worldObj.setEntityState(this, (byte) 7); // Play the taming particle effect
-            }
-            if (!player.capabilities.isCreativeMode) {
-                --itemstack.stackSize; // Decrease the item stack size
-            }
-            return true;
-        }
+	@Override
+	protected void applyEntityAttributes() {
+		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(AGGRO_RANGE);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3);
+	}
 
-        // Behavior for tamed clones
-        if (this.isTamed() && this.func_152114_e(player)) {
-            if (!this.worldObj.isRemote && itemstack == null) {
-                // Toggle sitting state
-                this.aiSit.setSitting(!this.isSitting());
-                this.isJumping = false;
-                this.setPathToEntity(null);
-                this.setTarget(null);
-                this.setAttackTarget(null);
-                return true;
-            }
-        }
+	@Override
+	public boolean isAIEnabled() {
+		return true;
+	}
 
-        return super.interact(player);
-    }
+	@Override
+	public boolean interact(EntityPlayer player) {
+		ItemStack itemstack = player.getCurrentEquippedItem();
 
-    @Override
-    public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
-        // Create a new laser projectile entity
-        EntityLaserProjectile entityLaser = new EntityLaserProjectile(this.worldObj, this, distanceFactor);
+		// Tame with 100-credit chit
+		if (!this.isTamed() && itemstack != null
+				&& itemstack.getItem() == ItemRegister.getRegisteredItem("galactic_credit_100")) {
+			if (!this.worldObj.isRemote) {
+				this.setTamed(true);
+				this.func_152115_b(player.getUniqueID().toString());
+				this.playTameEffect(true);
+				this.worldObj.setEntityState(this, (byte) 7);
+			}
+			if (!player.capabilities.isCreativeMode)
+				--itemstack.stackSize;
+			return true;
+		}
 
-        // Get the direction vectors from this entity to the target
-        double dX = target.posX - this.posX;
-        double dY = (target.posY + target.getEyeHeight()) - (this.posY + this.getEyeHeight());
-        double dZ = target.posZ - this.posZ;
-        double distance = MathHelper.sqrt_double(dX * dX + dZ * dZ);
+		// Toggle sit for tamed clones (empty hand)
+		if (this.isTamed() && this.func_152114_e(player)) {
+			if (!this.worldObj.isRemote && itemstack == null) {
+				this.aiSit.setSitting(!this.isSitting());
+				this.isJumping = false;
+				this.setPathToEntity(null);
+				this.setTarget(null);
+				this.setAttackTarget(null);
+				return true;
+			}
+		}
 
-        // Set the heading of the laser
-        entityLaser.setThrowableHeading(dX, dY, dZ, 1.6F, 0.0F);
-        entityLaser.setDamage((double) (distanceFactor * 2.0F));
-        entityLaser.setPosition(this.posX, this.posY + this.getEyeHeight(), this.posZ);
+		return super.interact(player);
+	}
 
-        // Spawn the projectile in the world
-        this.worldObj.spawnEntityInWorld(entityLaser);
-        this.playShootSound();
-    }
+	@Override
+	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
+		// Standard single-barrel clone bolt
+		EntityLaserProjectile bolt = new EntityLaserProjectile(this.worldObj, this, distanceFactor);
 
-    // Override to prevent laser projectile damage
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float amount) {
-        if (source.getSourceOfDamage() instanceof EntityLaserProjectile) {
-            return false;  // Invulnerable to lasers
-        }
-        return super.attackEntityFrom(source, amount);
-    }
+		double dX = target.posX - this.posX;
+		double dY = (target.posY + target.getEyeHeight()) - (this.posY + this.getEyeHeight());
+		double dZ = target.posZ - this.posZ;
 
-    public abstract String getTrooperType();  // Each subclass will implement this
+		bolt.setThrowableHeading(dX, dY, dZ, 1.6F, 0.0F);
+		bolt.setDamage((double) (distanceFactor * 2.0F));
+		bolt.setPosition(this.posX, this.posY + this.getEyeHeight(), this.posZ);
 
-    @Override
-    public void onDeath(DamageSource cause) {
-        super.onDeath(cause);
-    }
+		this.worldObj.spawnEntityInWorld(bolt);
+		this.playShootSound();
+	}
 
-    @Override
-    public ItemStack getHeldItem() {
-        return null;
-    }
+	// Laser immunity (keep your original behavior)
+	@Override
+	public boolean attackEntityFrom(DamageSource source, float amount) {
+		if (source.getSourceOfDamage() instanceof EntityLaserProjectile)
+			return false;
+		return super.attackEntityFrom(source, amount);
+	}
 
-    @Override
-    public ItemStack getEquipmentInSlot(int slot) {
-        return null;
-    }
+	// “Never forget droids” — server tick sweep
+	@Override
+	public void onUpdate() {
+		super.onUpdate();
+		if (!this.worldObj.isRemote) {
+			if (--retargetCooldown <= 0) {
+				retargetCooldown = RETARGET_COOLDOWN_TICKS;
+				ensurePrimaryDroidTarget();
+			}
+		}
+	}
 
-    public ItemStack getCurrentArmor(int slot) {
-        return null;
-    }
+	/**
+	 * If no valid target (or too far), force-pick the nearest droid within
+	 * AGGRO_RANGE.
+	 */
+	private void ensurePrimaryDroidTarget() {
+		EntityLivingBase curr = this.getAttackTarget();
+		boolean needsTarget = (curr == null) || curr.isDead
+				|| this.getDistanceSqToEntity(curr) > (AGGRO_RANGE * AGGRO_RANGE);
+		if (!needsTarget)
+			return;
 
-    public void playShootSound() {
-        this.playSound("outerrim:entity.clone.shoot", 1.0F, 1.0F);  // Sound event when the clone trooper shoots
-    }
+		EntityLivingBase best = null;
+		double bestDistSq = Double.MAX_VALUE;
 
-    @Override
-    protected String getLivingSound() {
-        return "outerrim:entity.clone.ambient";
-    }
+		// Battle droids
+		for (Object o : this.worldObj.getEntitiesWithinAABB(EntityBattleDroid.class,
+				this.boundingBox.expand(AGGRO_RANGE, AGGRO_RANGE, AGGRO_RANGE))) {
+			EntityBattleDroid e = (EntityBattleDroid) o;
+			if (e.isDead)
+				continue;
+			double d = this.getDistanceSqToEntity(e);
+			if (d < bestDistSq) {
+				bestDistSq = d;
+				best = e;
+			}
+		}
+		// B2 droids
+		for (Object o : this.worldObj.getEntitiesWithinAABB(EntityB2BattleDroid.class,
+				this.boundingBox.expand(AGGRO_RANGE, AGGRO_RANGE, AGGRO_RANGE))) {
+			EntityB2BattleDroid e = (EntityB2BattleDroid) o;
+			if (e.isDead)
+				continue;
+			double d = this.getDistanceSqToEntity(e);
+			if (d < bestDistSq) {
+				bestDistSq = d;
+				best = e;
+			}
+		}
+		// Rusty B2 droids
+		for (Object o : this.worldObj.getEntitiesWithinAABB(EntityRustyB2BattleDroid.class,
+				this.boundingBox.expand(AGGRO_RANGE, AGGRO_RANGE, AGGRO_RANGE))) {
+			EntityRustyB2BattleDroid e = (EntityRustyB2BattleDroid) o;
+			if (e.isDead)
+				continue;
+			double d = this.getDistanceSqToEntity(e);
+			if (d < bestDistSq) {
+				bestDistSq = d;
+				best = e;
+			}
+		}
+		// Droidekas
+		for (Object o : this.worldObj.getEntitiesWithinAABB(EntityDroideka.class,
+				this.boundingBox.expand(AGGRO_RANGE, AGGRO_RANGE, AGGRO_RANGE))) {
+			EntityDroideka e = (EntityDroideka) o;
+			if (e.isDead)
+				continue;
+			double d = this.getDistanceSqToEntity(e);
+			if (d < bestDistSq) {
+				bestDistSq = d;
+				best = e;
+			}
+		}
 
-    @Override
-    protected String getHurtSound() {
-        return "outerrim:entity.clone.hurt";
-    }
+		if (best != null)
+			this.setAttackTarget(best);
+	}
 
-    @Override
-    protected String getDeathSound() {
-        return "outerrim:entity.clone.death";
-    }
-    
-    @Override
-    public int getTalkInterval() {
-        return 1200; // 1200 ticks = 60 seconds
-    }
+	public abstract String getTrooperType();
 
-    // Custom AI to avoid targeting other clones
-    class CustomAINearestAttackableTarget extends EntityAINearestAttackableTarget {
-        public CustomAINearestAttackableTarget(EntityCreature owner, Class targetClass, boolean checkSight) {
-            super(owner, targetClass, 0, checkSight);
-        }
+	@Override
+	protected String getLivingSound() {
+		return "outerrim:entity.clone.ambient";
+	}
 
-        @Override
-        protected boolean isSuitableTarget(EntityLivingBase target, boolean includeInvincibles) {
-            if (target instanceof EntityCloneTrooperBase || target instanceof EntityReconTrooperBase) {
-                return false;  // Avoid targeting other clone troopers
-            }
-            return super.isSuitableTarget(target, includeInvincibles);
-        }
-    }
+	@Override
+	protected String getHurtSound() {
+		return "outerrim:entity.clone.hurt";
+	}
+
+	@Override
+	protected String getDeathSound() {
+		return "outerrim:entity.clone.death";
+	}
+
+	@Override
+	public int getTalkInterval() {
+		return 1200;
+	}
+
+	// Custom AI to avoid targeting other clones (kept)
+	class CustomAINearestAttackableTarget extends EntityAINearestAttackableTarget {
+		public CustomAINearestAttackableTarget(EntityCreature owner, Class targetClass, boolean checkSight) {
+			super(owner, targetClass, 0, checkSight);
+		}
+
+		@Override
+		protected boolean isSuitableTarget(EntityLivingBase target, boolean includeInvincibles) {
+			if (target instanceof EntityCloneTrooperBase || target instanceof EntityReconTrooperBase)
+				return false;
+			return super.isSuitableTarget(target, includeInvincibles);
+		}
+	}
+
+	public void playShootSound() {
+		this.playSound("outerrim:entity.clone.shoot", 1.0F, 1.0F);
+	}
+
 }

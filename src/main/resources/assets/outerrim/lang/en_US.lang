@@ -885,6 +885,10 @@ itemGroup.OuterRimHyperdrivesTab=Star Wars Hyperdrives
 
 ## Chat ##
 death.attack.MagmaBlock=%1$s discovered the floor was lava
+death.attack.outerrim_laser=%1$s was blasted.
+death.attack.outerrim_laser.player=%1$s was blasted by %2$s.
+death.attack.outerrim_laser_red=%1$s was blasted.
+death.attack.outerrim_laser_red.player=%1$s was blasted by %2$s.
 
 ## Entities ##
 

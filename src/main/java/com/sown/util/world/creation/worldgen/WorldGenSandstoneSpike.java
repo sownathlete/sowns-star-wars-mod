@@ -24,7 +24,6 @@ import net.minecraft.world.World;
 
 public class WorldGenSandstoneSpike
 extends WorldGeneratorOR {
-    private static final String __OBFID = "CL_00000417";
 
     @Override
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5) {

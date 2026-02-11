@@ -68,6 +68,8 @@ import com.sown.outerrim.blocks.BlockMediumCoaxiumPump;
 import com.sown.outerrim.fluids.BlockFluidCustom;
 import com.sown.outerrim.items.ItemBlockCustomSlab;
 import com.sown.outerrim.items.ItemBlockCustomSlabDouble;
+import com.sown.outerrim.items.ItemBlockGrassPlant;
+import com.sown.outerrim.items.ItemBlockTallGrass;
 import com.sown.outerrim.tileentities.TileEntityCarbonite;
 import com.sown.outerrim.tileentities.TileEntityCoaxiumContainer;
 import com.sown.outerrim.tileentities.TileEntityCoaxiumPump;
@@ -732,8 +734,8 @@ public class BlockRegister {
 				BlockConstants.NO_WALL);
 		registerLayerBlock("salt_layer", BlockConstants.MATERIAL_SAND, 0.15F, BlockConstants.TOOL_PICKAXE,
 				BlockConstants.HARVEST_NONE, Block.soundTypeSand);
-		registerGrassPlant("short_grass");
-		registerTallGrassPlant("tall_grass");
+		registerGrassPlant("short_grass", 5, BlockRegister.getRegisteredBlock("bogano_grass"));
+		registerTallGrassPlant("tall_grass", 3, BlockRegister.getRegisteredBlock("bogano_grass"));
 		registerBlock(BlockCustomSolid.class, "snowyStone", BlockConstants.MATERIAL_ROCK, BlockConstants.HARDNESS_STONE,
 				BlockConstants.TOOL_PICKAXE, BlockConstants.HARVEST_NONE, Block.soundTypeStone,
 				BlockConstants.LIGHT_NONE, Blocks.stone, null, false, true, false, false, false,
@@ -1455,33 +1457,22 @@ public class BlockRegister {
 		return block;
 	}
 	
-	public static BlockCustomGrassPlant registerGrassPlant(String name, Block... extraGround) {
-	    // 5 variants: short_grass.png, short_grass1.png ... short_grass4.png
-	    BlockCustomGrassPlant plant = new BlockCustomGrassPlant(name, 5);
-
+	public static Block registerGrassPlant(String name, int variants, Block... extraGround) {
+	    BlockCustomGrassPlant b = new BlockCustomGrassPlant(name, variants);
 	    if (extraGround != null) {
-	        for (Block b : extraGround) plant.addValidGround(b);
+	        for (Block g : extraGround) b.addValidGround(g);
 	    }
-
-	    GameRegistry.registerBlock(plant, name);
-	    decorationBlocks.add(plant);
-	    registeredBlocks.put(name, plant);
-	    return plant;
+	    GameRegistry.registerBlock(b, com.sown.outerrim.items.ItemBlockGrassPlant.class, name);
+	    return b;
 	}
 
-	public static BlockCustomTallGrass registerTallGrassPlant(String name, Block... extraGround) {
-	    // name is the block registry/unlocal name (ex: "tall_grass")
-	    // icons are fixed to tall_grass_bottom* and tall_grass_top* per your request
-	    BlockCustomTallGrass plant = new BlockCustomTallGrass(name, 3);
-
+	public static Block registerTallGrassPlant(String name, int variants, Block... extraGround) {
+	    BlockCustomTallGrass b = new BlockCustomTallGrass(name, variants);
 	    if (extraGround != null) {
-	        for (Block b : extraGround) plant.addValidGround(b);
+	        for (Block g : extraGround) b.addValidGround(g);
 	    }
-
-	    GameRegistry.registerBlock(plant, name);
-	    decorationBlocks.add(plant);
-	    registeredBlocks.put(name, plant);
-	    return plant;
+	    GameRegistry.registerBlock(b, com.sown.outerrim.items.ItemBlockTallGrass.class, name);
+	    return b;
 	}
 
 	public static void registerRedstoneTorch(String name, String textureOn, String textureOff, Map<String, Block> registeredBlocks) {

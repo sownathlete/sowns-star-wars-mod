@@ -91,4 +91,15 @@ public class BiomeGenBogano extends ORSubBiome {
     public int getSkyColorByTemp(float temp) {
         return 10797476;
     }
+    
+    @Override
+    public int getBiomeGrassColor(int x, int y, int z) {
+        return 0xFFE06A;
+    }
+
+    @Override
+    public int getBiomeFoliageColor(int x, int y, int z) {
+        return 0xFFEA74;
+    }
+
 }

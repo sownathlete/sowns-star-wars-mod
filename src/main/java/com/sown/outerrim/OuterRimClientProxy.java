@@ -1,5 +1,8 @@
 package com.sown.outerrim;
 
+import com.sown.outerrim.blocks.BlockCustomGrassPlant;
+import com.sown.outerrim.blocks.BlockCustomTallGrass;
+import com.sown.outerrim.client.render.RenderGrassOffsetCross;
 import com.sown.outerrim.client.render.RenderPortableCoaxiumPump;
 import com.sown.outerrim.entities.*;
 import com.sown.outerrim.entities.render.RenderEta2Starfighter;
@@ -94,6 +97,12 @@ public class OuterRimClientProxy extends OuterRimCommonProxy {
     }
 
     public void registerRendering() {
+        int id = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderGrassOffsetCross(id));
+
+        BlockCustomGrassPlant.RENDER_ID = id;
+        BlockCustomTallGrass.RENDER_ID = id;
+        
         MinecraftForge.EVENT_BUS.register(new InquisitorHelmetVisionHandler());
         MinecraftForge.EVENT_BUS.register(new DarthVaderHelmetVisionHandler());
         MinecraftForge.EVENT_BUS.register(new KesselWorkerHelmetVisionHandler());

@@ -45,6 +45,7 @@ import com.sown.outerrim.blocks.BlockCustomDeadBush;
 import com.sown.outerrim.blocks.BlockCustomFence;
 import com.sown.outerrim.blocks.BlockCustomGlass;
 import com.sown.outerrim.blocks.BlockCustomGlassLayer;
+import com.sown.outerrim.blocks.BlockCustomGrassPlant;
 import com.sown.outerrim.blocks.BlockCustomLayer;
 import com.sown.outerrim.blocks.BlockCustomLeaves;
 import com.sown.outerrim.blocks.BlockCustomLog;
@@ -53,6 +54,10 @@ import com.sown.outerrim.blocks.BlockCustomRedstoneTorch;
 import com.sown.outerrim.blocks.BlockCustomSapling;
 import com.sown.outerrim.blocks.BlockCustomSlab;
 import com.sown.outerrim.blocks.BlockCustomStairs;
+import com.sown.outerrim.blocks.BlockCustomTallGrass;
+import com.sown.outerrim.blocks.BlockCustomTallGrassBottom;
+import com.sown.outerrim.blocks.BlockCustomTallGrassDouble;
+import com.sown.outerrim.blocks.BlockCustomTallGrassTop;
 import com.sown.outerrim.blocks.BlockCustomTorch;
 import com.sown.outerrim.blocks.BlockCustomTrapdoor;
 import com.sown.outerrim.blocks.BlockCustomTrapdoorNew;
@@ -373,13 +378,12 @@ public class BlockRegister {
 				BlockConstants.LIGHT_NONE, BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED,
 				BlockConstants.DROPS_ITSELF, BlockConstants.SINGLE_SIDED, BlockConstants.HAS_ADDITIONAL_BLOCKS, false,
 				false, BlockConstants.NO_FENCE, BlockConstants.NO_WALL);
-		// This block is causing an error when run on servers due to the particles its making?
-		/* registerBlockWithTileEntity(BlockFeluciaFlowerTurquoise.class, TileEntityFeluciaFlowerTurquoise.class, "felucia_flower_tall_turquoise",
+		registerBlockWithTileEntity(BlockFeluciaFlowerTurquoise.class, TileEntityFeluciaFlowerTurquoise.class, "felucia_flower_tall_turquoise",
 		        BlockConstants.MATERIAL_PLANTS, BlockConstants.HARDNESS_PLANT, BlockConstants.TOOL_SHEARS,
 		        BlockConstants.HARVEST_NONE, BlockConstants.SOUND_GRASS, BlockConstants.LIGHT_NONE,
 		        BlockConstants.NO_BLOCK_DROPPED, BlockConstants.NO_ITEM_DROPPED, BlockConstants.DROPS_ITSELF,
 		        BlockConstants.SINGLE_SIDED, BlockConstants.NO_ADDITIONAL_BLOCKS, BlockConstants.NO_REDSTONE_BLOCKS,
-		        decorationBlocks);*/
+		        decorationBlocks);
 		registerBlock(BlockCustomSolid.class, "fortInquisFloorPanel", BlockConstants.MATERIAL_IRON,
 				BlockConstants.HARDNESS_METAL, BlockConstants.TOOL_PICKAXE, BlockConstants.HARVEST_NONE,
 				BlockConstants.SOUND_METAL, BlockConstants.LIGHT_NONE, BlockConstants.NO_BLOCK_DROPPED,
@@ -731,6 +735,8 @@ public class BlockRegister {
 				BlockConstants.NO_WALL);
 		registerLayerBlock("salt_layer", BlockConstants.MATERIAL_SAND, 0.15F, BlockConstants.TOOL_PICKAXE,
 				BlockConstants.HARVEST_NONE, Block.soundTypeSand);
+		registerGrassPlant("short_grass");
+		registerTallGrassPlant("tall_grass");
 		registerBlock(BlockCustomSolid.class, "snowyStone", BlockConstants.MATERIAL_ROCK, BlockConstants.HARDNESS_STONE,
 				BlockConstants.TOOL_PICKAXE, BlockConstants.HARVEST_NONE, Block.soundTypeStone,
 				BlockConstants.LIGHT_NONE, Blocks.stone, null, false, true, false, false, false,
@@ -1452,10 +1458,33 @@ public class BlockRegister {
 		return block;
 	}
 	
-	public static void registerTorch(String name, String texture, Map<String, Block> registeredBlocks) {
-	    BlockCustomTorch torch = new BlockCustomTorch(name, texture);
-	    GameRegistry.registerBlock(torch, name);
-	    registeredBlocks.put(name, torch);
+	public static BlockCustomGrassPlant registerGrassPlant(String name, Block... extraGround) {
+	    // 5 variants: short_grass.png, short_grass1.png ... short_grass4.png
+	    BlockCustomGrassPlant plant = new BlockCustomGrassPlant(name, 5);
+
+	    if (extraGround != null) {
+	        for (Block b : extraGround) plant.addValidGround(b);
+	    }
+
+	    GameRegistry.registerBlock(plant, name);
+	    decorationBlocks.add(plant);
+	    registeredBlocks.put(name, plant);
+	    return plant;
+	}
+
+	public static BlockCustomTallGrass registerTallGrassPlant(String name, Block... extraGround) {
+	    // name is the block registry/unlocal name (ex: "tall_grass")
+	    // icons are fixed to tall_grass_bottom* and tall_grass_top* per your request
+	    BlockCustomTallGrass plant = new BlockCustomTallGrass(name, 3);
+
+	    if (extraGround != null) {
+	        for (Block b : extraGround) plant.addValidGround(b);
+	    }
+
+	    GameRegistry.registerBlock(plant, name);
+	    decorationBlocks.add(plant);
+	    registeredBlocks.put(name, plant);
+	    return plant;
 	}
 
 	public static void registerRedstoneTorch(String name, String textureOn, String textureOff, Map<String, Block> registeredBlocks) {

@@ -1,3 +1,4 @@
+// ItemCustomHyperdrive.java
 package com.sown.outerrim.items;
 
 import java.util.List;
@@ -29,18 +30,18 @@ public class ItemCustomHyperdrive extends Item {
 
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-        // if not holding shift or not creative etc, this runs only when sneaking & creative
+        // runs only when sneaking & creative, and only on CLIENT (so we can sendToServer)
         if (!player.isSneaking() || !player.capabilities.isCreativeMode || !world.isRemote) {
             return stack;
         }
 
-        // check implemented
         int dimId;
         try {
             dimId = OuterRimResources.ConfigOptions.getDimId(planetName);
         } catch (Exception e) {
-            return stack;  // not configured
+            return stack; // not configured
         }
+
         boolean implemented = false;
         for (int id : DimensionManager.getIDs()) {
             if (id == dimId) {
@@ -49,14 +50,15 @@ public class ItemCustomHyperdrive extends Item {
             }
         }
         if (!implemented) {
-            return stack;  // do nothing if not implemented
+            return stack; // do nothing if not implemented
         }
 
-        // now perform hyperdrive
+        // request server transfer
         if (player.dimension != dimId) {
-            player.timeUntilPortal = 20;
-            OuterRim.network.sendToServer(new MessageHyperdrive(player, dimId));
+            player.timeUntilPortal = 20; // local visual cooldown; server enforces its own too
+            OuterRim.network.sendToServer(new MessageHyperdrive(dimId));
         }
+
         return stack;
     }
 
@@ -76,12 +78,9 @@ public class ItemCustomHyperdrive extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advanced) {
-        // Usage hint
         list.add(EnumChatFormatting.GRAY + "Usage: Shift + Right-Click");
-        // Creative-only notice
         list.add(EnumChatFormatting.RED + "Creative-only item");
 
-        // Check if dimension is registered
         try {
             int dimId = OuterRimResources.ConfigOptions.getDimId(planetName);
             boolean implemented = false;

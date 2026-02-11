@@ -49,6 +49,8 @@ import com.sown.outerrim.entities.EntityJabba;
 import com.sown.outerrim.entities.MobTatooineCommoner;
 import com.sown.outerrim.entities.MobTest;
 import com.sown.outerrim.entities.MobYoda;
+import com.sown.outerrim.entities.vehicles.EntityEta2Starfighter;
+import com.sown.outerrim.entities.vehicles.EntityN1Starfighter;
 import com.sown.outerrim.entities.EntityZabrak;
 import com.sown.util.entity.EntityUtils;
 
@@ -120,6 +122,10 @@ public class EntityRegister {
 	    // Projectile Entities
 	    EntityRegistry.registerModEntity(EntityLaserProjectile.class, "laserProjectile", 1, OuterRim.instance, 64, 10, true);
 	    EntityRegistry.registerModEntity(EntityLaserProjectileRed.class, "laserProjectileRed", 2, OuterRim.instance, 64, 10, true);
+	    
+	    // Vehicle Entities
+	    EntityUtils.registerWithSpawnEgg(EntityN1Starfighter.class, "n1_starfighter", 0xFFD200, 0x999999);
+	    EntityUtils.registerWithSpawnEgg(EntityEta2Starfighter.class, "eta2_starfighter", 0xB6B6B6, 0x3A4AFF);
 	}
 
 

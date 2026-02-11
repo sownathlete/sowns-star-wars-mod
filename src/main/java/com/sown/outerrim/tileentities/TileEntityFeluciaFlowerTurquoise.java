@@ -1,7 +1,9 @@
+// TileEntityFeluciaFlowerTurquoise.java
 package com.sown.outerrim.tileentities;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.NetworkManager;
@@ -9,22 +11,24 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
+import java.util.Random;
+
 public class TileEntityFeluciaFlowerTurquoise extends TileEntity {
     private int facing = 0;
-    private long lastPoison     = 0;
-    private long nextParticles  = 0;
+    private long lastPoison = 0;
+    private long nextParticles = 0;
 
-    public int  getFacing()            { return facing; }
-    public void setFacing(int f)       { facing = f & 3; markDirty(); }
+    public int getFacing() { return facing; }
+    public void setFacing(int f) { facing = f & 3; markDirty(); }
 
-    public long getLastPoisonTime()    { return lastPoison; }
+    public long getLastPoisonTime() { return lastPoison; }
     public void setLastPoisonTime(long t) { lastPoison = t; }
 
-    public long getNextParticleTime()  { return nextParticles; }
+    public long getNextParticleTime() { return nextParticles; }
 
-    /** schedule first/next burst (3001200 ticks = 1560s) */
     public void scheduleNextParticles(long now) {
-        nextParticles = now + 300 + new java.util.Random().nextInt(901);
+        // 300..1200 ticks
+        nextParticles = now + 300 + new Random().nextInt(901);
         markDirty();
     }
 
@@ -32,33 +36,30 @@ public class TileEntityFeluciaFlowerTurquoise extends TileEntity {
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         nbt.setInteger("facing", facing);
-        nbt.setLong   ("lastPoison", lastPoison);
-        nbt.setLong   ("nextParticles", nextParticles);
+        nbt.setLong("lastPoison", lastPoison);
+        nbt.setLong("nextParticles", nextParticles);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        facing       = nbt.getInteger("facing");
-        lastPoison   = nbt.getLong("lastPoison");
-        nextParticles= nbt.getLong("nextParticles");
+        facing = nbt.getInteger("facing");
+        lastPoison = nbt.getLong("lastPoison");
+        nextParticles = nbt.getLong("nextParticles");
     }
 
     @Override
     public Packet getDescriptionPacket() {
         NBTTagCompound tag = new NBTTagCompound();
         writeToNBT(tag);
-        return new S35PacketUpdateTileEntity(
-            xCoord, yCoord, zCoord, 0, tag
-        );
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net,
-                             S35PacketUpdateTileEntity pkt) {
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         readFromNBT(pkt.func_148857_g());
     }
-    
+
     @Override
     public double getMaxRenderDistanceSquared() {
         return Double.MAX_VALUE;
@@ -70,5 +71,8 @@ public class TileEntityFeluciaFlowerTurquoise extends TileEntity {
         return TileEntity.INFINITE_EXTENT_AABB;
     }
 
-    @Override public boolean canUpdate() { return false; }
+    @Override
+    public boolean canUpdate() {
+        return false;
+    }
 }

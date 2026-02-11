@@ -1,91 +1,101 @@
 package com.sown.outerrim.entities;
 
+import cpw.mods.fml.common.Loader;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAIPanic;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.ai.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
+import java.lang.reflect.Method;
 
 public class EntityCountDooku extends EntityCreature {
 
-    public EntityCountDooku(World worldIn) {
-        super(worldIn);
-        // Size: roughly human-sized
-        this.setSize(0.6F, 1.95F);
-        this.getNavigator().setCanSwim(true);
+    private int attackCooldown = 0;
 
-        // AI Tasks
+    public EntityCountDooku(World world) {
+        super(world);
+        this.setSize(0.6F, 1.8F);
+        this.experienceValue = 25;
+
+        // Behavior: wander, look, idle, attack players
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
-        this.tasks.addTask(2, new EntityAIMoveTowardsRestriction(this, 1.0D));
-        this.tasks.addTask(3, new EntityAIWander(this, 0.6D));
-        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(5, new EntityAILookIdle(this));
-        // If you want him to attack, you could add e.g.:
-        // this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
-        // this.tasks.addTask(6, new EntityAIAttackMelee(this, 1.0D, false));
+        this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.1D, false));
+        this.tasks.addTask(2, new EntityAIWander(this, 0.8D));
+        this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityLivingBase.class, 8.0F));
+        this.tasks.addTask(4, new EntityAILookIdle(this));
+
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true));
+
+        // Give him his lightsaber if Legends is loaded
+        this.setCurrentItemOrArmor(0, tryGetLightsaber());
     }
 
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        // Detect players from afar
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
-        // Health (e.g. 20 = 10 hearts)
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
-        // Movement speed
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.30D);
-        // Uncomment if you add attack AI:
-        // this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.32D);
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(24.0D);
     }
 
     @Override
-    public String getCommandSenderName() {
-        return "Count Dooku";
-    }
+    public void onUpdate() {
+        super.onUpdate();
 
-    @Override
-    protected String getLivingSound() {
-        return "outerrim:mob.count_dooku.say";
-    }
-
-    @Override
-    protected String getHurtSound() {
-        return "outerrim:mob.count_dooku.hurt";
-    }
-
-    @Override
-    protected String getDeathSound() {
-        return "outerrim:mob.count_dooku.die";
-    }
-
-    @Override
-    public int getTalkInterval() {
-        // roughly once per minute
-        return 1200;
-    }
-
-    @Override
-    public boolean canDespawn() {
-        // Keep him around
-        return false;
+        // Keep the saber active & stable (fixes "stub blade" bug)
+        ItemStack held = this.getHeldItem();
+        if (held != null && Loader.isModLoaded("legends")) {
+            try {
+                Class<?> cls = Class.forName("com.tihyo.starwars.items.weapons.ItemLightsaberBase");
+                Method update = cls.getDeclaredMethod("updateActiveState", EntityLivingBase.class, ItemStack.class);
+                update.invoke(cls, this, held);
+            } catch (Throwable ignored) {}
+        }
     }
 
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
-        // Play hero intro music on spawn (first tick)
-        if (this.ticksExisted == 1 && !this.worldObj.isRemote) {
-            this.worldObj.playSoundEffect(
-                this.posX, this.posY, this.posZ,
-                "outerrim:music.hero.dooku.intro",
-                1.0F, 1.0F
-            );
-        }
+        if (attackCooldown > 0) attackCooldown--;
     }
+
+    @Override
+    public boolean attackEntityAsMob(Entity target) {
+        if (attackCooldown <= 0) {
+            attackCooldown = 20; // 1s swing delay
+            boolean result = super.attackEntityAsMob(target);
+            if (result && target instanceof EntityLivingBase) {
+                ((EntityLivingBase) target).attackEntityFrom(DamageSource.causeMobDamage(this),
+                        (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
+            }
+            swingItem();
+            return result;
+        }
+        return false;
+    }
+
+    private ItemStack tryGetLightsaber() {
+        if (!Loader.isModLoaded("legends")) return null;
+        try {
+            Class<?> cls = Class.forName("com.tihyo.starwars.items.StarWarsItems");
+            ItemStack redSaber = (ItemStack) cls.getField("lightsaber_red").get(null);
+            if (redSaber != null) return redSaber.copy();
+        } catch (Throwable ignored) {}
+        return null;
+    }
+
+    @Override
+    protected String getLivingSound() { return "mob.blaze.breathe"; }
+
+    @Override
+    protected String getHurtSound() { return "mob.blaze.hit"; }
+
+    @Override
+    protected String getDeathSound() { return "mob.blaze.death"; }
 }

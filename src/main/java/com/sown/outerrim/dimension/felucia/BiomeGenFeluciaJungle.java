@@ -49,10 +49,8 @@ public class BiomeGenFeluciaJungle extends FeluciaBiomes {
             int z = chunkZ + random.nextInt(16);
             int y = world.getTopSolidOrLiquidBlock(x, z);
 
-            new WorldGenFeluciaFlowerTurquoise(
-                BlockRegister.getRegisteredBlock("felucia_flower_tall_turquoise"),
-                0
-            ).generate(world, random, x, y, z);
+            new WorldGenFeluciaFlowerTurquoise("felucia_flower_tall_turquoise", 0)
+            .generate(world, random, x, y, z);
         }
 
         Block coarse = null;

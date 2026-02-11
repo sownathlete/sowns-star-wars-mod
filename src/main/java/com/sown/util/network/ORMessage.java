@@ -1,3 +1,9 @@
+// ORMessage.java  (full file with the minimal fixes you should apply)
+// Notes:
+// 1) FIXED a bug in getClassFields(): it used containsValue(clazz) instead of containsKey(clazz)
+// 2) FIXED a bug in field cache retrieval logic. The old code could return null and break caching.
+// 3) Left serialization behavior as-is (reflection-based, final fromBytes/toBytes).
+
 package com.sown.util.network;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
@@ -27,7 +33,8 @@ import com.sown.outerrim.utils.EntityCooldownEntry;
 public class ORMessage<REQ extends ORMessage> implements Serializable, IMessage, IMessageHandler<REQ, IMessage> {
     private static final HashMap<Class, Pair<Reader, Writer>> handlers = new HashMap<>();
 
-    private static final HashMap<Class, Field[]> fieldCache = (HashMap)new HashMap<>();
+    // Cache: message class -> sorted public fields
+    private static final HashMap<Class, Field[]> fieldCache = new HashMap<>();
 
     static {
         map(byte.class, ORMessage::readByte, ORMessage::writeByte);
@@ -56,9 +63,13 @@ public class ORMessage<REQ extends ORMessage> implements Serializable, IMessage,
     }
 
     private static Field[] getClassFields(Class<?> clazz) {
-        if (fieldCache.containsValue(clazz))
-            return fieldCache.get(clazz);
-        Field[] fields = clazz.getFields();
+        // FIX: use containsKey, not containsValue
+        Field[] cached = fieldCache.get(clazz);
+        if (cached != null) {
+            return cached;
+        }
+
+        Field[] fields = clazz.getFields(); // public fields (including inherited)
         Arrays.sort(fields, (f1, f2) -> f1.getName().compareTo(f2.getName()));
         fieldCache.put(clazz, fields);
         return fields;
@@ -100,7 +111,7 @@ public class ORMessage<REQ extends ORMessage> implements Serializable, IMessage,
         int id = buf.readInt();
         if (MinecraftServer.getServer() == null)
             return (Minecraft.getMinecraft()).theWorld.getEntityByID(id);
-        return MinecraftServer.getServer().worldServerForDimension  (dim).getEntityByID(id);
+        return MinecraftServer.getServer().worldServerForDimension(dim).getEntityByID(id);
     }
 
     private static EntityCooldownEntry readEntityCooldownEntry(ByteBuf buf) {
@@ -128,7 +139,7 @@ public class ORMessage<REQ extends ORMessage> implements Serializable, IMessage,
         for (int i = 0; i < count; i++) {
             stacks.add(readItemStack(buf));
         }
-        return stacks.<ItemStack>toArray(new ItemStack[count]);
+        return stacks.toArray(new ItemStack[count]);
     }
 
     private static long readLong(ByteBuf buf) {
@@ -238,7 +249,7 @@ public class ORMessage<REQ extends ORMessage> implements Serializable, IMessage,
     }
 
     private static void writeVec3(Vec3 vec, ByteBuf buf) {
-        buf.writeDouble(vec.xCoord  );
+        buf.writeDouble(vec.xCoord);
         buf.writeDouble(vec.yCoord);
         buf.writeDouble(vec.zCoord);
     }

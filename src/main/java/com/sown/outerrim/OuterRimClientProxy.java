@@ -2,6 +2,9 @@ package com.sown.outerrim;
 
 import com.sown.outerrim.client.render.RenderPortableCoaxiumPump;
 import com.sown.outerrim.entities.*;
+import com.sown.outerrim.entities.render.RenderEta2Starfighter;
+import com.sown.outerrim.entities.vehicles.EntityEta2Starfighter;
+import com.sown.outerrim.entities.vehicles.EntityN1Starfighter;
 import com.sown.outerrim.handlers.FrozenPlayerHandler;
 import com.sown.outerrim.registry.BlockRegister;
 import com.sown.outerrim.rendering.RenderItemPortableCoaxiumPump;
@@ -138,6 +141,8 @@ public class OuterRimClientProxy extends OuterRimCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityMimbaneseSoldier.class, new RenderMimbaneseSoldier());
         RenderingRegistry.registerEntityRenderingHandler(EntityAstromech.class, new RenderAstromech());
         RenderingRegistry.registerEntityRenderingHandler(EntitySandBeast.class, new RenderSandBeast(new ModelSandBeast(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler(EntityN1Starfighter.class, new RenderN1Starfighter(0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityEta2Starfighter.class, new RenderEta2Starfighter(0.5F));
         registerCloneTrooperRenderer(MobCloneTrooper187th.class, "187th");
         registerCloneTrooperRenderer(MobCloneTrooperCoruscantGuard.class, "coruscant_guard");
         RenderingRegistry.registerEntityRenderingHandler(EntityCaptainRex.class, new RenderCaptainRex(new ModelCaptainRex(), 0.5f));
